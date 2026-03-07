@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venkatesh Ammireddy — UX Creative Director</title>
+  <meta name="description"
+    content="Venkatesh Ammireddy is a senior UX Creative Director and Product UX Architect specialising in AI-first experiences, agentic UX systems, and enterprise design platforms with 13+ years of experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ─── GLOBAL 3D BACKGROUND ─── -->
+  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-follower" class="cursor-follower"></div>
+
+  <!-- ─── NAVIGATION ─── -->
+  <header id="header" class="header">
+    <nav class="nav container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-text">VA</span>
+        <span class="logo-dot"></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About Me</a></li>
+        <li><a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Weather Pill (auto-populated by JS) -->
+      <div id="weatherPill" class="weather-pill" title="Auto-theme based on your local weather" aria-live="polite">
+        <span class="wp-emoji">⟳</span>
+        <span class="wp-text">Detecting weather…</span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon sun">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+          </span>
+          <span class="theme-icon moon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </span>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section id="home" class="hero">
+    <div class="hero-gradient-orb orb-1"></div>
+    <div class="hero-gradient-orb orb-2"></div>
+    <div class="hero-gradient-orb orb-3"></div>
+
+    <div class="container hero-content">
+      <div class="hero-eyebrow reveal-fade">
+        <span class="eyebrow-dot"></span>
+        <span>Senior UX Design Leader</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="name-line reveal-up" data-delay="0">Venkatesh</span>
+        <span class="name-line reveal-up" data-delay="0.15">Ammireddy</span>
+      </h1>
+
+      <div class="hero-titles reveal-up" data-delay="0.35">
+        <div class="title-rotating">
+          <span class="title-item active">UX Creative Director</span>
+          <span class="title-item">Product UX Architect</span>
+          <span class="title-item">AI-first Design Thinker</span>
+        </div>
+      </div>
+
+      <div class="hero-badges reveal-up" data-delay="0.5">
+        <div class="badge"><span class="badge-num">13+</span><span class="badge-label">Years of Experience</span></div>
+        <div class="badge-divider"></div>
+        <div class="badge"><span class="badge-icon">⬡</span><span class="badge-label">AI UX Design Approach</span></div>
+        <div class="badge-divider"></div>
+        <div class="badge"><span class="badge-icon">◈</span><span class="badge-label">Agentic UX Systems Thinking</span>
+        </div>
+      </div>
+
+      <div class="hero-cta reveal-fade" data-delay="0.7">
+        <a href="#portfolio" class="btn-primary">
+          <span>View Portfolio</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator reveal-fade" data-delay="1">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="about section-pad">
+    <div class="section-divider"></div>
+    <div class="container">
+      <div class="section-label reveal-fade">About Me</div>
+      <div class="about-grid">
+        <!-- Left: Text -->
+        <div class="about-text">
+          <h2 class="section-title reveal-up">Designing the Future<br />of Human–AI Interaction</h2>
+          <p class="about-lead reveal-up">I'm a senior UX design leader with 13+ years of experience crafting products
+            that sit at the intersection of human behaviour and intelligent systems.</p>
+
+          <div class="about-specialities reveal-up">
+            <div class="speciality-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              </div>
+              <div>
+                <h4>Product UX Architecture</h4>
+                <p>Structuring scalable, user-centred product experiences from first principles.</p>
+              </div>
+            </div>
+            <div class="speciality-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <div>
+                <h4>AI-first UX Systems</h4>
+                <p>Designing human-centred experiences for ML-driven and LLM-powered products.</p>
+              </div>
+            </div>
+            <div class="speciality-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4l3 3" />
+                </svg>
+              </div>
+              <div>
+                <h4>Enterprise UX Platforms</h4>
+                <p>Leading design at scale across large organisations and complex ecosystems.</p>
+              </div>
+            </div>
+            <div class="speciality-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
+              <div>
+                <h4>Agentic AI Experiences</h4>
+                <p>Pioneering UX frameworks for autonomous agents, co-pilots, and AI workflows.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-stats reveal-up">
+            <div class="stat"><span class="stat-number" data-count="13">0</span><span class="stat-plus">+</span><span
+                class="stat-label">Years</span></div>
+            <div class="stat"><span class="stat-number" data-count="60">0</span><span class="stat-plus">+</span><span
+                class="stat-label">Projects</span></div>
+            <div class="stat"><span class="stat-number" data-count="30">0</span><span class="stat-plus">+</span><span
+                class="stat-label">Brands</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Illustration -->
+        <div class="about-visual reveal-fade" data-delay="0.2">
+          <div class="visual-wrapper">
+            <img src="images/about-illustration.png" alt="AI UX Systems visualization" class="about-img"
+              loading="lazy" />
+            <div class="visual-glow"></div>
+            <div class="visual-badge v-badge-1">
+              <span>AI-first</span>
+            </div>
+            <div class="visual-badge v-badge-2">
+              <span>13+ Yrs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="portfolio" class="portfolio section-pad">
+    <div class="section-divider"></div>
+    <div class="container">
+      <div class="section-label reveal-fade">Portfolio</div>
+      <div class="portfolio-header">
+        <h2 class="section-title reveal-up">Selected Work</h2>
+        <p class="portfolio-sub reveal-up">Crafting experiences that move people and businesses forward.</p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="project-card reveal-up" data-delay="0" data-project="1">
+          <div class="card-image-wrap">
+            <img src="images/project1.png" alt="AI Dashboard UX" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="1">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">AI Analytics Dashboard</h3>
+            <div class="card-meta">
+              <span class="card-role">UX Creative Director</span>
+              <span class="card-year">2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" data-delay="0.1" data-project="2">
+          <div class="card-image-wrap">
+            <img src="images/project2.png" alt="Enterprise AI Platform" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="2">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">Enterprise AI Platform</h3>
+            <div class="card-meta">
+              <span class="card-role">Lead UX Architect</span>
+              <span class="card-year">2023</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" data-delay="0.2" data-project="3">
+          <div class="card-image-wrap">
+            <img src="images/project3.png" alt="Design System" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="3">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">Unified Design System</h3>
+            <div class="card-meta">
+              <span class="card-role">Design System Lead</span>
+              <span class="card-year">2023</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" data-delay="0.05" data-project="4">
+          <div class="card-image-wrap">
+            <img src="images/project4.png" alt="Agentic AI UX" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="4">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">Agentic AI Experience</h3>
+            <div class="card-meta">
+              <span class="card-role">UX Director – AI</span>
+              <span class="card-year">2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" data-delay="0.15" data-project="5">
+          <div class="card-image-wrap">
+            <img src="images/project5.png" alt="Enterprise UX Redesign" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="5">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">Enterprise UX Redesign</h3>
+            <div class="card-meta">
+              <span class="card-role">Principal UX Lead</span>
+              <span class="card-year">2022</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" data-delay="0.25" data-project="6">
+          <div class="card-image-wrap">
+            <img src="images/project6.png" alt="UX Research Strategy" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <button class="card-preview-btn" data-project="6">View Project</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">UX Research & Strategy</h3>
+            <div class="card-meta">
+              <span class="card-role">UX Research Lead</span>
+              <span class="card-year">2022</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="contact section-pad">
+    <div class="section-divider"></div>
+    <div class="container">
+      <div class="section-label reveal-fade">Contact</div>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <h2 class="section-title reveal-up">Let's Create<br />Something<br /><span
+              class="gradient-text">Extraordinary</span></h2>
+          <p class="contact-lead reveal-up">Open to senior leadership roles, strategic UX consulting, AI design
+            advisory, and speaking engagements.</p>
+
+          <div class="contact-links reveal-up">
+            <a href="mailto:venkateshcreations@gmail.com" class="contact-link" id="emailLink">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M2 7l10 7 10-7" />
+                </svg>
+              </div>
+              <div class="contact-link-info">
+                <span class="link-label">Email</span>
+                <span class="link-value">venkateshcreations@gmail.com</span>
+              </div>
+              <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/venkateshammireddy/" target="_blank" rel="noopener"
+              class="contact-link" id="linkedinLink">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </div>
+              <div class="contact-link-info">
+                <span class="link-label">LinkedIn</span>
+                <span class="link-value">linkedin.com/in/venkateshammireddy</span>
+              </div>
+              <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-right reveal-fade" data-delay="0.2">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Let's collaborate on..." />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."
+                required></textarea>
+            </div>
+            <button type="submit" class="btn-primary form-submit" id="submitBtn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+            <div id="formSuccess" class="form-success" style="display:none;">
+              ✓ Message sent! I'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="section-divider"></div>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <span class="logo-text">VA</span>
+        <span class="logo-dot"></span>
+      </div>
+      <p class="footer-copy">© 2025 Venkatesh Ammireddy. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── PROJECT MODAL ─── -->
+  <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="modal-image-wrap">
+        <img id="modalImage" src="" alt="" class="modal-image" />
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag" id="modalRole"></span>
+        <h3 id="modalTitle" class="modal-title"></h3>
+        <p id="modalDesc" class="modal-desc"></p>
+        <div class="modal-tags" id="modalTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

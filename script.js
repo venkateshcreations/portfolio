@@ -280,6 +280,16 @@ if (canvas) {
   const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
+  let mouse = { x: null, y: null };
+
+  document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  document.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
 
   function resize() {
     width = canvas.width = window.innerWidth;
@@ -295,7 +305,7 @@ if (canvas) {
       this.y = Math.random() * height;
       this.vx = (Math.random() - 0.5) * 0.8;
       this.vy = (Math.random() - 0.5) * 0.8;
-      this.size = Math.random() * 2 + 0.5;
+      this.size = Math.random() * 2 + 0.8; // slightly larger dot
     }
 
     update() {
@@ -304,10 +314,27 @@ if (canvas) {
 
       if (this.x < 0 || this.x > width) this.vx *= -1;
       if (this.y < 0 || this.y > height) this.vy *= -1;
+
+      // Mouse repel interaction
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let repelRadius = 150;
+
+        if (distance < repelRadius) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (repelRadius - distance) / repelRadius;
+
+          this.x -= forceDirectionX * force * 5;
+          this.y -= forceDirectionY * force * 5;
+        }
+      }
     }
 
     draw() {
-      ctx.fillStyle = 'rgba(180, 180, 180, 0.4)';
+      ctx.fillStyle = 'rgba(180, 180, 180, 0.6)'; // slightly brighter
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -316,7 +343,7 @@ if (canvas) {
 
   function init() {
     particles = [];
-    const numParticles = Math.floor((width * height) / 12000); // Responsive particle count
+    const numParticles = Math.floor((width * height) / 10000); // denser
     for (let i = 0; i < numParticles; i++) {
       particles.push(new Particle());
     }
@@ -329,17 +356,17 @@ if (canvas) {
       p.update();
       p.draw();
 
-      // Draw connecting lines between close particles
+      // Connecting lines
       for (let j = index + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
         const dy = p.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 130) {
+        if (dist < 140) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(180, 180, 180, ${0.25 - dist / 520})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `rgba(180, 180, 180, ${0.4 - dist / 350})`; // stronger line
+          ctx.lineWidth = 1.0;
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
           ctx.stroke();
@@ -505,46 +532,64 @@ if (aboutStats) {
 ══════════════════════════════════ */
 const projectData = {
   1: {
-    title: 'AI Analytics Dashboard',
+    title: 'Threat Intercepting Autonomous System',
     role: 'UX Creative Director',
-    image: 'images/project1.png',
-    desc: 'Redesigned a complex AI-driven analytics platform for 50,000+ enterprise users. Led end-to-end UX strategy—from discovery research and journey mapping to interaction design and design system creation. Reduced cognitive load by 42% and improved task completion by 68%.',
-    tags: ['AI/ML UX', 'Enterprise Design', 'Data Visualisation', 'Design Systems']
+    image: 'images/project-1/1.jpg',
+    images: ['images/project-1/1.jpg', 'images/project-1/2.png', 'images/project-1/3.jpg', 'images/project-1/4.png'],
+    desc: 'Startup project - AI-driven Risk Management platform for enterprise users. Led end-to-end UX strategy—from discovery research and journey mapping to interaction design and design elements creation. Reduced cognitive load by 42% and improved task completion by 68%.',
+    tags: ['AI/ML UX', 'UX Architecture', 'Data Visualisation', 'Figma', 'Enterprise UX'],
+    url: 'https://www.figma.com/proto/1zblbGym1HSKiwsJ4xEUN1/Business-Observability--ECM--Back-up_1?node-id=1-31013&t=2H2Yb1E62XtjNV49-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A44567',
+    docUrl: 'https://drive.google.com/file/d/1Bb2cl1e9A5n-RKK4ON6gR2eVWpBQnR-X/view'
   },
   2: {
-    title: 'Enterprise AI Platform',
+    title: 'AeroFlow - Flight Ticket Booking',
     role: 'Lead UX Architect',
-    image: 'images/project2.png',
-    desc: 'Architected the UX of a next-generation enterprise AI platform serving Fortune 500 clients. Created the information architecture, component library, and interaction patterns that enabled teams to build consistent experiences at scale across 12 product lines.',
-    tags: ['Information Architecture', 'UX Architecture', 'Design Ops', 'Enterprise UX']
+    image: 'images/project-2/1.png',
+    images: ['images/project-2/1.png', 'images/project-2/2.png'],
+    desc: 'Create a next-generation AI-powered travel booking ecosystem that enables travelers to plan, book, manage, and optimize their journeys through intelligent automation, personalization, and real-time travel intelligence.',
+    tags: ['UX Architecture', 'Enterprise UX'],
+    url: 'https://aerofloww.netlify.app/',
+    docUrl: 'https://drive.google.com/file/d/1VKOfeXfxt1LhBT-paZmbd67Uf8JVEN4v/view'
   },
   3: {
-    title: 'Unified Design System',
-    role: 'Design System Lead',
-    image: 'images/project3.png',
-    desc: 'Built a comprehensive design system from scratch—including 300+ components, tokens, patterns, and documentation—adopted by 8 product teams. Cut design-to-development hand-off time by 60% and established a single source of visual truth across the organisation.',
-    tags: ['Design Systems', 'Figma', 'Component Library', 'Documentation']
+    title: 'Health Bridge-Smart Kiosk',
+    role: 'UX Lead',
+    image: 'images/project-3/1.png',
+    images: ['images/project-3/1.png'],
+    desc: 'HealthBridge** is a public-health kiosk platform deployed across urban and rural India. It delivers screenings, telemedicine, mental wellness support, and emergency response. All without storing any personally identifiable information (PII)..',
+    tags: ['Design Systems', 'Figma', 'Component Library', 'Documentation'],
+    url: 'https://healthbridgeadmin.vercel.app/',
+    docUrl: 'https://drive.google.com/file/d/1u9up1MJYWTOi5bINaR0llRxyiUCUcSKv/view'
   },
   4: {
-    title: 'Agentic AI Experience',
+    title: 'EduCore - School Mgmt. Software',
     role: 'UX Director — AI',
-    image: 'images/project4.png',
-    desc: 'Pioneered the UX framework for an agentic AI product that enables autonomous multi-step workflows. Conducted generative research on human-agent trust models and defined novel interaction patterns for agent transparency, control, and graceful failure handling.',
-    tags: ['Agentic AI', 'Conversational UX', 'Human-AI Interaction', 'Prototyping']
+    image: 'images/project-4/1.png',
+    images: ['images/project-4/1.png'],
+    desc: 'Develop a modern, scalable, cloud-ready School Management Software (SMS) tailored for Indian schools (CBSE, ICSE, State Boards). The system should centralize academic, administrative, financial, and communication workflows.',
+    tags: ['Agentic AI', 'Conversational UX', 'Prototyping'],
+    url: 'https://schoolmgmtapp.vercel.app/',
+    docUrl: 'https://drive.google.com/file/d/1173cg-6WRJamj_3AnMfYC0N2n3bA2esu/view'
   },
   5: {
-    title: 'Enterprise UX Redesign',
+    title: 'NetVision-Network Monitoring',
     role: 'Principal UX Lead',
-    image: 'images/project5.png',
-    desc: 'Led a full-scale redesign of a legacy enterprise application used by 200,000 employees globally. Conducted 80+ contextual interviews, synthesised insights into actionable design principles, and delivered a modernised experience with 35% reduction in support tickets.',
-    tags: ['Research', 'Redesign', 'Enterprise', 'Accessibility']
+    image: 'images/project-5/1.png',
+    images: ['images/project-5/1.png'],
+    desc: 'next-generation **Network Monitoring Software** focused on : AI-powered insights, predictive analytics, and automated remediation, Zero-touch onboarding, Real-time observability, Highly visual dashboards, AI-driven anomaly detection, Self-healing network capabilities, Natural-language query interface, Role-based access control, API-first architecture, Multi-cloud support, Advanced security features, Comprehensive reporting and analytics, Integration with existing IT tools.',
+    tags: ['Prototyping', 'Redesign', 'Enterprise'],
+    url: 'https://net-vision-fd14.vercel.app/',
+    docUrl: 'https://drive.google.com/file/d/14YMncitRUxkd0QAcyT-SKftXNs4Ulo66/view'
   },
   6: {
-    title: 'UX Research & Strategy',
-    role: 'UX Research Lead',
-    image: 'images/project6.png',
-    desc: 'Created a scalable UX research practice from the ground up. Operationalised a mixed-methods research framework spanning user discovery through usability testing. Developed journey maps, service blueprints, and strategic UX roadmaps that aligned product and business goals.',
-    tags: ['UX Research', 'Service Design', 'Strategy', 'Journey Mapping']
+    title: 'ProOS - Property Mgmt. Software',
+    role: 'UX Lead - AI',
+    image: 'images/project-6/1.png',
+    images: ['images/project-6/1.png'],
+    desc: 'cloud-native, AI-enabled, multi-tenant Property Management SaaS platform, Residential, Commercial, and Mixed-Use properties, Operational efficiency through automation, AI-powered insights and predictions, Tenant experience management, Automated rent collection and financial tracking, Maintenance and work order management, Lease lifecycle management, Compliance and reporting, Self-service portals for tenants and owners, Integration with existing property management tools.',
+    tags: ['UX Prototyping', 'Service Design', 'Strategy'],
+    url: 'https://propos-property-mgmt.vercel.app/',
+    docUrl: 'https://drive.google.com/file/d/1Shl87T-OH_6rPLjlOcSC_plJe4uE57Za/view'
   }
 };
 
@@ -556,27 +601,139 @@ const modalTitle = document.getElementById('modalTitle');
 const modalRole = document.getElementById('modalRole');
 const modalDesc = document.getElementById('modalDesc');
 const modalTagsEl = document.getElementById('modalTags');
+const modalLiveLink = document.getElementById('modalLiveLink');
+const modalDocLink = document.getElementById('modalDocLink');
+
+const sliderControls = document.getElementById('sliderControls');
+const sliderDots = document.getElementById('sliderDots');
+const sliderPrev = document.getElementById('sliderPrev');
+const sliderNext = document.getElementById('sliderNext');
+
+let currentSlideIndex = 0;
+let currentProjectImages = [];
+
+const modalImageWrap = document.getElementById('modalImageWrap');
+const magnifier = document.getElementById('magnifier');
+
+function renderSlider() {
+  modalImage.src = currentProjectImages[currentSlideIndex];
+
+  if (magnifier && magnifier.classList.contains('active')) {
+    magnifier.style.backgroundImage = `url(${modalImage.src})`;
+  }
+
+  if (currentProjectImages.length > 1) {
+    sliderControls.classList.remove('hidden');
+    sliderDots.classList.remove('hidden');
+
+    sliderDots.innerHTML = currentProjectImages.map((_, i) =>
+      `<button class="slider-dot ${i === currentSlideIndex ? 'active' : ''}" data-index="${i}" aria-label="Go to slide ${i + 1}"></button>`
+    ).join('');
+
+    document.querySelectorAll('.slider-dot').forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        goToSlide(parseInt(e.target.dataset.index));
+      });
+      dot.addEventListener('mouseenter', () => follower.classList.add('hovered'));
+      dot.addEventListener('mouseleave', () => follower.classList.remove('hovered'));
+    });
+  } else {
+    sliderControls.classList.add('hidden');
+    sliderDots.classList.add('hidden');
+  }
+}
+
+function goToSlide(index) {
+  if (index < 0) index = currentProjectImages.length - 1;
+  if (index >= currentProjectImages.length) index = 0;
+
+  currentSlideIndex = index;
+
+  modalImage.style.opacity = 0;
+  setTimeout(() => {
+    renderSlider();
+    modalImage.style.opacity = 1;
+  }, 150);
+}
+
+if (sliderPrev) sliderPrev.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
+if (sliderNext) sliderNext.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
 
 function openModal(projectId) {
   const data = projectData[projectId];
   if (!data) return;
 
-  modalImage.src = data.image;
+  currentProjectImages = data.images || [data.image];
+  currentSlideIndex = 0;
+  renderSlider();
+
   modalImage.alt = data.title;
   modalTitle.textContent = data.title;
   modalRole.textContent = data.role;
   modalDesc.textContent = data.desc;
   modalTagsEl.innerHTML = data.tags
-    .map(t => `<span class="modal-tag-item">${t}</span>`)
+    .map((t, i) => `<span class="modal-tag-item tag-pastel-${(i % 5) + 1}">${t}</span>`)
     .join('');
+
+  if (data.url) {
+    modalLiveLink.href = data.url;
+    modalLiveLink.style.display = 'inline-flex';
+  } else {
+    modalLiveLink.style.display = 'none';
+  }
+
+  if (data.docUrl) {
+    modalDocLink.href = data.docUrl;
+    modalDocLink.style.display = 'inline-flex';
+  } else {
+    modalDocLink.style.display = 'none';
+  }
 
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
+// Magnifier Effects
+if (modalImageWrap && magnifier) {
+  const ZOOM_LEVEL = 2.5;
+
+  modalImageWrap.addEventListener('mouseenter', () => {
+    // Only show if the modal image source isn't empty
+    if (modalImage.src) {
+      magnifier.style.backgroundImage = `url(${modalImage.src})`;
+      magnifier.style.backgroundSize = `${modalImageWrap.offsetWidth * ZOOM_LEVEL}px ${modalImageWrap.offsetHeight * ZOOM_LEVEL}px`;
+      magnifier.classList.add('active');
+    }
+  });
+
+  modalImageWrap.addEventListener('mouseleave', () => {
+    magnifier.classList.remove('active');
+  });
+
+  modalImageWrap.addEventListener('mousemove', (e) => {
+    if (!magnifier.classList.contains('active')) return;
+
+    // Check if mouse touches slider buttons (because they have pointer events)
+    // Actually pointer-events bubble up so e.clientX remains accurate.
+    const rect = modalImageWrap.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const magRadius = magnifier.offsetWidth / 2;
+
+    magnifier.style.left = `${x - magRadius}px`;
+    magnifier.style.top = `${y - magRadius}px`;
+
+    const bgX = magRadius - x * ZOOM_LEVEL;
+    const bgY = magRadius - y * ZOOM_LEVEL;
+    magnifier.style.backgroundPosition = `${bgX}px ${bgY}px`;
+  });
+}
+
 function closeModal() {
   modal.classList.remove('open');
   document.body.style.overflow = '';
+  magnifier.classList.remove('active');
 }
 
 document.querySelectorAll('.card-preview-btn').forEach(btn => {
@@ -607,13 +764,51 @@ const submitBtn = document.getElementById('submitBtn');
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Simple validation
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const subject = document.getElementById('subject').value.trim() || 'New Portfolio Message';
-  const message = document.getElementById('message').value.trim();
+  // Inputs
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  const subjectInput = document.getElementById('subject');
 
-  if (!name || !email || !message) return;
+  // Error Messages
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const messageError = document.getElementById('messageError');
+
+  // Values
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const subject = subjectInput.value.trim() || 'New Portfolio Message';
+  const message = messageInput.value.trim();
+
+  // Reset Error States
+  let isValid = true;
+  [nameInput, emailInput, messageInput].forEach(el => el.classList.remove('error'));
+  [nameError, emailError, messageError].forEach(el => el.classList.remove('visible'));
+
+  // Name Validation
+  if (!name) {
+    nameInput.classList.add('error');
+    nameError.classList.add('visible');
+    isValid = false;
+  }
+
+  // Email Validation (Regex check)
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailPattern.test(email)) {
+    emailInput.classList.add('error');
+    emailError.classList.add('visible');
+    isValid = false;
+  }
+
+  // Message Validation
+  if (!message) {
+    messageInput.classList.add('error');
+    messageError.classList.add('visible');
+    isValid = false;
+  }
+
+  if (!isValid) return;
 
   // Real send via FormSubmit AJAX
   const btnText = submitBtn.querySelector('span');
@@ -694,3 +889,5 @@ if (aboutSection) {
    HERO TITLE ROTATING TEXT
 ══════════════════════════════════ */
 // Managed via CSS animation — nothing needed here
+
+

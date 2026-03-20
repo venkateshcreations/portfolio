@@ -582,14 +582,14 @@ const projectData = {
     docUrl: 'https://drive.google.com/file/d/14YMncitRUxkd0QAcyT-SKftXNs4Ulo66/view'
   },
   6: {
-    title: 'ProOS - Property Mgmt. Software',
+    title: 'SteamVerde - Online Streaming Platform',
     role: 'UX Lead - AI',
     image: 'images/project-6/1.png',
     images: ['images/project-6/1.png'],
-    desc: 'cloud-native, AI-enabled, multi-tenant Property Management SaaS platform, Residential, Commercial, and Mixed-Use properties, Operational efficiency through automation, AI-powered insights and predictions, Tenant experience management, Automated rent collection and financial tracking, Maintenance and work order management, Lease lifecycle management, Compliance and reporting, Self-service portals for tenants and owners, Integration with existing property management tools.',
-    tags: ['UX Prototyping', 'Service Design', 'Strategy'],
-    url: 'https://propos-property-mgmt.vercel.app/',
-    docUrl: 'https://drive.google.com/file/d/1Shl87T-OH_6rPLjlOcSC_plJe4uE57Za/view'
+    desc: 'A cloud-native OTT/IPTV platform delivering Live TV, VOD, Catch-up TV, Cloud DVR, AI-powered recommendations, and full operator management. Built as a complete SaaS/OTT/Middleware solution for subscribers, and content providers. I led the UX strategy, prototyping, and design system creation to ensure a seamless and engaging user experience across web and mobile platforms.',
+    tags: ['UX Prototyping', 'Front-End Design', 'Content Strategy'],
+    url: 'https://streamverde.netlify.app/',
+    docUrl: 'https://streamverde.netlify.app/README.md'
   }
 };
 

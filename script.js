@@ -590,8 +590,107 @@ const projectData = {
     tags: ['UX Prototyping', 'Front-End Design', 'Content Strategy'],
     url: 'https://streamverde.netlify.app/',
     docUrl: 'https://streamverde.netlify.app/README.md'
+  },
+
+  /* ── WEBSITES ─────────────────────────────────────────── */
+  7: {
+    title: 'VOXAR - AI Video Creation Platform',
+    role: 'UX Designer / Frontend',
+    image: 'images/project-7/1.png',
+    images: ['images/project-7/1.png'],
+    desc: 'VOXAR transforms written scripts into studio-quality videos with photorealistic avatars and 140+ voice clones — in minutes, not months.',
+    tags: ['Web Design', 'UX', 'Frontend'],
+    url: 'https://venkateshcreations.github.io/VOXAR-AI/',
+    docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/FEATURES_AND_EXPERIENCE.md'
+  },
+  8: {
+    title: 'Zippo.SYS - Financial Operations Terminal',
+    role: 'UX Designer / Frontend',
+    image: 'images/project-8/1.png',
+    images: ['images/project-8/1.png'],
+    desc: 'Secure Finance vault with advanced encryption and access controls, booting financial operations, optimizing spend protocols, with system terminal control.',
+    tags: ['Branding', 'UI Design', 'Creative Frontend'],
+    url: 'https://venkateshcreations.github.io/Zippo.SYS/',
+    docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/WEBSITE_FEATURES_AND_EXPERIENCE.md'
+  },
+  9: {
+    title: 'KREGENSIA - Brand Identity',
+    role: 'Frontend Designer',
+    image: 'images/project-9/1.png',
+    images: ['images/project-9/1.png'],
+    desc: 'KREGENSIA is brand makers with creative services and development capabilities. Brilliant design team will make your brand stand out.',
+    tags: ['Landing Page', 'UX Design', 'Frontend Development'],
+    url: 'https://venkateshcreations.github.io/KREGENSIA/',
+    docUrl: 'https://venkateshcreations.github.io/KREGENSIA/FEATURES_AND_EXPERIENCE.md'
+  },
+  10: {
+    title: 'PLUTO_Brute Force Branding',
+    role: 'UX Lead – Branding',
+    image: 'images/project-10/1.png',
+    images: ['images/project-10/1.png'],
+    desc: 'Technical ecosystems built for performance. Zero bloat. Pure functionality. High impact implementation. Technical ecosystems built for performance. Zero bloat. Pure functionality. High impact implementation.',
+    tags: ['Frontend Development', 'Development', 'Branding'],
+    url: 'https://venkateshcreations.github.io/PLUTO/',
+    docUrl: 'https://venkateshcreations.github.io/PLUTO/FEATURES.md'
+  },
+  11: {
+    title: 'Corell - Adaptive Operations Hub',
+    role: 'UX Lead – Branding',
+    image: 'images/project-11/1.png',
+    images: ['images/project-11/1.png'],
+    desc: 'Proactive threat mitigation and real-time asset surveillance. Corell provides the infrastructure for enterprise resilience in a volatile global landscape.',
+    tags: ['Corporate Website', 'Frontend Development', 'Branding'],
+    url: 'https://venkateshcreations.github.io/Corell/',
+    docUrl: 'https://venkateshcreations.github.io/Corell/WEBSITE-FEATURES.md'
+  },
+  12: {
+    title: 'Autofy - AI-Powered Analytics Dashboard',
+    role: 'UX Creative Director',
+    image: 'images/project-12/1.png',
+    images: ['images/project-12/1.png'],
+    desc: 'Direct operational control for analytical power users. Raw performance metrics delivered via proprietary recursive engine. Zero abstraction layer. Optimized for 100% throughput efficiency.',
+    tags: ['Portfolio Site', 'Motion Design', 'GSAP'],
+    url: 'https://venkateshcreations.github.io/Autofy/',
+    docUrl: 'https://venkateshcreations.github.io/Autofy/FEATURES_AND_EXPERIENCE.md'
   }
 };
+
+/* ══════════════════════════════════
+   PORTFOLIO TAB SWITCHING
+══════════════════════════════════ */
+(function initPortfolioTabs() {
+  const tabs   = document.querySelectorAll('.portfolio-tab');
+  const panels = document.querySelectorAll('.portfolio-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+
+      // Update tabs
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      // Update panels — force CSS animation replay
+      panels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+      const activePanel = document.getElementById(`panel-${target}`);
+      if (activePanel) {
+        // Reflow trick so the fade-in replays every time
+        void activePanel.offsetWidth;
+        activePanel.classList.add('active');
+      }
+    });
+
+    // Cursor events
+    tab.addEventListener('mouseenter', () => follower.classList.add('hovered'));
+    tab.addEventListener('mouseleave', () => follower.classList.remove('hovered'));
+  });
+})();
 
 const modal = document.getElementById('projectModal');
 const modalClose = document.getElementById('modalClose');

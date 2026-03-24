@@ -336,105 +336,230 @@
         <p class="portfolio-sub reveal-up">Crafting experiences that move people and businesses forward.</p>
       </div>
 
-      <div class="portfolio-grid">
-
-        <div class="project-card reveal-up" data-delay="0" data-project="1">
-          <div class="card-image-wrap">
-            <img src="images/project-1/1.jpg" alt="AI Dashboard UX" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="1">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">Threat Intercepting Autonomous System</h3>
-            <div class="card-meta">
-              <span class="card-role">UX Creative Director</span>
-              <span class="card-year">2025</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal-up" data-delay="0.1" data-project="2">
-          <div class="card-image-wrap">
-            <img src="images/project-2/1.png" alt="Enterprise AI Platform" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="2">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">AeroFlow - Flight Ticket Booking</h3>
-            <div class="card-meta">
-              <span class="card-role">Lead UX Architect</span>
-              <span class="card-year">2025</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal-up" data-delay="0.2" data-project="3">
-          <div class="card-image-wrap">
-            <img src="images/project-3/1.png" alt="Design System" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="3">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">RadioFlow</h3>
-            <div class="card-meta">
-              <span class="card-role">UX Creative Director</span>
-              <span class="card-year">2026</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal-up" data-delay="0.05" data-project="4">
-          <div class="card-image-wrap">
-            <img src="images/project-4/1.png" alt="Agentic AI UX" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="4">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">EduCore - School Mgmt. Software</h3>
-            <div class="card-meta">
-              <span class="card-role">UX Director – AI</span>
-              <span class="card-year">2026</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal-up" data-delay="0.15" data-project="5">
-          <div class="card-image-wrap">
-            <img src="images/project-5/1.png" alt="Enterprise UX Redesign" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="5">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">NetVision-Network Monitoring</h3>
-            <div class="card-meta">
-              <span class="card-role">Principal UX Lead</span>
-              <span class="card-year">2025</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal-up" data-delay="0.25" data-project="6">
-          <div class="card-image-wrap">
-            <img src="images/project-6/1.png" alt="UX Research Strategy" class="card-img" loading="lazy" />
-            <div class="card-overlay">
-              <button class="card-preview-btn" data-project="6">View Project</button>
-            </div>
-          </div>
-          <div class="card-info">
-            <h3 class="card-title">SteamVerde - Online Streaming Platform</h3>
-            <div class="card-meta">
-              <span class="card-role">UX Lead – AI</span>
-              <span class="card-year">2026</span>
-            </div>
-          </div>
-        </div>
-
+      <!-- ─── TAB NAVIGATION ─── -->
+      <div class="portfolio-tabs reveal-fade" data-delay="0.1" role="tablist" aria-label="Portfolio categories">
+        <button class="portfolio-tab active" id="tab-webapps" role="tab" aria-selected="true" aria-controls="panel-webapps" data-tab="webapps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+          <span>Web Apps</span>
+        </button>
+        <button class="portfolio-tab" id="tab-websites" role="tab" aria-selected="false" aria-controls="panel-websites" data-tab="websites">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>Websites</span>
+        </button>
       </div>
+
+      <!-- ─── WEB APPS PANEL ─── -->
+      <div class="portfolio-panel active" id="panel-webapps" role="tabpanel" aria-labelledby="tab-webapps">
+        <div class="portfolio-grid">
+
+          <div class="project-card reveal-up" data-delay="0" data-project="1">
+            <div class="card-image-wrap">
+              <img src="images/project-1/1.jpg" alt="AI Dashboard UX" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="1">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Threat Intercepting Autonomous System</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Creative Director</span>
+                <span class="card-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.1" data-project="2">
+            <div class="card-image-wrap">
+              <img src="images/project-2/1.png" alt="Enterprise AI Platform" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="2">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">AeroFlow - Flight Ticket Booking</h3>
+              <div class="card-meta">
+                <span class="card-role">Lead UX Architect</span>
+                <span class="card-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.2" data-project="3">
+            <div class="card-image-wrap">
+              <img src="images/project-3/1.png" alt="Design System" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="3">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">RadioFlow</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Creative Director</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.05" data-project="4">
+            <div class="card-image-wrap">
+              <img src="images/project-4/1.png" alt="Agentic AI UX" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="4">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">EduCore - School Mgmt. Software</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Director – AI</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.15" data-project="5">
+            <div class="card-image-wrap">
+              <img src="images/project-5/1.png" alt="Enterprise UX Redesign" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="5">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">NetVision-Network Monitoring</h3>
+              <div class="card-meta">
+                <span class="card-role">Principal UX Lead</span>
+                <span class="card-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.25" data-project="6">
+            <div class="card-image-wrap">
+              <img src="images/project-6/1.png" alt="UX Research Strategy" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="6">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">SteamVerde - Online Streaming Platform</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Lead – AI</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /panel-webapps -->
+
+      <!-- ─── WEBSITES PANEL ─── -->
+      <div class="portfolio-panel" id="panel-websites" role="tabpanel" aria-labelledby="tab-websites">
+        <div class="portfolio-grid">
+
+          <div class="project-card reveal-up" data-delay="0" data-project="7">
+            <div class="card-image-wrap">
+              <img src="images/project-7/1.png" alt="VOXAR - AI Video Intelligence" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="7">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">VOXAR - AI Video Intelligence</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Designer / Frontend</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.1" data-project="8">
+            <div class="card-image-wrap">
+              <img src="images/project-8/1.png" alt="ZiPPOS.SYS" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="8">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">ZiPPOS.SYS</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Designer / Frontend</span>
+                <span class="card-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.2" data-project="9">
+            <div class="card-image-wrap">
+              <img src="images/project-9/1.png" alt="KREGENSIA - Brand Builders" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="9">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">KREGENSIA - Brand Builders</h3>
+              <div class="card-meta">
+                <span class="card-role">Designer / Frontend</span>
+                <span class="card-year">2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.05" data-project="10">
+            <div class="card-image-wrap">
+              <img src="images/project-10/1.png" alt="PLUTO_Brute Force Branding" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="10">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">PLUTO_Brute Force Branding</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Lead / Branding</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.15" data-project="11">
+            <div class="card-image-wrap">
+              <img src="images/project-11/1.png" alt="Corell - Adaptive Operations Hub" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="11">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Corell - Adaptive Operations Hub</h3>
+              <div class="card-meta">
+                <span class="card-role">Frontend / Designer</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.25" data-project="12">
+            <div class="card-image-wrap">
+              <img src="images/project-12/1.png" alt="Autofy OS - Operational Control" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="12">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Autofy OS - Operational Control</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Creative / Frontend</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /panel-websites -->
 
       <div class="portfolio-more reveal-fade" data-delay="0.3">
         <a href="https://docs.google.com/document/d/1sDneOc12hR80WmCwtq92F8G1YgdBI5T9/edit?usp=sharing&ouid=104938535261965196472&rtpof=true&sd=true"

@@ -41,6 +41,15 @@
 
   --container-max: 1280px;
   --section-pad: 120px;
+
+  /* Markdown VS Code syntax colors */
+  --md-heading: #569cd6;
+  --md-bold: #c586c0;
+  --md-marker: #d7ba7d;
+  --md-code: #ce9178;
+  --md-hr: #6a9955;
+  --md-link-text: #ce9178;
+  --md-link-url: #9cdcfe;
 }
 
 [data-theme="light"] {
@@ -55,6 +64,15 @@
   --text-muted: #94A3B8;
   --header-bg: rgba(250, 250, 250, 0.85);
   --divider: rgba(0, 0, 0, 0.06);
+
+  /* Markdown VS Code syntax colors (Light) */
+  --md-heading: #0000ff;
+  --md-bold: #af00db;
+  --md-marker: #795e26;
+  --md-code: #a31515;
+  --md-hr: #008000;
+  --md-link-text: #a31515;
+  --md-link-url: #267f99;
 }
 
 .particle-canvas {
@@ -2137,3 +2155,131 @@ textarea {
 [data-theme="light"] .orb-2 {
   background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
 }
+
+/* ─── UI/UX INTELLIGENCE SYSTEM ─── */
+.intelligence {
+  position: relative;
+}
+
+.intelligence-intro {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.code-preview-panel {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.window-dots {
+  display: flex;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.window-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.window-dots:hover .dot {
+  opacity: 1;
+}
+
+.close-dot { background-color: #ff5f56; }
+.minimize-dot { background-color: #ffbd2e; }
+.maximize-dot { background-color: #27c93f; }
+
+.panel-title {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  flex-grow: 1;
+  text-align: center;
+  margin-right: 56px; /* Offset for center alignment */
+}
+
+.panel-body {
+  padding: 32px;
+  max-height: 600px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .panel-body {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.panel-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.panel-body code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  display: block;
+}
+
+/* Markdown specific highlights */
+.panel-body code h1,
+.panel-body code h2,
+.panel-body code h3 {
+  color: var(--blue-light);
+  font-family: 'Space Grotesk', monospace;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Scrollbar for code panel */
+.panel-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel-body::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+
+.panel-body::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+
+.panel-body::-webkit-scrollbar-thumb:hover {
+  background: var(--grey);
+}
+
+/* ══════════════════════════════════════════════
+   MARKDOWN SYNTAX HIGHLIGHTING (VS CODE STYLE)
+   ══════════════════════════════════════════════ */
+.md-heading { color: var(--md-heading); font-weight: 600; }
+.md-bold { color: var(--md-bold); font-weight: 600; }
+.md-list-marker { color: var(--md-marker); }
+.md-code-block, .md-code-inline { color: var(--md-code); }
+.md-hr { color: var(--md-hr); }
+.md-link-text { color: var(--md-link-text); }
+.md-link-url { color: var(--md-link-url); }

@@ -989,4 +989,50 @@ if (aboutSection) {
 ══════════════════════════════════ */
 // Managed via CSS animation — nothing needed here
 
+/* ══════════════════════════════════
+   UI/UX INTELLIGENCE SYSTEM MARDKOWN LOADER
+══════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const markdownContent = document.getElementById('markdown-content');
+  if (markdownContent) {
+    fetch('UI-UX-Intelligence-System.md')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(text => {
+        // Escape HTML to display raw markdown properly
+        let escapedText = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
 
+        // Basic VS Code syntax highlighting
+        escapedText = escapedText
+          // Headers
+          .replace(/^(#+)(.*)$/gm, '<span class="md-heading">$1$2</span>')
+          // Bold
+          .replace(/\*\*(.*?)\*\*/g, '<span class="md-bold">**$1**</span>')
+          // List markers (dash, asterisk, or number)
+          .replace(/^(\s*)([-*]|\d+\.)(\s)/gm, '$1<span class="md-list-marker">$2</span>$3')
+          // Multi-line code blocks
+          .replace(/```([\s\S]*?)```/g, '<span class="md-code-block">```$1```</span>')
+          // Inline code
+          .replace(/`([^`\n]+)`/g, '<span class="md-code-inline">`$1`</span>')
+          // Horizontal rules
+          .replace(/^(---|\*\*\*)$/gm, '<span class="md-hr">$1</span>')
+          // Links or images
+          .replace(/(\[.*?\])(\(.*?\))/g, '<span class="md-link-text">$1</span><span class="md-link-url">$2</span>');
+
+        markdownContent.innerHTML = escapedText;
+      })
+      .catch(error => {
+        console.error('Error loading markdown file:', error);
+        markdownContent.textContent = 'Error loading intelligent architecture system. Please ensure you are running on a local server (e.g. Live Server).';
+      });
+  }
+});

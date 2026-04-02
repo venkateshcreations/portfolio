@@ -2088,6 +2088,20 @@ textarea {
     display: none;
   }
 
+  /* Hero CTA - stacked on mobile */
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
   .about-specialities {
     grid-template-columns: 1fr;
   }
@@ -2138,8 +2152,13 @@ textarea {
   }
 
   .hero-cta {
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    padding: 13px 18px;
+    font-size: 0.85rem;
   }
 
   .modal-body {

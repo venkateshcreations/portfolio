@@ -182,6 +182,8 @@ textarea {
   background: var(--blue-glow);
 }
 
+.hide-desktop { display: none !important; }
+
 /* ─── HEADER ─── */
 .header {
   position: fixed;
@@ -1333,6 +1335,7 @@ textarea {
 /* ─── PORTFOLIO TABS ─── */
 .portfolio-tabs {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   margin-bottom: 40px;
@@ -1943,6 +1946,7 @@ textarea {
 .modal-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -2131,6 +2135,22 @@ textarea {
     display: none !important;
   }
 
+  .hide-desktop {
+    display: inline-flex !important;
+  }
+
+  .header-resume-mobile {
+    padding: 8px 14px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    margin-right: 8px;
+  }
+
   /* Disable cursor on mobile */
   .cursor,
   .cursor-follower {
@@ -2149,6 +2169,14 @@ textarea {
 @media (max-width: 480px) {
   .contact-form {
     padding: 24px 20px;
+  }
+
+  .panel-body {
+    padding: 20px 16px;
+  }
+
+  .panel-header {
+    padding: 12px 16px;
   }
 
   .hero-cta {
@@ -2236,6 +2264,9 @@ textarea {
   flex-grow: 1;
   text-align: center;
   margin-right: 56px; /* Offset for center alignment */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .panel-body {
@@ -2302,3 +2333,21 @@ textarea {
 .md-hr { color: var(--md-hr); }
 .md-link-text { color: var(--md-link-text); }
 .md-link-url { color: var(--md-link-url); }
+
+/* ══════════════════════════════════════════════
+   FLOATING RESUME CTA
+   ══════════════════════════════════════════════ */
+.floating-resume-cta {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 900;
+  box-shadow: var(--shadow-md);
+  flex-direction: row; /* ensure icon/text are inline if not already */
+}
+
+@media screen and (max-width: 768px) {
+  .floating-resume-cta {
+    display: none !important;
+  }
+}

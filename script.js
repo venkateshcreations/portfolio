@@ -572,14 +572,14 @@ const projectData = {
     docUrl: 'https://drive.google.com/file/d/1173cg-6WRJamj_3AnMfYC0N2n3bA2esu/view'
   },
   5: {
-    title: 'NetVision-Network Monitoring',
+    title: 'Army Commando Intel System',
     role: 'Principal UX Lead',
     image: 'images/project-5/1.png',
     images: ['images/project-5/1.png'],
-    desc: 'next-generation **Network Monitoring Software** focused on : AI-powered insights, predictive analytics, and automated remediation, Zero-touch onboarding, Real-time observability, Highly visual dashboards, AI-driven anomaly detection, Self-healing network capabilities, Natural-language query interface, Role-based access control, API-first architecture, Multi-cloud support, Advanced security features, Comprehensive reporting and analytics, Integration with existing IT tools.',
-    tags: ['Prototyping', 'Redesign', 'Enterprise'],
-    url: 'https://net-vision-fd14.vercel.app/',
-    docUrl: 'https://drive.google.com/file/d/14YMncitRUxkd0QAcyT-SKftXNs4Ulo66/view'
+    desc: 'comprehensive military command dashboard built with React and Vite. It provides real-time situational awareness through an interactive interface featuring tactical maps, surveillance feeds, intelligence updates, and mission planning tools.',
+    tags: ['UX Design', 'Prototype', 'Frontend'],
+    url: 'https://armycommandointel.netlify.app/',
+    docUrl: 'https://drive.google.com/file/d/1mswtSn298SUVZmk1iHAvI0L5mvxiX1Kh/view'
   },
   6: {
     title: 'SteamVerde - Online Streaming Platform',
@@ -652,6 +652,16 @@ const projectData = {
     tags: ['Portfolio Site', 'Motion Design', 'GSAP'],
     url: 'https://venkateshcreations.github.io/Autofy/',
     docUrl: 'https://venkateshcreations.github.io/Autofy/FEATURES_AND_EXPERIENCE.md'
+  },
+  13: {
+    title: 'NetVision-Network Monitoring',
+    role: 'Principal UX Lead',
+    image: 'images/project-5/1.png',
+    images: ['images/project-5/1.png'],
+    desc: 'next-generation **Network Monitoring Software** focused on : AI-powered insights, predictive analytics, and automated remediation, Zero-touch onboarding, Real-time observability, Highly visual dashboards, AI-driven anomaly detection, Self-healing network capabilities, Natural-language query interface, Role-based access control, API-first architecture, Multi-cloud support, Advanced security features, Comprehensive reporting and analytics, Integration with existing IT tools.',
+    tags: ['Prototyping', 'Redesign', 'Enterprise'],
+    url: 'https://net-vision-fd14.vercel.app/',
+    docUrl: 'https://drive.google.com/file/d/14YMncitRUxkd0QAcyT-SKftXNs4Ulo66/view'
   }
 };
 

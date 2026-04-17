@@ -321,93 +321,337 @@
             }
         }
 
-        /* Rocket/Spaceship Animation */
+        /* ===== 3D Rocket Animation ===== */
         .rocket {
             position: fixed;
-            width: 120px;
-            height: 120px;
+            width: 90px;
+            height: 200px;
             z-index: 50;
             pointer-events: none;
             opacity: 0;
-            animation: rocketFly 20s ease-in-out infinite;
+            animation: rocketFly 28s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            perspective: 400px;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 24px rgba(99,102,241,0.85));
         }
 
-        .rocket svg {
+        /* --- Rocket wrapper holds all 3D parts --- */
+        .rocket-3d {
+            position: relative;
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 30px rgba(99,102,241,0.8));
+            transform-style: preserve-3d;
+            transform: rotateX(10deg) rotateY(-15deg);
         }
 
-        /* Rocket Window Blink Animation */
-        .rocket-window {
-            animation: windowBlink 3s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes windowBlink {
-            0%, 100% {
-                opacity: 1;
-                filter: brightness(1);
-            }
-            50% {
-                opacity: 0.6;
-                filter: brightness(0.7);
-            }
-            55% {
-                opacity: 1;
-                filter: brightness(1.3);
-            }
-            60% {
-                opacity: 0.7;
-                filter: brightness(0.8);
-            }
-            65% {
-                opacity: 1;
-                filter: brightness(1.2);
-            }
-        }
-
-        .rocket-flame {
+        /* --- Nose cone --- */
+        .rocket-nose {
             position: absolute;
-            bottom: -20px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 22px solid transparent;
+            border-right: 22px solid transparent;
+            border-bottom: 58px solid transparent;
+            border-bottom-color: transparent;
+            filter: none;
+        }
+        .rocket-nose::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -22px;
+            width: 0;
+            height: 0;
+            border-left: 22px solid transparent;
+            border-right: 22px solid transparent;
+            border-bottom: 58px solid #6366f1;
+        }
+        .rocket-nose::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 42px solid rgba(139,92,246,0.6);
+        }
+
+        /* --- Rocket Body --- */
+        .rocket-body {
+            position: absolute;
+            top: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 100px;
+            border-radius: 8px 8px 4px 4px;
+            background: linear-gradient(
+                105deg,
+                #a78bfa 0%,
+                #6366f1 30%,
+                #4338ca 55%,
+                #312e81 80%,
+                #1e1b4b 100%
+            );
+            box-shadow:
+                inset -8px 0 16px rgba(0,0,0,0.5),
+                inset 6px 0 12px rgba(255,255,255,0.15),
+                0 0 20px rgba(99,102,241,0.4);
+        }
+        /* Highlight stripe for 3D depth */
+        .rocket-body::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 10px;
+            height: 80px;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 100%);
+        }
+        /* Panel line detail */
+        .rocket-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background: rgba(99,102,241,0.3);
+        }
+
+        /* --- Porthole Window --- */
+        .rocket-window {
+            position: absolute;
+            top: 76px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #67e8f9, #0891b2 50%, #164e63);
+            border: 3px solid rgba(99,102,241,0.8);
+            box-shadow:
+                0 0 10px rgba(6,182,212,0.8),
+                inset 0 0 6px rgba(255,255,255,0.3);
+            animation: windowGlow 3s ease-in-out infinite;
+            z-index: 2;
+        }
+        /* Window glare */
+        .rocket-window::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            width: 6px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.7);
+            transform: rotate(-30deg);
+        }
+
+        @keyframes windowGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(6,182,212,0.8), inset 0 0 6px rgba(255,255,255,0.3); }
+            40%       { box-shadow: 0 0 4px rgba(6,182,212,0.4), inset 0 0 3px rgba(255,255,255,0.1); }
+            50%       { box-shadow: 0 0 18px rgba(6,182,212,1), inset 0 0 10px rgba(255,255,255,0.5); }
+            60%       { box-shadow: 0 0 8px rgba(6,182,212,0.6), inset 0 0 4px rgba(255,255,255,0.2); }
+        }
+
+        /* --- Left Fin --- */
+        .rocket-fin-left {
+            position: absolute;
+            bottom: 44px;
+            left: 4px;
+            width: 0;
+            height: 0;
+            border-top: 40px solid transparent;
+            border-right: 22px solid #7c3aed;
+            border-bottom: 0px solid transparent;
+            filter: drop-shadow(-4px 4px 6px rgba(0,0,0,0.5));
+        }
+        .rocket-fin-left::after {
+            content: '';
+            position: absolute;
+            top: -32px;
+            left: 3px;
+            width: 0;
+            height: 0;
+            border-top: 28px solid transparent;
+            border-right: 12px solid rgba(139,92,246,0.4);
+        }
+
+        /* --- Right Fin --- */
+        .rocket-fin-right {
+            position: absolute;
+            bottom: 44px;
+            right: 4px;
+            width: 0;
+            height: 0;
+            border-top: 40px solid transparent;
+            border-left: 22px solid #4c1d95;
+            border-bottom: 0px solid transparent;
+            filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.6));
+        }
+
+        /* --- Engine Nozzle --- */
+        .rocket-nozzle {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(to bottom, #374151 0%, #111827 60%, #1f2937 100%);
+            border-radius: 0 0 8px 8px;
+            box-shadow:
+                inset -4px 0 8px rgba(0,0,0,0.6),
+                inset 3px 0 6px rgba(255,255,255,0.08),
+                0 2px 8px rgba(0,0,0,0.4);
+        }
+        .rocket-nozzle::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -5px;
+            width: 40px;
+            height: 10px;
+            background: linear-gradient(to bottom, #4b5563, #1f2937);
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* --- Multi-layer Flame --- */
+        .rocket-flame-wrap {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 80px;
+        }
+        /* Core flame */
+        .flame-core {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fde68a 20%, #f59e0b 50%, transparent 100%);
+            border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+            filter: blur(2px);
+            animation: flamePulseCore 0.08s ease-in-out infinite alternate;
+        }
+        /* Middle flame */
+        .flame-mid {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 64px;
+            background: linear-gradient(to bottom, #fbbf24 0%, #ef4444 45%, rgba(239,68,68,0.3) 80%, transparent 100%);
+            border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+            filter: blur(4px);
+            animation: flamePulseMid 0.12s ease-in-out infinite alternate;
+            opacity: 0.9;
+        }
+        /* Outer flame */
+        .flame-outer {
+            position: absolute;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 40px;
-            height: 60px;
-            background: linear-gradient(to bottom, #f59e0b 0%, #ef4444 50%, transparent 100%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            height: 76px;
+            background: linear-gradient(to bottom, rgba(245,158,11,0.6) 0%, rgba(99,102,241,0.4) 40%, transparent 100%);
+            border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
             filter: blur(8px);
-            animation: flameFlicker 0.1s ease-in-out infinite alternate;
-            opacity: 0.9;
+            animation: flamePulseOuter 0.15s ease-in-out infinite alternate;
+            opacity: 0.7;
+        }
+        /* Exhaust glow */
+        .flame-glow {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 30px;
+            background: radial-gradient(ellipse at center, rgba(139,92,246,0.6) 0%, transparent 70%);
+            filter: blur(6px);
+            animation: glowPulse 0.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes flamePulseCore {
+            0%   { transform: translateX(-50%) scaleY(0.85) scaleX(0.9); opacity: 0.9; }
+            100% { transform: translateX(-50%) scaleY(1.1) scaleX(1.1); opacity: 1; }
+        }
+        @keyframes flamePulseMid {
+            0%   { transform: translateX(-50%) scaleY(0.9) scaleX(0.95); opacity: 0.8; }
+            100% { transform: translateX(-50%) scaleY(1.05) scaleX(1.05); opacity: 0.95; }
+        }
+        @keyframes flamePulseOuter {
+            0%   { transform: translateX(-50%) scaleY(0.8) scaleX(0.85); opacity: 0.5; }
+            100% { transform: translateX(-50%) scaleY(1.2) scaleX(1.15); opacity: 0.75; }
+        }
+        @keyframes glowPulse {
+            0%   { opacity: 0.4; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
         }
 
         @keyframes rocketFly {
-            0% {
+            /* ── Phase 1: Waiting hidden below screen (0–35%) ── */
+            0%  {
                 opacity: 0;
-                transform: translate(calc(100vw + 200px), 100vh) rotate(-45deg) scale(0.8);
+                transform: translate(42vw, calc(100vh + 260px)) rotate(2deg) scale(0.5);
             }
-            10% {
+            35% {
+                opacity: 0;
+                transform: translate(42vw, calc(100vh + 260px)) rotate(2deg) scale(0.5);
+            }
+            /* ── Phase 2: Burst upward from bottom-center ── */
+            40% {
+                opacity: 0;
+                transform: translate(43vw, calc(100vh + 50px)) rotate(1deg) scale(0.65);
+            }
+            44% {
                 opacity: 1;
-                transform: translate(calc(100vw + 150px), calc(100vh - 100px)) rotate(-45deg) scale(1);
+                transform: translate(44vw, 82vh) rotate(0deg) scale(0.8);
             }
-            90% {
+            /* ── Phase 3: Arc left while climbing — nearest point ── */
+            54% {
                 opacity: 1;
-                transform: translate(-100px, 100px) rotate(-45deg) scale(1);
+                transform: translate(40vw, 52vh) rotate(-18deg) scale(1.05);
             }
+            /* ── Phase 4: Mid-screen peak — feels closest to viewer ── */
+            63% {
+                opacity: 1;
+                transform: translate(30vw, 28vh) rotate(-36deg) scale(1.18);
+            }
+            /* ── Phase 5: Heading upper-left — pulling away ── */
+            74% {
+                opacity: 1;
+                transform: translate(14vw, 8vh) rotate(-50deg) scale(0.95);
+            }
+            /* ── Phase 6: Exit — fades out upper-left ── */
+            82% {
+                opacity: 1;
+                transform: translate(2vw, -6vh) rotate(-55deg) scale(0.75);
+            }
+            88% {
+                opacity: 0;
+                transform: translate(-8vw, -20vh) rotate(-58deg) scale(0.55);
+            }
+            /* ── Phase 7: Reset below screen for next loop ── */
             100% {
                 opacity: 0;
-                transform: translate(-200px, -100vh) rotate(-45deg) scale(0.8);
-            }
-        }
-
-        @keyframes flameFlicker {
-            0% {
-                transform: translateX(-50%) scaleY(0.8);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateX(-50%) scaleY(1.2);
-                opacity: 1;
+                transform: translate(42vw, calc(100vh + 260px)) rotate(2deg) scale(0.5);
             }
         }
 
@@ -703,6 +947,8 @@
         .project-card:nth-child(11) { border-top: 2px solid #06b6d4; box-shadow: 0 0 20px rgba(6,182,212,0.1); }
         .project-card:nth-child(12) { border-top: 2px solid #10b981; box-shadow: 0 0 20px rgba(16,185,129,0.1); }
         .project-card:nth-child(13) { border-top: 2px solid #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.1); }
+        .project-card:nth-child(14) { border-top: 2px solid #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.1); }
+        .project-card:nth-child(15) { border-top: 2px solid #6366f1; box-shadow: 0 0 20px rgba(99,102,241,0.1); }
 
         .project-card::before {
             content: '';
@@ -730,6 +976,8 @@
         .project-card:nth-child(11)::before { background: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, transparent 50%); }
         .project-card:nth-child(12)::before { background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, transparent 50%); }
         .project-card:nth-child(13)::before { background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, transparent 50%); }
+        .project-card:nth-child(14)::before { background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, transparent 50%); }
+        .project-card:nth-child(15)::before { background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, transparent 50%); }
 
         .project-card:hover {
             background: var(--bg-card-hover);
@@ -752,6 +1000,8 @@
         .project-card:nth-child(11):hover { box-shadow: 0 10px 40px rgba(6,182,212,0.3); }
         .project-card:nth-child(12):hover { box-shadow: 0 10px 40px rgba(16,185,129,0.3); }
         .project-card:nth-child(13):hover { box-shadow: 0 10px 40px rgba(245,158,11,0.3); }
+        .project-card:nth-child(14):hover { box-shadow: 0 10px 40px rgba(239,68,68,0.3); }
+        .project-card:nth-child(15):hover { box-shadow: 0 10px 40px rgba(99,102,241,0.3); }
 
         .project-card:hover::before {
             opacity: 1;
@@ -1173,6 +1423,8 @@
         .projects-grid .project-card:nth-child(11) { transition-delay: 0.6s; }
         .projects-grid .project-card:nth-child(12) { transition-delay: 0.65s; }
         .projects-grid .project-card:nth-child(13) { transition-delay: 0.7s; }
+        .projects-grid .project-card:nth-child(14) { transition-delay: 0.75s; }
+        .projects-grid .project-card:nth-child(15) { transition-delay: 0.8s; }
 
         .opensource-grid .opensource-card:nth-child(1) { transition-delay: 0.1s; }
         .opensource-grid .opensource-card:nth-child(2) { transition-delay: 0.2s; }
@@ -1212,11 +1464,25 @@
         @keyframes heroScale {
             to { transform: scaleX(1); }
         }
+
+        /* ===== Milky Way Galaxy Canvas ===== */
+        #milkyway-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
     <!-- Animated Background -->
     <div class="bg-animation">
+        <!-- Milky Way Galaxy -->
+        <canvas id="milkyway-canvas"></canvas>
         <div class="stars">
             <div class="star"></div>
             <div class="star"></div>
@@ -1351,31 +1617,28 @@
         <div class="shooting-star shooting-star-2"></div>
         <div class="shooting-star shooting-star-3"></div>
 
-        <!-- Rocket/Spaceship -->
+        <!-- 3D Rocket -->
         <div class="rocket">
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <!-- Rocket Body -->
-                <path d="M256 0C256 0 128 128 128 256C128 291.2 142.4 323.2 166.4 345.6L192 448L256 512L320 448L345.6 345.6C369.6 323.2 384 291.2 384 256C384 128 256 0 256 0Z" fill="url(#rocketGradient)"/>
-                <!-- Window -->
-                <circle class="rocket-window" cx="256" cy="200" r="40" fill="#1e3a5f" stroke="#6366f1" stroke-width="8"/>
-                <circle class="rocket-window" cx="256" cy="200" r="25" fill="url(#windowGradient)"/>
+            <div class="rocket-3d">
+                <!-- Nose Cone -->
+                <div class="rocket-nose"></div>
+                <!-- Body -->
+                <div class="rocket-body"></div>
+                <!-- Porthole Window -->
+                <div class="rocket-window"></div>
                 <!-- Fins -->
-                <path d="M128 256L64 320L128 320L128 256Z" fill="#8b5cf6"/>
-                <path d="M384 256L448 320L384 320L384 256Z" fill="#8b5cf6"/>
-                <!-- Gradient Definitions -->
-                <defs>
-                    <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#6366f1"/>
-                        <stop offset="50%" style="stop-color:#8b5cf6"/>
-                        <stop offset="100%" style="stop-color:#ec4899"/>
-                    </linearGradient>
-                    <radialGradient id="windowGradient" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" style="stop-color:#06b6d4"/>
-                        <stop offset="100%" style="stop-color:#1e3a5f"/>
-                    </radialGradient>
-                </defs>
-            </svg>
-            <div class="rocket-flame"></div>
+                <div class="rocket-fin-left"></div>
+                <div class="rocket-fin-right"></div>
+                <!-- Engine Nozzle -->
+                <div class="rocket-nozzle"></div>
+                <!-- Flame System -->
+                <div class="rocket-flame-wrap">
+                    <div class="flame-outer"></div>
+                    <div class="flame-mid"></div>
+                    <div class="flame-core"></div>
+                    <div class="flame-glow"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1602,6 +1865,21 @@
                             Live Demo
                         </a>
                         <a href="https://drive.google.com/file/d/1OEw-P5sZlcINQMH6kZ_tjRHuSIGm3M43/view" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                            UX Docs
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-name">Ride Share Plus - Travel Smart</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://rideshareplus.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            Live Demo
+                        </a>
+                        <a href="https://drive.google.com/file/d/1AWMbJsf8X8iVUHrMPPULmm1DriVK-Bt5/view" target="_blank" class="project-link">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                             UX Docs
                         </a>
@@ -1882,6 +2160,195 @@
         document.querySelectorAll('.project-card, .opensource-card, .design-card, .wireframe-link').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <!-- ===== Milky Way Galaxy Animation ===== -->
+    <script>
+    (function () {
+        const canvas = document.getElementById('milkyway-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        // ── Tuneable parameters ──────────────────────────────────────────
+        const NUM_STARS      = 1600;   // total star count
+        const NUM_ARMS       = 2;      // spiral arms
+        const SPIRAL_TIGHTN  = 3.8;   // how many π worth of winding
+        const TILT           = 0.42;  // y-scale (perspective flatten; 1=circle)
+        const ROT_PERIOD_MS  = 90000; // full rotation once every 90 s
+        // ────────────────────────────────────────────────────────────────
+
+        let W, H, cx, cy, maxR;
+        const stars = [];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+            cx   = W / 2;
+            cy   = H / 2;
+            maxR = Math.min(W, H) * 0.46;
+            buildGalaxy();
+        }
+
+        function buildGalaxy() {
+            stars.length = 0;
+            for (let i = 0; i < NUM_STARS; i++) {
+                const roll = Math.random();
+                let sx, sy, size, baseAlpha, hue, sat, lit;
+
+                if (roll < 0.18) {
+                    // ── Core bulge ─────────────────────────────────────
+                    const r = Math.pow(Math.random(), 0.45) * maxR * 0.14;
+                    const a = Math.random() * Math.PI * 2;
+                    sx = r * Math.cos(a);
+                    sy = r * Math.sin(a) * TILT * 0.8;
+                    size      = Math.random() * 2.2 + 0.6;
+                    baseAlpha = 0.55 + Math.random() * 0.45;
+                    hue = 35 + Math.random() * 25;   // warm golden-white
+                    sat = 60 + Math.random() * 30;
+                    lit = 80 + Math.random() * 20;
+
+                } else if (roll < 0.78) {
+                    // ── Spiral arm stars ────────────────────────────────
+                    const arm  = Math.floor(Math.random() * NUM_ARMS);
+                    const base = arm * (Math.PI * 2 / NUM_ARMS);
+                    const t    = Math.pow(Math.random(), 0.65);  // bias toward core
+                    const r    = t * maxR;
+
+                    // Logarithmic spiral angle
+                    const spiralA = base + (SPIRAL_TIGHTN * t * Math.PI);
+                    // Width of arm widens with distance
+                    const spread  = (0.12 + t * 0.32) * Math.PI;
+                    const angle   = spiralA + (Math.random() - 0.5) * spread;
+
+                    sx = r * Math.cos(angle);
+                    sy = r * Math.sin(angle) * TILT;
+                    size      = Math.random() * 1.6 + 0.25;
+                    baseAlpha = (1 - t * 0.7) * (0.35 + Math.random() * 0.65);
+                    // Blue-violet star-forming regions along arms
+                    hue = 195 + Math.random() * 75;
+                    sat = 65 + Math.random() * 35;
+                    lit = 68 + Math.random() * 30;
+
+                } else {
+                    // ── Sparse halo / background stars ──────────────────
+                    const r = Math.random() * maxR;
+                    const a = Math.random() * Math.PI * 2;
+                    sx = r * Math.cos(a);
+                    sy = r * Math.sin(a) * (TILT + 0.25);
+                    size      = Math.random() * 0.9 + 0.1;
+                    baseAlpha = Math.random() * 0.22;
+                    hue = 210 + Math.random() * 80;
+                    sat = 40 + Math.random() * 40;
+                    lit = 75 + Math.random() * 25;
+                }
+
+                stars.push({
+                    x: sx, y: sy,
+                    size, baseAlpha,
+                    hue, sat, lit,
+                    twinkleOffset : Math.random() * Math.PI * 2,
+                    twinkleSpeed  : 0.004 + Math.random() * 0.022
+                });
+            }
+        }
+
+        // ── Draw ────────────────────────────────────────────────────────
+        function drawNebulaArm(ctx, armBase, t, color, R) {
+            /* Soft nebula cloud along each arm */
+            const spiralA = armBase + SPIRAL_TIGHTN * t * Math.PI;
+            const r       = t * R * 0.88;
+            const nx = r * Math.cos(spiralA);
+            const ny = r * Math.sin(spiralA) * TILT;
+            const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, R * 0.18);
+            grad.addColorStop(0,   color);
+            grad.addColorStop(1,   'rgba(0,0,0,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.ellipse(nx, ny, R * 0.18, R * 0.08, spiralA, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function draw(ts) {
+            ctx.clearRect(0, 0, W, H);
+
+            ctx.save();
+            ctx.translate(cx, cy);
+            // Very slow rotation
+            ctx.rotate((ts / ROT_PERIOD_MS) * Math.PI * 2);
+
+            // ── Outer disk glow ──────────────────────────────────────
+            const diskG = ctx.createRadialGradient(0, 0, 0, 0, 0, maxR);
+            diskG.addColorStop(0,    'rgba(139,92,246,0.0)');
+            diskG.addColorStop(0.25, 'rgba(99,102,241,0.055)');
+            diskG.addColorStop(0.55, 'rgba(139,92,246,0.035)');
+            diskG.addColorStop(0.8,  'rgba(236,72,153,0.02)');
+            diskG.addColorStop(1,    'rgba(0,0,0,0)');
+            ctx.save();
+            ctx.scale(1, TILT);
+            ctx.fillStyle = diskG;
+            ctx.fillRect(-maxR, -maxR / TILT, maxR * 2, (maxR * 2) / TILT);
+            ctx.restore();
+
+            // ── Nebula dust lanes along spiral arms ──────────────────
+            for (let arm = 0; arm < NUM_ARMS; arm++) {
+                const base = arm * (Math.PI * 2 / NUM_ARMS);
+                for (let t = 0.15; t < 1.0; t += 0.18) {
+                    const col = arm === 0
+                        ? `rgba(99,102,241,${0.04 + t * 0.04})`
+                        : `rgba(236,72,153,${0.03 + t * 0.03})`;
+                    drawNebulaArm(ctx, base, t, col, maxR);
+                }
+            }
+
+            // ── Core glow ────────────────────────────────────────────
+            const coreR = maxR * 0.17;
+            const coreG = ctx.createRadialGradient(0, 0, 0, 0, 0, coreR);
+            coreG.addColorStop(0,    'rgba(255,235,180,0.55)');
+            coreG.addColorStop(0.25, 'rgba(230,180,255,0.28)');
+            coreG.addColorStop(0.55, 'rgba(130,100,255,0.12)');
+            coreG.addColorStop(0.85, 'rgba(99,102,241,0.05)');
+            coreG.addColorStop(1,    'rgba(0,0,0,0)');
+            ctx.save();
+            ctx.scale(1, TILT * 0.75);
+            ctx.fillStyle = coreG;
+            ctx.beginPath();
+            ctx.arc(0, 0, coreR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // ── Stars ────────────────────────────────────────────────
+            stars.forEach(s => {
+                const twinkle = 0.5 + 0.5 * Math.sin(ts * s.twinkleSpeed + s.twinkleOffset);
+                const alpha   = s.baseAlpha * (0.65 + 0.35 * twinkle);
+                const sr      = s.size * (0.82 + 0.18 * twinkle);
+
+                // Star body
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, sr, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${s.hue},${s.sat}%,${s.lit}%,${alpha})`;
+                ctx.fill();
+
+                // Glow halo for larger/brighter stars
+                if (s.size > 1.1 && s.baseAlpha > 0.4) {
+                    const glowR = sr * 4;
+                    const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, glowR);
+                    g.addColorStop(0, `hsla(${s.hue},${s.sat}%,${s.lit}%,${alpha * 0.35})`);
+                    g.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+
+            ctx.restore();
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        requestAnimationFrame(draw);
+    })();
     </script>
 </body>
 </html>

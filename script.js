@@ -532,14 +532,14 @@ if (aboutStats) {
 ══════════════════════════════════ */
 const projectData = {
   1: {
-    title: 'Threat Intercepting Autonomous System',
+    title: 'FlowTrack AI - Project Management System',
     role: 'UX Creative Director',
-    image: 'images/project-1/1.jpg',
-    images: ['images/project-1/1.jpg', 'images/project-1/2.png', 'images/project-1/3.jpg', 'images/project-1/4.png'],
-    desc: 'Startup project - AI-driven Risk Management platform for enterprise users. Led end-to-end UX strategy—from discovery research and journey mapping to interaction design and design elements creation. Reduced cognitive load by 42% and improved task completion by 68%.',
-    tags: ['AI/ML UX', 'UX Architecture', 'Data Visualisation', 'Figma', 'Enterprise UX'],
-    url: 'https://www.figma.com/proto/1zblbGym1HSKiwsJ4xEUN1/Business-Observability--ECM--Back-up_1?node-id=1-31013&t=2H2Yb1E62XtjNV49-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A44567',
-    docUrl: 'https://drive.google.com/file/d/1Bb2cl1e9A5n-RKK4ON6gR2eVWpBQnR-X/view'
+    image: 'images/project-1/1.png',
+    images: ['images/project-1/1.png', 'images/project-1/2.png', 'images/project-1/3.png', 'images/project-1/4.png'],
+    desc: 'AI-Powered Project Management & Issue Tracking System - A world-class, production-ready frontend application inspired by Jira, built with React, Tailwind CSS, and AI integration. Featuring real-time drag-and-drop Kanban boards, sprint management, analytics, automation, and AI-powered features.',
+    tags: ['UX Architecture', 'Front-End Development', 'Enterprise UX'],
+    url: 'https://flowtrackai.netlify.app/',
+    docUrl: 'https://drive.google.com/file/d/1lTSZ4WiPRgv8P1Craa_ija7ZMD-uptjv/view'
   },
   2: {
     title: 'AeroFlow - Flight Ticket Booking',

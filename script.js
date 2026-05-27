@@ -1046,3 +1046,50 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
+
+/* ══════════════════════════════════
+   ARCHITECTURE DIAGRAM POPOVER
+   ══════════════════════════════════ */
+const popover = document.getElementById('architecturePopover');
+const popoverClose = document.getElementById('popoverClose');
+const popoverBackdrop = document.getElementById('popoverBackdrop');
+const popoverImage = document.getElementById('popoverImage');
+const viewArchitectureBtn = document.getElementById('viewArchitectureBtn');
+
+function openPopover() {
+  if (!popover || !popoverImage) return;
+
+  // Determine image based on active theme
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  if (currentTheme === 'light') {
+    popoverImage.src = 'images/UI-UX_Intelli-System_Light_Theme.jpg';
+  } else {
+    popoverImage.src = 'images/UI-UX_Intelli-System_Dark_Theme.jpg';
+  }
+
+  popover.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopover() {
+  if (!popover) return;
+  popover.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (viewArchitectureBtn) {
+  viewArchitectureBtn.addEventListener('click', openPopover);
+}
+if (popoverClose) {
+  popoverClose.addEventListener('click', closePopover);
+}
+if (popoverBackdrop) {
+  popoverBackdrop.addEventListener('click', closePopover);
+}
+
+// Bind Escape key to close the popover as well
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePopover();
+  }
+});

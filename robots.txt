@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://venkateshcreations.github.io/portfolio/sitemap.xml

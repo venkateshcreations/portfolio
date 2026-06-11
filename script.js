@@ -614,24 +614,24 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/WEBSITE_FEATURES_AND_EXPERIENCE.md'
   },
   9: {
-    title: 'KREGENSIA - Brand Identity',
+    title: 'AXIOM — Autonomous Cyber Defense Platform',
     role: 'Frontend Designer',
     image: 'images/project-9/1.png',
-    images: ['images/project-9/1.png'],
-    desc: 'KREGENSIA is brand makers with creative services and development capabilities. Brilliant design team will make your brand stand out.',
-    tags: ['Landing Page', 'UX Design', 'Frontend Development'],
-    url: 'https://venkateshcreations.github.io/KREGENSIA/',
-    docUrl: 'https://venkateshcreations.github.io/KREGENSIA/FEATURES_AND_EXPERIENCE.md'
+    images: ['images/project-9/1.png', 'images/project-9/2.png'],
+    desc: 'A full-styled, client-side cybersecurity dashboard and marketing website for a fictional autonomous AI-driven security platform called **AXIOM**.',
+    tags: ['Dashboard UX', 'App UX Design', 'Frontend Development'],
+    url: 'https://venkateshcreations.github.io/AXIOM/',
+    docUrl: 'https://venkateshcreations.github.io/AXIOM/README.md'
   },
   10: {
-    title: 'PLUTO_Brute Force Branding',
-    role: 'UX Lead – Branding',
+    title: 'ORBITA - Next-Gen Space Communications',
+    role: 'UX Lead – Frontend Designer',
     image: 'images/project-10/1.png',
-    images: ['images/project-10/1.png'],
-    desc: 'Technical ecosystems built for performance. Zero bloat. Pure functionality. High impact implementation. Technical ecosystems built for performance. Zero bloat. Pure functionality. High impact implementation.',
-    tags: ['Frontend Development', 'Development', 'Branding'],
-    url: 'https://venkateshcreations.github.io/PLUTO/',
-    docUrl: 'https://venkateshcreations.github.io/PLUTO/FEATURES.md'
+    images: ['images/project-10/1.png', 'images/project-10/2.png'],
+    desc: 'A sovereign constellation of satellites delivering ultra-low latency broadband, precision telemetry, and secure inter-agency communications across every orbital regime.',
+    tags: ['Frontend Development', 'UI Design', 'UX Lead'],
+    url: 'https://venkateshcreations.github.io/ORBITA/',
+    docUrl: 'https://venkateshcreations.github.io/ORBITA/README.md'
   },
   11: {
     title: 'Corell - Adaptive Operations Hub',

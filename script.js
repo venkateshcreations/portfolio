@@ -634,14 +634,14 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/ORBITA/README.md'
   },
   11: {
-    title: 'Corell - Adaptive Operations Hub',
-    role: 'UX Lead – Branding',
+    title: 'Deepfake Defense - 2026 Initiative',
+    role: 'UX Lead – Content Strategy',
     image: 'images/project-11/1.png',
-    images: ['images/project-11/1.png'],
-    desc: 'Proactive threat mitigation and real-time asset surveillance. Corell provides the infrastructure for enterprise resilience in a volatile global landscape.',
-    tags: ['Corporate Website', 'Frontend Development', 'Branding'],
-    url: 'https://venkateshcreations.github.io/Corell/',
-    docUrl: 'https://venkateshcreations.github.io/Corell/WEBSITE-FEATURES.md'
+    images: ['images/project-11/1.png', 'images/project-11/2.png', 'images/project-11/3.png'],
+    desc: 'Deepfakes are synthetic media created using artificial intelligence - audio voice clones, video face-swaps, and fabricated images/documents. The technology has crossed from novelty to a **board-level risk**.',
+    tags: ['AI UX Design', 'Content Strategy', 'UX Writing'],
+    url: 'https://deepfake-defence.vercel.app/',
+    docUrl: 'https://deepfake-defence.vercel.app/Deepfake_Defense_Program_Guide.html'
   },
   12: {
     title: 'Autofy - AI-Powered Analytics Dashboard',
@@ -669,7 +669,7 @@ const projectData = {
    PORTFOLIO TAB SWITCHING
 ══════════════════════════════════ */
 (function initPortfolioTabs() {
-  const tabs   = document.querySelectorAll('.portfolio-tab');
+  const tabs = document.querySelectorAll('.portfolio-tab');
   const panels = document.querySelectorAll('.portfolio-panel');
 
   tabs.forEach(tab => {

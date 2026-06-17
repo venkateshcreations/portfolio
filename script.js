@@ -542,21 +542,21 @@ const projectData = {
     docUrl: 'https://drive.google.com/file/d/1lTSZ4WiPRgv8P1Craa_ija7ZMD-uptjv/view'
   },
   2: {
-    title: 'AeroFlow - Flight Ticket Booking',
+    title: 'Deepfake Defense Dashboard - 2026 Initiative',
     role: 'Lead UX Architect',
     image: 'images/project-2/1.png',
-    images: ['images/project-2/1.png', 'images/project-2/2.png'],
-    desc: 'Create a next-generation AI-powered travel booking ecosystem that enables travelers to plan, book, manage, and optimize their journeys through intelligent automation, personalization, and real-time travel intelligence.',
+    images: ['images/project-2/1.png', 'images/project-2/2.png', 'images/project-2/3.png'],
+    desc: 'Understanding the technology behind synthetic media is the first step in defending against it. Deepfakes leverage deep neural networks—primarily Generative Adversarial Networks (GANs) and Diffusion Models—to synthesize hyper-realistic content.',
     tags: ['UX Architecture', 'Enterprise UX'],
-    url: 'https://aerofloww.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1VKOfeXfxt1LhBT-paZmbd67Uf8JVEN4v/view'
+    url: 'https://deepfakedefence-dashboard.vercel.app/',
+    docUrl: 'https://deepfake-defence.vercel.app/Deepfake_Defense_Program_Guide.html'
   },
   3: {
-    title: 'RadioFlow',
+    title: 'Radiostream - Worldwide Radio Network is A Live!',
     role: 'UX Creative Director',
     image: 'images/project-3/1.png',
     images: ['images/project-3/1.png'],
-    desc: 'RadioFlow is a Online Radio stations live streaming platform. It has schedule management, live streaming, Radio Shows, Live DJ announcements, Dj Studio, and listener engagement features. I led the UX strategy, component library development to ensure a cohesive and intuitive user experience across the platform.',
+    desc: 'Radiostream is a Online Radio stations live streaming platform. It has schedule management, live streaming, Radio Shows, Live DJ announcements, Dj Studio, and listener engagement features. I led the UX strategy, component library development to ensure a cohesive and intuitive user experience across the platform.',
     tags: ['UX Strategy', 'React', 'Component Library', 'Documentation'],
     url: 'https://radioflowlive.netlify.app/',
     docUrl: 'https://drive.google.com/file/d/1lQa8e_bVnJCxg6Hwp1a3_uQlT9w3m74K/view'

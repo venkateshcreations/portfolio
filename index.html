@@ -55,7 +55,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -97,8 +97,8 @@
 
 <body>
 
-  <!-- ─── GLOBAL 3D BACKGROUND ─── -->
-  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+  <!-- ─── GLOBAL ripple BACKGROUND ─── -->
+  <canvas id="rippleCanvas" class="ripple-canvas"></canvas>
 
   <!-- Custom Cursor -->
   <div id="cursor" class="cursor"></div>
@@ -116,18 +116,14 @@
         <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
         <li><a href="#about" class="nav-link" data-section="about">About Me</a></li>
         <li><a href="#tools" class="nav-link" data-section="tools">Tools</a></li>
-        <li><a href="#intelligence" class="nav-link" data-section="intelligence">AI Agentic Intelligence</a></li>
+        <li><a href="#workstation" class="nav-link" data-section="workstation">Infrastructure</a></li>
+        <li><a href="#intelligence" class="nav-link" data-section="intelligence">Agentic AI</a></li>
         <li><a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
 
-      <!-- Weather Pill (auto-populated by JS) -->
-      <div id="weatherPill" class="weather-pill" title="Auto-theme based on your local weather" aria-live="polite">
-        <span class="wp-emoji">⟳</span>
-        <span class="wp-text">Detecting weather…</span>
-      </div>
-
       <div class="nav-actions">
+
         <!-- Mobile Header Resume CTA -->
         <a href="resume.html" target="_blank" rel="noopener noreferrer" class="header-resume-mobile hide-desktop">
           Resume
@@ -185,10 +181,6 @@
 
   <!-- ─── HERO ─── -->
   <section id="home" class="hero">
-    <div class="hero-gradient-orb orb-1"></div>
-    <div class="hero-gradient-orb orb-2"></div>
-    <div class="hero-gradient-orb orb-3"></div>
-
     <div class="container hero-content">
       <div class="hero-eyebrow reveal-fade">
         <span class="eyebrow-dot"></span>
@@ -439,6 +431,165 @@
     </div>
   </section>
 
+  <!-- ─── REMOTE WORKSTATION ─── -->
+  <section id="workstation" class="workstation section-pad">
+    <div class="section-divider"></div>
+    <div class="container">
+      <div class="section-label reveal-fade">Infrastructure</div>
+      <div class="workstation-grid">
+        <!-- Left: Visual Mockup -->
+        <div class="workstation-visual reveal-fade" data-delay="0.2">
+          <div class="visual-wrapper">
+            <div class="workstation-mock">
+              <!-- Left Screen (Telemetry) -->
+              <div class="mock-screen screen-left">
+                <div class="mock-header"><span>Telemetry</span></div>
+                <div class="mock-body telemetry-data">
+                  <div class="telemetry-grid">
+                    <div class="telemetry-card">
+                      <span class="tel-val">99.9%</span>
+                      <span class="tel-lbl">Uptime</span>
+                    </div>
+                    <div class="telemetry-card">
+                      <span class="tel-val">1 Gbps</span>
+                      <span class="tel-lbl">Fiber</span>
+                    </div>
+                  </div>
+                  <div class="chart-bars">
+                    <div class="chart-bar" style="height: 40%;"></div>
+                    <div class="chart-bar" style="height: 75%;"></div>
+                    <div class="chart-bar" style="height: 50%;"></div>
+                    <div class="chart-bar" style="height: 90%;"></div>
+                    <div class="chart-bar" style="height: 60%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Screen (IDE & AI Agent) -->
+              <div class="mock-screen screen-center">
+                <div class="mock-header"><span>VS Code</span></div>
+                <div class="mock-body code-editor">
+                  <div><span class="keyword">import</span> React <span class="keyword">from</span> <span
+                      class="string">'react'</span>;</div>
+                  <div><span class="keyword">const</span> <span class="function">Agent</span> = () =&gt; {</div>
+                  <div style="padding-left: 10px;"><span class="keyword">const</span> [task, setTask] = useState();
+                  </div>
+                  <div style="padding-left: 10px;"><span class="comment">// Orchestrating...</span></div>
+                  <div>};</div>
+
+                  <div class="ai-assistant-panel">
+                    <span class="ai-pill">Copilot AI</span>
+                    <div class="ai-output-lines">
+                      <div class="ai-line anim"></div>
+                      <div class="ai-line" style="width: 80%;"></div>
+                      <div class="ai-line" style="width: 95%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Screen (Figma / Prototype) -->
+              <div class="mock-screen screen-right">
+                <div class="mock-header"><span>Figma</span></div>
+                <div class="mock-body figma-mock">
+                  <div class="figma-canvas">
+                    <div class="phone-wireframe">
+                      <div class="wireframe-element"></div>
+                      <div class="wireframe-element img"></div>
+                      <div class="wireframe-element"></div>
+                      <div class="wireframe-element btn"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="visual-glow"></div>
+            <div class="visual-badge w-badge-1">
+              <span>Dual ISP Failover</span>
+            </div>
+            <div class="visual-badge w-badge-2">
+              <span>3x Displays</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Content & Specs -->
+        <div class="workstation-content">
+          <h2 class="section-title reveal-up">High-Availability<br><span class="gradient-text">Remote Workstation</span>
+          </h2>
+          <p class="workstation-lead reveal-up">Equipped with a fully autonomous personal workstation configured for
+            high-performance creative development and real-time global collaboration. Operating on a robust
+            infrastructure with redundant networks, backup power, and multi-monitor telemetry, it serves as a secure,
+            independent hub for product design, engineering, and project orchestration. This dedicated environment
+            ensures continuous availability and zero-friction execution across time zones.</p>
+
+          <div class="workstation-specs reveal-up" data-delay="0.15">
+            <div class="spec-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="8" rx="2" />
+                  <rect x="2" y="14" width="20" height="8" rx="2" />
+                  <line x1="6" y1="6" x2="6.01" y2="6" />
+                  <line x1="6" y1="18" x2="6.01" y2="18" />
+                </svg>
+              </div>
+              <div>
+                <h4>Performance Compute</h4>
+                <p>High-end processor and GPU architecture optimized for local LLM execution, heavy prototyping, and
+                  rapid compilation.</p>
+              </div>
+            </div>
+
+            <div class="spec-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  <path d="M8.58 16.14a7 7 0 0 1 6.84 0" />
+                  <circle cx="12" cy="20" r="1" />
+                </svg>
+              </div>
+              <div>
+                <h4>Resilient Network</h4>
+                <p>Dual-ISP fiber backup with automated failover and 24/7 internet connectivity to ensure uninterrupted
+                  global client support.</p>
+              </div>
+            </div>
+
+            <div class="spec-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="12" rx="2" />
+                  <path d="M12 15v5M9 20h6" />
+                </svg>
+              </div>
+              <div>
+                <h4>Multi-Display Telemetry</h4>
+                <p>Triple high-resolution monitor configuration optimized for simultaneous coding, live design system
+                  sync, and analytics.</p>
+              </div>
+            </div>
+
+            <div class="spec-item">
+              <div class="spec-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <div>
+                <h4>Autonomous Security</h4>
+                <p>Containerized local environment with hardware key authentication, secure tunnels, and automated cloud
+                  backups.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── UI/UX INTELLIGENCE SYSTEM ─── -->
   <section id="intelligence" class="intelligence section-pad">
     <div class="section-divider"></div>
@@ -549,7 +700,7 @@
               <h3 class="card-title">Deepfake Defense Dashboard - 2026 Initiative</h3>
               <div class="card-meta">
                 <span class="card-role">Lead UX Architect</span>
-                <span class="card-year">2025</span>
+                <span class="card-year">2026</span>
               </div>
             </div>
           </div>
@@ -860,7 +1011,8 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#tools">Tools</a>
-        <a href="#intelligence">AI Agentic Intelligence</a>
+        <a href="#workstation">Infrastructure</a>
+        <a href="#intelligence">Agentic AI</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </div>
@@ -940,8 +1092,7 @@
     </div>
   </div>
 
-  <!-- Particle Canvas -->
-  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
 
   <!-- ─── FLOATING RESUME CTA ─── -->
   <a href="resume.html" target="_blank" rel="noopener noreferrer" class="floating-resume-cta btn-primary">
@@ -955,10 +1106,16 @@
     <span>Digital Resume</span>
   </a>
 
+  <!-- Weather Pill (auto-populated by JS) -->
+  <div id="weatherPill" class="weather-pill" title="Auto-theme based on your local weather" aria-live="polite">
+    <span class="wp-emoji">⟳</span>
+    <span class="wp-text">Detecting weather…</span>
+  </div>
+
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=9"></script>
 </body>
 
 </html>

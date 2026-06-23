@@ -273,130 +273,653 @@ mobileNav.querySelectorAll('.nav-link').forEach(link => {
 });
 
 /* ══════════════════════════════════
-   INTERACTIVE PARTICLE BACKGROUND
-══════════════════════════════════ */
-const canvas = document.getElementById('particleCanvas');
+   INTERACTIVE RIPPLE WAVES BACKGROUND
+   ══════════════════════════════════ */
+const canvas = document.getElementById('rippleCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let width, height;
-  let particles = [];
+  let ripples = [];
+  let ambientWaves = [];
+  let clouds = [];
+  let birds = [];
+  let airplane;
+  let thunder;
   let mouse = { x: null, y: null };
+  let lastMouse = { x: null, y: null };
+  let isMoving = false;
+  let moveTimeout;
 
+  // Track mouse movement
   document.addEventListener('mousemove', (e) => {
+    lastMouse.x = mouse.x;
+    lastMouse.y = mouse.y;
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    if (lastMouse.x !== null) {
+      let dx = mouse.x - lastMouse.x;
+      let dy = mouse.y - lastMouse.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      
+      // Emit ripple if mouse moved fast enough
+      if (dist > 25 && Math.random() < 0.35) {
+        createRipple(mouse.x, mouse.y, false);
+      }
+    }
+
+    isMoving = true;
+    clearTimeout(moveTimeout);
+    moveTimeout = setTimeout(() => { isMoving = false; }, 100);
   });
+
+  // Generate strong ripple on click
+  document.addEventListener('click', (e) => {
+    createRipple(e.clientX, e.clientY, true);
+  });
+
   document.addEventListener('mouseleave', () => {
     mouse.x = null;
     mouse.y = null;
+    isMoving = false;
   });
 
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   }
-
   window.addEventListener('resize', resize);
   resize();
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.8;
-      this.vy = (Math.random() - 0.5) * 0.8;
-      this.size = Math.random() * 2 + 0.8; // slightly larger dot
+  class Ripple {
+    constructor(x, y, isClick = false, isCenter = false) {
+      this.x = x;
+      this.y = y;
+      this.radius = 0;
+      this.isCenter = isCenter;
+      
+      if (isCenter) {
+        this.maxRadius = Math.max(width, height) * 0.85;
+        this.speed = 1.5; // Slow, smooth expansion
+        this.alpha = 0.25; // Soft, ambient opacity
+        // Fade out completely when it reaches maxRadius
+        this.fadeSpeed = (this.alpha * this.speed) / this.maxRadius;
+      } else {
+        this.maxRadius = isClick ? Math.random() * 150 + 200 : Math.random() * 80 + 80;
+        this.speed = isClick ? 3.5 : 2.0;
+        this.alpha = 0.5;
+        this.fadeSpeed = isClick ? 0.008 : 0.015;
+      }
     }
 
     update() {
-      this.x += this.vx;
-      this.y += this.vy;
+      this.radius += this.speed;
+      this.alpha -= this.fadeSpeed;
+      if (this.alpha < 0) this.alpha = 0;
+    }
 
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
+    draw() {
+      if (this.alpha <= 0) return;
+      
+      const themeColor = document.documentElement.getAttribute('data-theme') === 'light'
+        ? 'rgba(59, 130, 246, '
+        : 'rgba(96, 165, 250, ';
 
-      // Mouse repel interaction
-      if (mouse.x !== null && mouse.y !== null) {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let repelRadius = 150;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = themeColor + this.alpha + ')';
+      ctx.lineWidth = this.isCenter ? 1.0 : 1.5;
+      ctx.stroke();
 
-        if (distance < repelRadius) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
-          const force = (repelRadius - distance) / repelRadius;
+      if (this.radius > 30) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius - 30, 0, Math.PI * 2);
+        ctx.strokeStyle = themeColor + (this.alpha * 0.4) + ')';
+        ctx.lineWidth = this.isCenter ? 0.5 : 1.0;
+        ctx.stroke();
+      }
+    }
+  }
 
-          this.x -= forceDirectionX * force * 5;
-          this.y -= forceDirectionY * force * 5;
-        }
+  function createRipple(x, y, isClick, isCenter = false) {
+    ripples.push(new Ripple(x, y, isClick, isCenter));
+    if (ripples.length > 40) ripples.shift();
+  }
+
+  class Cloud {
+    constructor(isInitial = false) {
+      this.reset(isInitial);
+    }
+
+    reset(isInitial = false) {
+      this.scale = Math.random() * 1.5 + 0.8;
+      this.x = isInitial ? Math.random() * (width + 300) - 150 : -200 * this.scale;
+      this.y = Math.random() * (height * 0.35);
+      this.speed = Math.random() * 0.12 + 0.08;
+      this.opacity = Math.random() * 0.1 + 0.16;
+      this.morphPhase = Math.random() * 100;
+      this.morphSpeed = Math.random() * 0.005 + 0.002;
+    }
+
+    update() {
+      this.x += this.speed;
+      this.morphPhase += this.morphSpeed;
+      if (this.x > width + 200 * this.scale) {
+        this.reset(false);
       }
     }
 
     draw() {
-      ctx.fillStyle = 'rgba(180, 180, 180, 0.6)'; // slightly brighter
+      const theme = document.documentElement.getAttribute('data-theme');
+      
+      // Volumetric lighting: Create a vertical linear gradient from top to bottom
+      const grad = ctx.createLinearGradient(this.x, this.y - 45 * this.scale, this.x, this.y + 30 * this.scale);
+      if (theme === 'light') {
+        grad.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+        grad.addColorStop(1, `rgba(220, 228, 240, ${this.opacity * 0.55})`);
+      } else {
+        grad.addColorStop(0, `rgba(219, 234, 254, ${this.opacity})`);
+        grad.addColorStop(1, `rgba(96, 165, 250, ${this.opacity * 0.25})`);
+      }
+      ctx.fillStyle = grad;
+
+      ctx.filter = `blur(${12 * this.scale}px)`;
+
+      // Morphing offsets to slowly reshape the cloud as it drifts
+      const leftXOffset = -35 * this.scale + Math.sin(this.morphPhase) * 6 * this.scale;
+      const leftYOffset = 12 * this.scale + Math.cos(this.morphPhase) * 3 * this.scale;
+      const rightXOffset = 35 * this.scale + Math.cos(this.morphPhase) * 6 * this.scale;
+      const rightYOffset = 12 * this.scale + Math.sin(this.morphPhase) * 3 * this.scale;
+
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, 45 * this.scale, 0, Math.PI * 2);
+      ctx.moveTo(this.x + leftXOffset, this.y + leftYOffset);
+      ctx.arc(this.x + leftXOffset, this.y + leftYOffset, 30 * this.scale, 0, Math.PI * 2);
+      ctx.moveTo(this.x + rightXOffset, this.y + rightYOffset);
+      ctx.arc(this.x + rightXOffset, this.y + rightYOffset, 30 * this.scale, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.filter = 'none';
+    }
+  }
+
+  class Bird {
+    constructor(isInitial = false, leader = null, offsetX = 0, offsetY = 0) {
+      this.leader = leader;
+      this.offsetX = offsetX;
+      this.offsetY = offsetY;
+      this.reset(isInitial);
+    }
+
+    reset(isInitial = false) {
+      this.scale = (this.leader ? this.leader.scale : Math.random() * 0.3 + 0.6) * (this.leader ? 0.93 : 1.0);
+      
+      if (!this.leader) {
+        this.x = isInitial ? Math.random() * (width - 200) : -100;
+        this.y = Math.random() * (height * 0.3) + 60;
+        this.speedX = Math.random() * 0.4 + 0.65;
+        this.speedY = (Math.random() - 0.5) * 0.08;
+      } else {
+        this.x = this.leader.x + this.offsetX;
+        this.y = this.leader.y + this.offsetY;
+      }
+
+      this.wingPhase = Math.random() * Math.PI * 2;
+      this.wingSpeed = Math.random() * 0.08 + 0.06;
+      this.currentWingHeight = 0;
+      this.opacity = Math.random() * 0.2 + 0.65; // Highly visible
+
+      this.isGliding = false;
+      this.glideTimer = Math.random() * 120 + 80; // frames before switching flap/glide
+    }
+
+    update() {
+      if (!this.leader) {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Keep leader bird inside reasonable vertical sky bounds
+        if (this.y < 50 || this.y > height * 0.45) {
+          this.speedY = -this.speedY;
+        }
+
+        if (this.x > width + 150) {
+          this.reset(false);
+          // Instantly reset followers so they teleport back instead of dragging across the canvas
+          birds.forEach(b => {
+            if (b.leader === this) b.reset(false);
+          });
+        }
+      } else {
+        // Smooth flocking tracking with slight organic lag
+        const targetX = this.leader.x + this.offsetX;
+        const targetY = this.leader.y + this.offsetY;
+        this.x += (targetX - this.x) * 0.08;
+        this.y += (targetY - this.y) * 0.08;
+      }
+
+      // Gliding/Flapping state machine
+      this.glideTimer--;
+      if (this.glideTimer <= 0) {
+        this.isGliding = !this.isGliding;
+        this.glideTimer = this.isGliding 
+          ? Math.random() * 60 + 40   // glide for 1-2s
+          : Math.random() * 140 + 80; // flap for 2-3.5s
+      }
+
+      if (!this.isGliding) {
+        this.wingPhase += this.wingSpeed;
+      }
+
+      // Target wing height sweep
+      const targetWingHeight = this.isGliding 
+        ? -1.8 * this.scale 
+        : Math.sin(this.wingPhase) * 6 * this.scale;
+      
+      // Interpolate for smooth wing movement (no sudden snapping)
+      this.currentWingHeight += (targetWingHeight - this.currentWingHeight) * 0.15;
+    }
+
+    draw() {
+      if (this.x < -30 || this.x > width + 30) return;
+
+      const theme = document.documentElement.getAttribute('data-theme');
+      const color = theme === 'light' 
+        ? `rgba(15, 23, 42, ${this.opacity})` 
+        : `rgba(147, 197, 253, ${this.opacity})`;
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.3 * this.scale;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      const wingSpan = 14 * this.scale;
+
+      // Draw swept back left wing
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.quadraticCurveTo(
+        this.x - wingSpan * 0.4, 
+        this.y - wingSpan * 0.3 - this.currentWingHeight, 
+        this.x - wingSpan * 0.9, 
+        this.y - this.currentWingHeight + 1.5 * this.scale
+      );
+      ctx.stroke();
+
+      // Draw swept back right wing
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.quadraticCurveTo(
+        this.x + wingSpan * 0.4, 
+        this.y - wingSpan * 0.3 - this.currentWingHeight, 
+        this.x + wingSpan * 0.8, 
+        this.y - this.currentWingHeight + 1.5 * this.scale
+      );
+      ctx.stroke();
+
+      // Draw realistic tail/torso line
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x - 4 * this.scale, this.y + 1.5 * this.scale);
+      ctx.stroke();
+    }
+  }
+
+  class Airplane {
+    constructor() {
+      this.reset();
+      // Start offscreen
+      this.x = -250;
+    }
+
+    reset() {
+      this.scale = Math.random() * 0.4 + 1.5; // Large close flight (1.5 to 1.9)
+      this.x = -250;
+      this.y = Math.random() * (height * 0.15) + height * 0.15; // Lower altitude (15-30% height)
+      this.speed = Math.random() * 0.6 + 1.2; // Faster, realistic crossing speed
+      this.opacity = Math.random() * 0.12 + 0.30; // Subtle silhouette
+      this.contrailL = [];
+      this.contrailR = [];
+    }
+
+    update() {
+      this.x += this.speed;
+      
+      // Emit dual contrails from the engines (offset from center)
+      const engineOffset = 8 * this.scale;
+      const emitX = this.x - 5 * this.scale;
+      
+      if (frameCount % 3 === 0) {
+        this.contrailL.push({
+          x: emitX,
+          y: this.y - engineOffset,
+          alpha: 0.28,
+          radius: 1.8 * this.scale
+        });
+        this.contrailR.push({
+          x: emitX,
+          y: this.y + engineOffset,
+          alpha: 0.28,
+          radius: 1.8 * this.scale
+        });
+      }
+
+      // Update contrail dispersion
+      const updateTrail = (trail) => {
+        trail.forEach(pt => {
+          pt.alpha -= 0.0015; // disperses a bit faster since it's closer
+          pt.radius += 0.05; // spreads wider
+        });
+        return trail.filter(pt => pt.alpha > 0);
+      };
+      
+      this.contrailL = updateTrail(this.contrailL);
+      this.contrailR = updateTrail(this.contrailR);
+
+      if (this.x > width + 250) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      const theme = document.documentElement.getAttribute('data-theme');
+      
+      // 1. Draw dual contrails
+      const drawTrail = (trail) => {
+        for (let i = 1; i < trail.length; i++) {
+          const p1 = trail[i - 1];
+          const p2 = trail[i];
+          ctx.strokeStyle = theme === 'light' 
+            ? `rgba(15, 23, 42, ${p1.alpha * 0.35})` 
+            : `rgba(255, 255, 255, ${p1.alpha * 0.85})`;
+          ctx.lineWidth = p1.radius;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      };
+      
+      drawTrail(this.contrailL);
+      drawTrail(this.contrailR);
+
+      // 2. Draw Airplane Silhouette with engines
+      ctx.fillStyle = theme === 'light' 
+        ? `rgba(15, 23, 42, ${this.opacity})` 
+        : `rgba(255, 255, 255, ${this.opacity})`;
+
+      ctx.beginPath();
+      // Fuselage (Sleek main body)
+      ctx.ellipse(this.x, this.y, 25 * this.scale, 4.5 * this.scale, 0, 0, Math.PI * 2);
+      
+      // Swept back main wings
+      ctx.moveTo(this.x - 3 * this.scale, this.y);
+      ctx.lineTo(this.x - 16 * this.scale, this.y - 28 * this.scale);
+      ctx.lineTo(this.x - 11 * this.scale, this.y - 28 * this.scale);
+      ctx.lineTo(this.x + 6 * this.scale, this.y);
+      ctx.lineTo(this.x - 11 * this.scale, this.y + 28 * this.scale);
+      ctx.lineTo(this.x - 16 * this.scale, this.y + 28 * this.scale);
+      
+      // Tail Horizontal Stabilizers
+      ctx.moveTo(this.x - 18 * this.scale, this.y);
+      ctx.lineTo(this.x - 24 * this.scale, this.y - 8 * this.scale);
+      ctx.lineTo(this.x - 21 * this.scale, this.y - 8 * this.scale);
+      ctx.lineTo(this.x - 14 * this.scale, this.y);
+      ctx.lineTo(this.x - 21 * this.scale, this.y + 8 * this.scale);
+      ctx.lineTo(this.x - 24 * this.scale, this.y + 8 * this.scale);
+      ctx.fill();
+
+      // Wing engines (nacelles)
+      ctx.beginPath();
+      // Left engine
+      ctx.ellipse(this.x - 2 * this.scale, this.y - 8 * this.scale, 6 * this.scale, 1.8 * this.scale, 0, 0, Math.PI * 2);
+      // Right engine
+      ctx.ellipse(this.x - 2 * this.scale, this.y + 8 * this.scale, 6 * this.scale, 1.8 * this.scale, 0, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
-  function init() {
-    particles = [];
-    const numParticles = Math.floor((width * height) / 10000); // denser
-    for (let i = 0; i < numParticles; i++) {
-      particles.push(new Particle());
+  class Thunder {
+    constructor() {
+      this.active = false;
+      this.bolt = [];
+      this.branches = [];
+      this.flashAlpha = 0;
+      this.life = 0;
+    }
+
+    trigger() {
+      this.active = true;
+      this.life = 25; // 25 frames of flash sequence
+      this.bolt = [];
+      this.branches = [];
+
+      const startX = Math.random() * width;
+      let currentX = startX;
+      let currentY = 0;
+      this.bolt.push({ x: currentX, y: currentY });
+
+      // Generate lightning bolt path using random walk
+      while (currentY < height * 0.5) {
+        currentY += Math.random() * 25 + 15;
+        currentX += (Math.random() - 0.5) * 45;
+        this.bolt.push({ x: currentX, y: currentY });
+
+        // Branching: 20% chance to spawn a sub-branch
+        if (Math.random() < 0.2) {
+          let branchX = currentX;
+          let branchY = currentY;
+          const branchPath = [{ x: branchX, y: branchY }];
+          for (let i = 0; i < 5; i++) {
+            branchY += Math.random() * 20 + 10;
+            branchX += (Math.random() - 0.3) * 30; // Swept to one side
+            branchPath.push({ x: branchX, y: branchY });
+          }
+          this.branches.push(branchPath);
+        }
+      }
+    }
+
+    update() {
+      if (!this.active) return;
+      this.life--;
+
+      // Double-stroke flicker pattern
+      if (this.life > 20) {
+        this.flashAlpha = 0.35; // Initial bright flash
+      } else if (this.life > 17) {
+        this.flashAlpha = 0.0; // Quick dark gap
+      } else if (this.life > 12) {
+        this.flashAlpha = 0.25; // Second stroke
+      } else {
+        this.flashAlpha = (this.life / 12) * 0.1; // Slow decay
+      }
+
+      if (this.life <= 0) {
+        this.active = false;
+        this.flashAlpha = 0;
+      }
+    }
+
+    draw() {
+      if (!this.active) return;
+
+      // 1. Draw full-sky ambient flash
+      ctx.fillStyle = `rgba(191, 219, 254, ${this.flashAlpha * 0.4})`;
+      ctx.fillRect(0, 0, width, height);
+
+      // Only draw the actual bolts during the bright strokes
+      const shouldDrawBolt = (this.life > 20) || (this.life > 12 && this.life <= 17);
+      if (!shouldDrawBolt) return;
+
+      // Glow effect for lightning
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = 'rgba(191, 219, 254, 0.8)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Draw main bolt
+      ctx.beginPath();
+      ctx.moveTo(this.bolt[0].x, this.bolt[0].y);
+      for (let i = 1; i < this.bolt.length; i++) {
+        ctx.lineTo(this.bolt[i].x, this.bolt[i].y);
+      }
+      ctx.stroke();
+
+      // Draw branch bolts (thinner)
+      ctx.lineWidth = 1.2;
+      this.branches.forEach(path => {
+        ctx.beginPath();
+        ctx.moveTo(path[0].x, path[0].y);
+        for (let i = 1; i < path.length; i++) {
+          ctx.lineTo(path[i].x, path[i].y);
+        }
+        ctx.stroke();
+      });
+
+      // Reset shadow settings for other canvas drawings
+      ctx.shadowBlur = 0;
     }
   }
+
+  function initAtmosphere() {
+    clouds = [
+      new Cloud(true),
+      new Cloud(true),
+      new Cloud(true)
+    ];
+
+    const leader = new Bird(true);
+    birds = [
+      leader,
+      new Bird(true, leader, -25, 15),
+      new Bird(true, leader, -50, -10),
+      new Bird(true, leader, -40, 25),
+      new Bird(true, leader, -70, 5)
+    ];
+
+    airplane = new Airplane();
+    thunder = new Thunder();
+  }
+  initAtmosphere();
+
+  // Ambient sine waves for the background
+  class AmbientWave {
+    constructor(yOffset, amplitude, period, speed, opacityModifier) {
+      this.yOffset = yOffset;
+      this.amplitude = amplitude;
+      this.period = period;
+      this.speed = speed;
+      this.opacityModifier = opacityModifier;
+      this.phase = Math.random() * 100;
+    }
+
+    update() {
+      this.phase += this.speed;
+    }
+
+    draw() {
+      const theme = document.documentElement.getAttribute('data-theme');
+      const waveColor = theme === 'light'
+        ? `rgba(59, 130, 246, ${0.015 * this.opacityModifier})`
+        : `rgba(59, 130, 246, ${0.035 * this.opacityModifier})`;
+      
+      ctx.fillStyle = waveColor;
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      for (let x = 0; x <= width; x += 10) {
+        let y = Math.sin(x * this.period + this.phase) * this.amplitude + (height * this.yOffset);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(width, height);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  // Set up 3 overlapping waves
+  let ambientWavesList = [];
+  function initWaves() {
+    ambientWavesList = [
+      new AmbientWave(0.85, 30, 0.0015, 0.003, 1.0),
+      new AmbientWave(0.88, 20, 0.0025, -0.004, 0.8),
+      new AmbientWave(0.82, 12, 0.0035, 0.006, 0.5)
+    ];
+  }
+  initWaves();
+
+  // Idle ripple generator
+  let idleTime = 0;
+  setInterval(() => {
+    idleTime++;
+    if (idleTime > 6 && ripples.length < 5) {
+      createRipple(Math.random() * width, Math.random() * height, false);
+      idleTime = 0;
+    }
+  }, 1000);
+
+  document.addEventListener('mousemove', () => { idleTime = 0; });
+  document.addEventListener('click', () => { idleTime = 0; });
+
+  let frameCount = 119; // Start at 119 so the first center ripple spawns instantly on load
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    particles.forEach((p, index) => {
-      p.update();
-      p.draw();
+    const theme = document.documentElement.getAttribute('data-theme');
 
-      // Connecting lines
-      for (let j = index + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const dx = p.x - p2.x;
-        const dy = p.y - p2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 140) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(180, 180, 180, ${0.4 - dist / 350})`; // stronger line
-          ctx.lineWidth = 1.0;
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
-      }
+    // 1. Draw Clouds (very back background layer)
+    clouds.forEach(c => {
+      c.update();
+      c.draw();
     });
+
+    // 2. Draw Ambient Waves (middle background layer)
+    ambientWavesList.forEach(w => {
+      w.update();
+      w.draw();
+    });
+
+    // 3. Draw Birds (middle foreground layer)
+    birds.forEach(b => {
+      b.update();
+      b.draw();
+    });
+
+    // 4. Draw Airplane
+    airplane.update();
+    airplane.draw();
+
+    // 5. Update and Draw Thunder (in dark mode only)
+    if (theme === 'dark') {
+      if (!thunder.active && Math.random() < 0.001) { // 0.1% chance per frame (~once every 16 seconds)
+        thunder.trigger();
+      }
+      thunder.update();
+      thunder.draw();
+    }
+
+    // Auto-emit center ripples consistently in a loop
+    frameCount++;
+    if (frameCount % 120 === 0) { // Every 2 seconds (120 frames @ 60fps)
+      createRipple(width / 2, height / 2, false, true);
+    }
+
+    ripples.forEach(r => {
+      r.update();
+      r.draw();
+    });
+    ripples = ripples.filter(r => r.alpha > 0);
 
     requestAnimationFrame(animate);
   }
 
-  init();
   animate();
 }
 
-
-/* ══════════════════════════════════
-   MOUSE PARALLAX ON HERO
-══════════════════════════════════ */
-const orbs = document.querySelectorAll('.hero-gradient-orb');
-document.addEventListener('mousemove', (e) => {
-  const cx = window.innerWidth / 2;
-  const cy = window.innerHeight / 2;
-  const dx = (e.clientX - cx) / cx;
-  const dy = (e.clientY - cy) / cy;
-
-  orbs.forEach((orb, i) => {
-    const strength = (i + 1) * 12;
-    orb.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
-  });
-});
 
 /* ══════════════════════════════════
    GSAP SCROLL ANIMATIONS

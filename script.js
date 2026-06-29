@@ -1177,14 +1177,64 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/Autofy/FEATURES_AND_EXPERIENCE.md'
   },
   13: {
-    title: 'NetVision-Network Monitoring',
-    role: 'Principal UX Lead',
-    image: 'images/project-5/1.png',
-    images: ['images/project-5/1.png'],
-    desc: 'next-generation **Network Monitoring Software** focused on : AI-powered insights, predictive analytics, and automated remediation, Zero-touch onboarding, Real-time observability, Highly visual dashboards, AI-driven anomaly detection, Self-healing network capabilities, Natural-language query interface, Role-based access control, API-first architecture, Multi-cloud support, Advanced security features, Comprehensive reporting and analytics, Integration with existing IT tools.',
-    tags: ['Prototyping', 'Redesign', 'Enterprise'],
-    url: 'https://net-vision-fd14.vercel.app/',
-    docUrl: 'https://drive.google.com/file/d/14YMncitRUxkd0QAcyT-SKftXNs4Ulo66/view'
+    title: 'Enterprise Digital Banking Ecosystem',
+    role: 'UX Lead Architect',
+    image: 'images/project-13/1.png',
+    images: ['images/project-13/1.png', 'images/project-13/2.png'],
+    desc: 'An interactive, single-page visualization of an enterprise banking IT ecosystem built with **D3.js v7**. Displays 103 connected services across 9 domains with 6 chart types, real-time analytics, status tracking, and 13 power-user features.',
+    tags: ['UX Architecture', 'Front-End', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-1/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/README.md'
+  },
+  14: {
+    title: 'Digital Transformation Intelligence Hub',
+    role: 'UX Lead Architect',
+    image: 'images/project-14/1.png',
+    images: ['images/project-14/1.png'],
+    desc: 'An interactive enterprise portfolio dashboard built with **D3.js v7** featuring 9 interconnected data visualizations that map GlobalTech Industries\' digital transformation journey from 2023 to 2027.',
+    tags: ['UX Design', 'Frontend Design', 'Mapping'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-2/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/README.md'
+  },
+  15: {
+    title: 'GEC — Global Supply Chain Analytics Dashboard',
+    role: 'UX Lead Architect',
+    image: 'images/project-15/1.png',
+    images: ['images/project-15/1.png'],
+    desc: 'A portfolio-grade, single-page data visualization dashboard for **Global Electronics Corporation (GEC)**, built entirely with **D3.js v7**. Features 12 interactive sections covering the end-to-end supply chain from raw materials to retail.',
+    tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-3/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/README.md'
+  },
+  16: {
+    title: 'IntelliAssist AI - Product Lifecycle Dashboard',
+    role: 'UX Lead Architect',
+    image: 'images/project-16/1.png',
+    images: ['images/project-16/1.png'],
+    desc: 'An interactive data visualization dashboard built with [ECharts](https://echarts.apache.org/) that maps the full AI product development lifecycle for **IntelliAssist AI**, an enterprise AI assistant platform.',
+    tags: ['UX Architecture', 'Front-End', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-4/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/README.md'
+  },
+  17: {
+    title: 'Enterprise Analytics Dashboard',
+    role: 'UX Lead Architect',
+    image: 'images/project-17/1.png',
+    images: ['images/project-17/1.png'],
+    desc: 'An interactive startup ecosystem visualization dashboard for the fictional **FutureVerse Startup Ecosystem (2026)**. Built with a 3D force graph and rich charting to explore entities, funding flows, sector synergies, and predictive projections.',
+    tags: ['UX Design', 'Frontend Design', 'Mapping'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-5/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/README.md'
+  },
+  18: {
+    title: 'Apex Global Enterprises — SOC Command Center',
+    role: 'UX Lead Architect',
+    image: 'images/project-18/1.png',
+    images: ['images/project-18/1.png'],
+    desc: 'A cybersecurity data visualization dashboard simulating a fictional multinational enterprise\'s Security Operations Center (SOC). Built with **Apache ECharts**, the dashboard provides real-time threat monitoring, attack path analysis, and enterprise-wide security posture visualization.',
+    tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
+    url: 'https://venkateshcreations.github.io/DataVisualization-6/',
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/README.md'
   }
 };
 

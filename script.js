@@ -1666,3 +1666,149 @@ document.addEventListener('keydown', (e) => {
     closePopover();
   }
 });
+
+// Garuda Audio Player Logic (Popover & Visualizer)
+document.addEventListener('DOMContentLoaded', () => {
+  const triggerBtn = document.getElementById('openGarudaPlayerBtn');
+  const popover = document.getElementById('garudaAudioPopover');
+  const backdrop = document.getElementById('garudaPopoverBackdrop');
+  const closeBtn = document.getElementById('garudaPopoverClose');
+  
+  const garudaAudio = document.getElementById('garudaAudio');
+  const garudaMainPlayBtn = document.getElementById('garudaMainPlayBtn');
+  const garudaPrevBtn = document.getElementById('garudaPrevBtn');
+  const garudaNextBtn = document.getElementById('garudaNextBtn');
+  
+  const playIcon = document.querySelector('.media-play-icon');
+  const pauseIcon = document.querySelector('.media-pause-icon');
+  
+  const canvas = document.getElementById('audioVisualizer');
+  
+  let audioCtx;
+  let analyser;
+  let source;
+  let isInitialized = false;
+  let animationId;
+
+  if (!triggerBtn || !popover || !garudaAudio) return;
+
+  const initWebAudio = () => {
+    if (isInitialized) return;
+    
+    // Create audio context
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    
+    // Connect audio element to analyzer
+    source = audioCtx.createMediaElementSource(garudaAudio);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    
+    isInitialized = true;
+  };
+
+  const drawVisualizer = () => {
+    if (!canvas || !analyser) return;
+    
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width = canvas.offsetWidth;
+    const height = canvas.height = canvas.offsetHeight;
+    
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    
+    const draw = () => {
+      if (garudaAudio.paused) return; // stop animation loop if paused
+      animationId = requestAnimationFrame(draw);
+      
+      analyser.getByteFrequencyData(dataArray);
+      
+      ctx.clearRect(0, 0, width, height);
+      
+      const barWidth = (width / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
+      
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = (dataArray[i] / 255) * height;
+        
+        // Gradient coloring based on frequency (like a heat map)
+        const hue = (i / bufferLength) * 120; // 0 to 120 (Red to Green)
+        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+        
+        // Draw bars from bottom up
+        ctx.fillRect(x, height - barHeight, barWidth, barHeight);
+        
+        x += barWidth + 1;
+      }
+    };
+    
+    draw();
+  };
+
+  const updatePlayState = (isPlaying) => {
+    if (isPlaying) {
+      garudaMainPlayBtn.setAttribute('aria-label', 'Pause');
+      if (playIcon) playIcon.style.display = 'none';
+      if (pauseIcon) pauseIcon.style.display = 'block';
+      if (audioCtx && audioCtx.state === 'suspended') {
+         audioCtx.resume();
+      }
+      drawVisualizer(); // restart animation loop
+    } else {
+      garudaMainPlayBtn.setAttribute('aria-label', 'Play');
+      if (playIcon) playIcon.style.display = 'block';
+      if (pauseIcon) pauseIcon.style.display = 'none';
+      cancelAnimationFrame(animationId);
+    }
+  };
+
+  const openPlayer = () => {
+    initWebAudio(); // Init audio context on user interaction
+    popover.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closePlayer = () => {
+    popover.classList.remove('open');
+    document.body.style.overflow = '';
+    garudaAudio.pause();
+    updatePlayState(false);
+  };
+
+  // Popover Triggers
+  triggerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPlayer();
+  });
+  
+  closeBtn.addEventListener('click', closePlayer);
+  backdrop.addEventListener('click', closePlayer);
+  
+  // Media Controls
+  garudaMainPlayBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (garudaAudio.paused) {
+      garudaAudio.play().then(() => updatePlayState(true)).catch(console.error);
+    } else {
+      garudaAudio.pause();
+      updatePlayState(false);
+    }
+  });
+
+  // Prev/Next functionality (-10s / +10s)
+  garudaPrevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    garudaAudio.currentTime = Math.max(0, garudaAudio.currentTime - 10);
+  });
+
+  garudaNextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    garudaAudio.currentTime = Math.min(garudaAudio.duration, garudaAudio.currentTime + 10);
+  });
+
+  garudaAudio.addEventListener('ended', () => {
+    updatePlayState(false);
+  });
+});

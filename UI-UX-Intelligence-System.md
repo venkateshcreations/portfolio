@@ -1,6 +1,12 @@
-# UI/UX Intelligence System
+ ██████╗  █████╗ ██████╗ ██╗   ██╗██████╗   █████╗
+██╔════╝ ██╔══██╗██╔══██╗██║   ██║██╔══██╗ ██╔══██╗
+██║  ███╗███████║██████╔╝██║   ██║██║  ██║ ███████║
+██║   ██║██╔══██║██╔══██╗██║   ██║██║  ██║ ██╔══██║
+╚██████╔╝██║  ██║██║  ██║╚██████╔╝██████╔╝ ██║  ██║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═╝  ╚═╝
 
-**Author:** Venkatesh Ammireddy
+        GARUDA • MASTER ORCHESTRATOR • v1.0
+      **Author/Creator:** Venkatesh Ammireddy
 
 ---
 
@@ -44,7 +50,7 @@ The UI/UX Intelligence System is a multi-agent orchestrating platform that trans
 ## Directory Structure
 
 ```
-Venkateshcreations-UI-UX-Intelligence-System/
+GARUDA-Intelligence/
 ├── config.json                    # Central agent registry (42 agents)
 ├── pipeline/
 │   ├── pipeline.json              # Sequential stage definitions with loops

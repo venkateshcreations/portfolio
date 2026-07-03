@@ -55,6 +55,12 @@ function resolveWeather(code) {
 // Apply theme + broadcast to rest of script
 function applyTheme(theme) {
   html.setAttribute('data-theme', theme);
+  
+  // Update logo images based on theme
+  const logos = document.querySelectorAll('img[src*="garuda-icon"]');
+  logos.forEach(logo => {
+    logo.src = theme === 'light' ? 'images/garuda-icon-light.png?v=3' : 'images/garuda-icon.png';
+  });
 }
 
 // Update the weather pill in the nav

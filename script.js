@@ -1241,6 +1241,68 @@ const projectData = {
     tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
     url: 'https://venkateshcreations.github.io/DataVisualization-6/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/README.md'
+  },
+
+  /* ── DESIGN SYSTEMS ──────────────────────────────────── */
+  19: {
+    title: 'Design System-1',
+    role: 'Lead UX Architect',
+    image: 'images/project-19/1.png',
+    images: ['images/project-19/1.png'],
+    desc: 'The Enterprise Digital Banking Design System is a complete UI framework purpose-built for visualizing complex banking ecosystems, service dependencies, and real-time system status. It provides 38 documented UI components, 58 design tokens, and a consistent motion language — all within a single, portable HTML file.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1.html',
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.md'
+  },
+  20: {
+    title: 'Design System-2',
+    role: 'Lead UX Architect',
+    image: 'images/project-20/1.png',
+    images: ['images/project-20/1.png'],
+    desc: 'This single-file HTML document serves as the canonical source of truth for product engineering teams building the GlobalTech Digital Transformation Hub. It documents every structural element, interactive component, animation protocol, data model, and usage instruction required to build and maintain the platform.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2.html',
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.md'
+  },
+  21: {
+    title: 'Design System-3',
+    role: 'Lead UX Architect',
+    image: 'images/project-21/1.png',
+    images: ['images/project-21/1.png'],
+    desc: 'A comprehensive component library and design token system for building supply chain analytics interfaces. Features a dark-first theme with cyan (#22d3ee) and purple (#a78bfa) accents, light mode support, 12 documented components, D3.js chart integration patterns, and a lazy-initialized section routing system.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3.html',
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.md'
+  },
+  22: {
+    title: 'Design System-4',
+    role: 'Lead UX Architect',
+    image: 'images/project-22/1.png',
+    images: ['images/project-22/1.png'],
+    desc: 'A comprehensive reference for engineers, designers, and system integrators building on the Deepfake Defense program. This document covers every design token, component specification, layout pattern, and usage convention in the system. Use it as the source of truth for extending the site, building the Interactive Dashboard, or integrating detection signals into existing security tooling.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DFD-Design-System/',
+    docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/README.md'
+  },
+  23: {
+    title: 'Design System-5',
+    role: 'Lead UX Architect',
+    image: 'images/project-23/1.png',
+    images: ['images/project-23/1.png'],
+    desc: 'A comprehensive design system for the Radiostream live radio platform. Dark-themed, neon-accented, and built for real-time audio experiences. This reference documents all design tokens, components, and usage patterns.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5.html',
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.md'
+  },
+  24: {
+    title: 'Design System-6',
+    role: 'Lead UX Architect',
+    image: 'images/project-24/1.png',
+    images: ['images/project-24/1.png'],
+    desc: 'AXIOM embodies a dark cyber aesthetic — precise, technical, and authoritative. Every design decision prioritizes clarity in high-stakes environments. The system balances atmospheric immersion with functional readability, using neon accents against deep navy backgrounds to create interfaces that feel both advanced and trustworthy.',
+    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6.html',
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.md'
   }
 };
 

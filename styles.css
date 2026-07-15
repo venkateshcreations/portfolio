@@ -963,9 +963,13 @@ textarea {
 
 .tools-marquee-wrapper {
   position: relative;
-  padding: 40px 0;
-  overflow: hidden;
+  padding: 16px 0 40px;
+  overflow-x: clip;
+  overflow-y: visible;
   margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .tools-marquee-wrapper::before,
@@ -974,44 +978,51 @@ textarea {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 200px;
+  width: 180px;
   z-index: 2;
   pointer-events: none;
 }
 
 .tools-marquee-wrapper::before {
   left: 0;
-  background: linear-gradient(to right, var(--bg), transparent);
+  background: linear-gradient(to right, var(--bg) 30%, transparent);
 }
 
 .tools-marquee-wrapper::after {
   right: 0;
-  background: linear-gradient(to left, var(--bg), transparent);
+  background: linear-gradient(to left, var(--bg) 30%, transparent);
 }
 
 .tools-marquee {
   display: flex;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   user-select: none;
 }
 
 .tools-track {
   display: flex;
-  gap: 32px;
-  animation: marquee 40s linear infinite;
-  padding-right: 32px;
+  gap: 20px;
+  animation: marquee-left 35s linear infinite;
+  padding-right: 20px;
+  flex-shrink: 0;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.tools-track--reverse {
+  animation: marquee-right 35s linear infinite;
 }
 
-.tools-marquee:hover .tools-track {
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+.tools-marquee-wrapper:hover .tools-track {
   animation-play-state: paused;
 }
 
@@ -1019,38 +1030,48 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-shrink: 0;
-  padding: 20px 28px;
+  padding: 18px 22px;
   background: var(--bg-glass);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   backdrop-filter: blur(12px);
+  min-width: 90px;
+  cursor: default;
 }
 
 .tool-item:hover {
-  transform: translateY(-4px);
-  border-color: var(--blue);
-  box-shadow: var(--shadow-blue);
+  transform: translateY(-6px) scale(1.04);
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.15);
 }
 
 .tool-item svg {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
 }
 
 .tool-item img {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: filter 0.3s ease;
+}
+
+.tool-item:hover img {
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));
 }
 
 .tool-item span {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-secondary);
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 
 .tools-features {

@@ -1062,6 +1062,15 @@ textarea {
   transition: filter 0.3s ease;
 }
 
+/* Monochrome (black) SVG icons — invert to white in dark mode */
+[data-theme="dark"] .tool-item img.tool-icon-mono {
+  filter: invert(1) brightness(1.8) drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+[data-theme="dark"] .tool-item:hover img.tool-icon-mono {
+  filter: invert(1) brightness(1.8) drop-shadow(0 4px 12px rgba(59, 130, 246, 0.5));
+}
+
 .tool-item:hover img {
   filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));
 }

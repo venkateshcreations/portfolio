@@ -1068,7 +1068,7 @@ const projectData = {
     desc: 'AI-Powered Project Management & Issue Tracking System - A world-class, production-ready frontend application inspired by Jira, built with React, Tailwind CSS, and AI integration. Featuring real-time drag-and-drop Kanban boards, sprint management, analytics, automation, and AI-powered features.',
     tags: ['UX Architecture', 'Front-End Development', 'Enterprise UX'],
     url: 'https://flowtrackai.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1lTSZ4WiPRgv8P1Craa_ija7ZMD-uptjv/view'
+    docUrl: 'FlowTrack_AI_IA_Flow_Map.html'
   },
   2: {
     title: 'Deepfake Defense Dashboard - 2026 Initiative',
@@ -1078,7 +1078,7 @@ const projectData = {
     desc: 'Understanding the technology behind synthetic media is the first step in defending against it. Deepfakes leverage deep neural networks—primarily Generative Adversarial Networks (GANs) and Diffusion Models—to synthesize hyper-realistic content.',
     tags: ['UX Architecture', 'Enterprise UX'],
     url: 'https://deepfakedefence-dashboard.vercel.app/',
-    docUrl: 'https://deepfake-defence.vercel.app/Deepfake_Defense_Program_Guide.html'
+    docUrl: 'deepfake-defense-ia-diagrams.html'
   },
   3: {
     title: 'Radiostream - Worldwide Radio Network is A Live!',
@@ -1088,7 +1088,7 @@ const projectData = {
     desc: 'Radiostream is a Online Radio stations live streaming platform. It has schedule management, live streaming, Radio Shows, Live DJ announcements, Dj Studio, and listener engagement features. I led the UX strategy, component library development to ensure a cohesive and intuitive user experience across the platform.',
     tags: ['UX Strategy', 'React', 'Component Library', 'Documentation'],
     url: 'https://radioflowlive.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1lQa8e_bVnJCxg6Hwp1a3_uQlT9w3m74K/view'
+    docUrl: 'radiostream-information-architecture.html'
   },
   4: {
     title: 'EduCore - School Mgmt. Software',
@@ -1098,7 +1098,7 @@ const projectData = {
     desc: 'Develop a modern, scalable, cloud-ready School Management Software (SMS) tailored for Indian schools (CBSE, ICSE, State Boards). The system should centralize academic, administrative, financial, and communication workflows.',
     tags: ['Agentic AI', 'Conversational UX', 'Prototyping'],
     url: 'https://schoolmgmtapp.vercel.app/',
-    docUrl: 'https://drive.google.com/file/d/1173cg-6WRJamj_3AnMfYC0N2n3bA2esu/view'
+    docUrl: 'educore_sms.html'
   },
   5: {
     title: 'Army Commando Intel System',
@@ -1108,7 +1108,7 @@ const projectData = {
     desc: 'comprehensive military command dashboard built with React and Vite. It provides real-time situational awareness through an interactive interface featuring tactical maps, surveillance feeds, intelligence updates, and mission planning tools.',
     tags: ['UX Design', 'Prototype', 'Frontend'],
     url: 'https://armycommandointel.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1mswtSn298SUVZmk1iHAvI0L5mvxiX1Kh/view'
+    docUrl: 'ACIS.html'
   },
   6: {
     title: 'SteamVerde - Online Streaming Platform',
@@ -1118,7 +1118,7 @@ const projectData = {
     desc: 'A cloud-native OTT/IPTV platform delivering Live TV, VOD, Catch-up TV, Cloud DVR, AI-powered recommendations, and full operator management. Built as a complete SaaS/OTT/Middleware solution for subscribers, and content providers. I led the UX strategy, prototyping, and design system creation to ensure a seamless and engaging user experience across web and mobile platforms.',
     tags: ['UX Prototyping', 'Front-End Design', 'Content Strategy'],
     url: 'https://streamverde.netlify.app/',
-    docUrl: 'https://streamverde.netlify.app/README.md'
+    docUrl: 'StreamVerde_IA.html'
   },
 
   /* ── WEBSITES ─────────────────────────────────────────── */

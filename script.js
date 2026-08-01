@@ -1130,7 +1130,7 @@ const projectData = {
     desc: 'VOXAR transforms written scripts into studio-quality videos with photorealistic avatars and 140+ voice clones — in minutes, not months.',
     tags: ['Web Design', 'UX', 'Frontend'],
     url: 'https://venkateshcreations.github.io/VOXAR-AI/',
-    docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/VOXAR_AI_FEATURES_AND_EXPERIENCE.html'
   },
   8: {
     title: 'Zippo.SYS - Financial Operations Terminal',
@@ -1140,7 +1140,7 @@ const projectData = {
     desc: 'Secure Finance vault with advanced encryption and access controls, booting financial operations, optimizing spend protocols, with system terminal control.',
     tags: ['Branding', 'UI Design', 'Creative Frontend'],
     url: 'https://venkateshcreations.github.io/Zippo.SYS/',
-    docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/WEBSITE_FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/Zippo_sys_WEBSITE_FEATURES_AND_EXPERIENCE.html'
   },
   9: {
     title: 'AXIOM — Autonomous Cyber Defense Platform',
@@ -1150,7 +1150,7 @@ const projectData = {
     desc: 'A full-styled, client-side cybersecurity dashboard and marketing website for a fictional autonomous AI-driven security platform called **AXIOM**.',
     tags: ['Dashboard UX', 'App UX Design', 'Frontend Development'],
     url: 'https://venkateshcreations.github.io/AXIOM/',
-    docUrl: 'https://venkateshcreations.github.io/AXIOM/README.md'
+    docUrl: 'https://venkateshcreations.github.io/AXIOM/AXIOM_README.html'
   },
   10: {
     title: 'ORBITA - Next-Gen Space Communications',
@@ -1160,7 +1160,7 @@ const projectData = {
     desc: 'A sovereign constellation of satellites delivering ultra-low latency broadband, precision telemetry, and secure inter-agency communications across every orbital regime.',
     tags: ['Frontend Development', 'UI Design', 'UX Lead'],
     url: 'https://venkateshcreations.github.io/ORBITA/',
-    docUrl: 'https://venkateshcreations.github.io/ORBITA/README.md'
+    docUrl: 'https://venkateshcreations.github.io/ORBITA/ORBITA_README.html'
   },
   11: {
     title: 'Deepfake Defense - 2026 Initiative',
@@ -1180,7 +1180,7 @@ const projectData = {
     desc: 'Direct operational control for analytical power users. Raw performance metrics delivered via proprietary recursive engine. Zero abstraction layer. Optimized for 100% throughput efficiency.',
     tags: ['Portfolio Site', 'Motion Design', 'GSAP'],
     url: 'https://venkateshcreations.github.io/Autofy/',
-    docUrl: 'https://venkateshcreations.github.io/Autofy/FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/Autofy/Autofy_FEATURES_AND_EXPERIENCE.html'
   },
   13: {
     title: 'Enterprise Digital Banking Ecosystem',
@@ -1190,7 +1190,7 @@ const projectData = {
     desc: 'An interactive, single-page visualization of an enterprise banking IT ecosystem built with **D3.js v7**. Displays 103 connected services across 9 domains with 6 chart types, real-time analytics, status tracking, and 13 power-user features.',
     tags: ['UX Architecture', 'Front-End', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DataVisualization-1/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/doc.html'
   },
   14: {
     title: 'Digital Transformation Intelligence Hub',
@@ -1200,7 +1200,7 @@ const projectData = {
     desc: 'An interactive enterprise portfolio dashboard built with **D3.js v7** featuring 9 interconnected data visualizations that map GlobalTech Industries\' digital transformation journey from 2023 to 2027.',
     tags: ['UX Design', 'Frontend Design', 'Mapping'],
     url: 'https://venkateshcreations.github.io/DataVisualization-2/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/doc.html'
   },
   15: {
     title: 'GEC — Global Supply Chain Analytics Dashboard',
@@ -1210,7 +1210,7 @@ const projectData = {
     desc: 'A portfolio-grade, single-page data visualization dashboard for **Global Electronics Corporation (GEC)**, built entirely with **D3.js v7**. Features 12 interactive sections covering the end-to-end supply chain from raw materials to retail.',
     tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
     url: 'https://venkateshcreations.github.io/DataVisualization-3/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/doc.html'
   },
   16: {
     title: 'IntelliAssist AI - Product Lifecycle Dashboard',
@@ -1220,7 +1220,7 @@ const projectData = {
     desc: 'An interactive data visualization dashboard built with [ECharts](https://echarts.apache.org/) that maps the full AI product development lifecycle for **IntelliAssist AI**, an enterprise AI assistant platform.',
     tags: ['UX Architecture', 'Front-End', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DataVisualization-4/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/doc.html'
   },
   17: {
     title: 'Enterprise Analytics Dashboard',
@@ -1230,7 +1230,7 @@ const projectData = {
     desc: 'An interactive startup ecosystem visualization dashboard for the fictional **FutureVerse Startup Ecosystem (2026)**. Built with a 3D force graph and rich charting to explore entities, funding flows, sector synergies, and predictive projections.',
     tags: ['UX Design', 'Frontend Design', 'Mapping'],
     url: 'https://venkateshcreations.github.io/DataVisualization-5/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/doc.html'
   },
   18: {
     title: 'Apex Global Enterprises — SOC Command Center',
@@ -1240,7 +1240,7 @@ const projectData = {
     desc: 'A cybersecurity data visualization dashboard simulating a fictional multinational enterprise\'s Security Operations Center (SOC). Built with **Apache ECharts**, the dashboard provides real-time threat monitoring, attack path analysis, and enterprise-wide security posture visualization.',
     tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
     url: 'https://venkateshcreations.github.io/DataVisualization-6/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/doc.html'
   },
 
   /* ── DESIGN SYSTEMS ──────────────────────────────────── */
@@ -1252,7 +1252,7 @@ const projectData = {
     desc: 'The Enterprise Digital Banking Design System is a complete UI framework purpose-built for visualizing complex banking ecosystems, service dependencies, and real-time system status. It provides 38 documented UI components, 58 design tokens, and a consistent motion language — all within a single, portable HTML file.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.html'
   },
   20: {
     title: 'Design System-2',
@@ -1262,7 +1262,7 @@ const projectData = {
     desc: 'This single-file HTML document serves as the canonical source of truth for product engineering teams building the GlobalTech Digital Transformation Hub. It documents every structural element, interactive component, animation protocol, data model, and usage instruction required to build and maintain the platform.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.html'
   },
   21: {
     title: 'Design System-3',
@@ -1272,7 +1272,7 @@ const projectData = {
     desc: 'A comprehensive component library and design token system for building supply chain analytics interfaces. Features a dark-first theme with cyan (#22d3ee) and purple (#a78bfa) accents, light mode support, 12 documented components, D3.js chart integration patterns, and a lazy-initialized section routing system.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.html'
   },
   22: {
     title: 'Design System-4',
@@ -1282,7 +1282,7 @@ const projectData = {
     desc: 'A comprehensive reference for engineers, designers, and system integrators building on the Deepfake Defense program. This document covers every design token, component specification, layout pattern, and usage convention in the system. Use it as the source of truth for extending the site, building the Interactive Dashboard, or integrating detection signals into existing security tooling.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DFD-Design-System/',
-    docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/Designsystem-4_README.html'
   },
   23: {
     title: 'Design System-5',
@@ -1292,7 +1292,7 @@ const projectData = {
     desc: 'A comprehensive design system for the Radiostream live radio platform. Dark-themed, neon-accented, and built for real-time audio experiences. This reference documents all design tokens, components, and usage patterns.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.html'
   },
   24: {
     title: 'Design System-6',
@@ -1302,7 +1302,7 @@ const projectData = {
     desc: 'AXIOM embodies a dark cyber aesthetic — precise, technical, and authoritative. Every design decision prioritizes clarity in high-stakes environments. The system balances atmospheric immersion with functional readability, using neon accents against deep navy backgrounds to create interfaces that feel both advanced and trustworthy.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.html'
   }
 };
 

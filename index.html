@@ -56,7 +56,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.css?v=22" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -629,11 +629,26 @@
               </svg>
               <span>View Architecture</span>
             </button>
-            
-            <button id="openGarudaPlayerBtn" class="btn-ghost" style="margin-left: 1rem;">
-              <img src="images/garuda-icon.png" alt="Garuda" style="width:24px; height:24px; border-radius:50%; margin-right:8px; object-fit:cover;" />
-              <span>Listen to Garuda</span>
+            <!-- Meet Garuda on its own row with breathing space -->
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <div style="margin-top: 0.5rem;">
+            <button id="openMeetGarudaBtn" class="btn-ghost" aria-label="Watch Garuda Intelligence video">
+              <!-- Golden glow ring -->
+              <span class="mgb-glow-ring"></span>
+              <!-- Sparkle particles -->
+              <span class="mgb-spark mgb-spark-1">✦</span>
+              <span class="mgb-spark mgb-spark-2">★</span>
+              <span class="mgb-spark mgb-spark-3">✦</span>
+              <span class="mgb-spark mgb-spark-4">✧</span>
+              <!-- Play icon -->
+              <span class="mgb-play-ring">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" style="margin-left:2px"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <img src="images/garuda-icon.png" alt="Garuda" class="mgb-icon" />
+              <span class="mgb-label">Meet Garuda</span>
+              <span class="mgb-badge">WATCH</span>
             </button>
+            </div>
           </div>
         </div>
         
@@ -1352,44 +1367,28 @@
     <span>Digital Resume</span>
   </a>
 
-  <!-- Garuda Audio Popover Player -->
-  <div id="garudaAudioPopover" class="popover-modal garuda-player-modal" role="dialog" aria-modal="true" aria-labelledby="garudaPlayerTitle">
-    <div class="popover-backdrop" id="garudaPopoverBackdrop"></div>
-    <div class="garuda-player-content">
-      <button class="popover-close" id="garudaPopoverClose" aria-label="Close player">
+  <!-- Meet Garuda Video Popover -->
+  <div id="meetGarudaPopover" class="popover-modal garuda-video-modal" role="dialog" aria-modal="true" aria-labelledby="meetGarudaTitle">
+    <div class="popover-backdrop" id="meetGarudaBackdrop"></div>
+    <div class="garuda-video-content">
+      <button class="popover-close" id="meetGarudaClose" aria-label="Close video">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
-      <div class="garuda-player-inner">
-        <div class="garuda-avatar-large">
-          <img src="images/garuda-icon.png" alt="Garuda AI" />
+      <div class="garuda-video-header">
+        <img src="images/garuda-icon.png" alt="Garuda" class="garuda-video-icon" />
+        <div>
+          <h3 id="meetGarudaTitle" class="garuda-video-title">Garuda Intelligence</h3>
+          <p class="garuda-video-subtitle">Master Orchestrator — Multi-Agent AI System</p>
         </div>
-        <h3 id="garudaPlayerTitle" class="garuda-player-title">Garuda Intelligence</h3>
-        <p class="garuda-player-subtitle">Agentic Reasoning Audio</p>
-        
-        <div class="visualizer-container">
-          <canvas id="audioVisualizer"></canvas>
-        </div>
-        
-        <div class="garuda-media-controls">
-          <button id="garudaPrevBtn" class="media-btn" aria-label="Skip backward 10s">
-            <svg viewBox="0 0 24 24" fill="white"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
-          </button>
-          
-          <button id="garudaMainPlayBtn" class="media-btn play-pause-btn" aria-label="Play">
-            <svg viewBox="0 0 24 24" fill="white" class="media-play-icon"><path d="M8 5v14l11-7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="white" class="media-pause-icon" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-          </button>
-          
-          <button id="garudaNextBtn" class="media-btn" aria-label="Skip forward 10s">
-            <svg viewBox="0 0 24 24" fill="white"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
-          </button>
-        </div>
-        
-        <!-- The actual audio element is moved here -->
-        <audio id="garudaAudio" src="garuda_speech_about_intelligence.mp3" preload="metadata" crossorigin="anonymous"></audio>
+      </div>
+      <div class="garuda-video-wrap">
+        <video id="meetGarudaVideo" class="garuda-video-player" controls preload="metadata" playsinline>
+          <source src="Garuda_Intelligence_Master_Orchestrator.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
@@ -1403,7 +1402,7 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
 </body>
 
 </html>

@@ -1068,7 +1068,7 @@ const projectData = {
     desc: 'AI-Powered Project Management & Issue Tracking System - A world-class, production-ready frontend application inspired by Jira, built with React, Tailwind CSS, and AI integration. Featuring real-time drag-and-drop Kanban boards, sprint management, analytics, automation, and AI-powered features.',
     tags: ['UX Architecture', 'Front-End Development', 'Enterprise UX'],
     url: 'https://flowtrackai.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1lTSZ4WiPRgv8P1Craa_ija7ZMD-uptjv/view'
+    docUrl: 'FlowTrack_AI_IA_Flow_Map.html'
   },
   2: {
     title: 'Deepfake Defense Dashboard - 2026 Initiative',
@@ -1078,7 +1078,7 @@ const projectData = {
     desc: 'Understanding the technology behind synthetic media is the first step in defending against it. Deepfakes leverage deep neural networks—primarily Generative Adversarial Networks (GANs) and Diffusion Models—to synthesize hyper-realistic content.',
     tags: ['UX Architecture', 'Enterprise UX'],
     url: 'https://deepfakedefence-dashboard.vercel.app/',
-    docUrl: 'https://deepfake-defence.vercel.app/Deepfake_Defense_Program_Guide.html'
+    docUrl: 'deepfake-defense-ia-diagrams.html'
   },
   3: {
     title: 'Radiostream - Worldwide Radio Network is A Live!',
@@ -1088,7 +1088,7 @@ const projectData = {
     desc: 'Radiostream is a Online Radio stations live streaming platform. It has schedule management, live streaming, Radio Shows, Live DJ announcements, Dj Studio, and listener engagement features. I led the UX strategy, component library development to ensure a cohesive and intuitive user experience across the platform.',
     tags: ['UX Strategy', 'React', 'Component Library', 'Documentation'],
     url: 'https://radioflowlive.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1lQa8e_bVnJCxg6Hwp1a3_uQlT9w3m74K/view'
+    docUrl: 'radiostream-information-architecture.html'
   },
   4: {
     title: 'EduCore - School Mgmt. Software',
@@ -1098,7 +1098,7 @@ const projectData = {
     desc: 'Develop a modern, scalable, cloud-ready School Management Software (SMS) tailored for Indian schools (CBSE, ICSE, State Boards). The system should centralize academic, administrative, financial, and communication workflows.',
     tags: ['Agentic AI', 'Conversational UX', 'Prototyping'],
     url: 'https://schoolmgmtapp.vercel.app/',
-    docUrl: 'https://drive.google.com/file/d/1173cg-6WRJamj_3AnMfYC0N2n3bA2esu/view'
+    docUrl: 'educore_sms.html'
   },
   5: {
     title: 'Army Commando Intel System',
@@ -1108,7 +1108,7 @@ const projectData = {
     desc: 'comprehensive military command dashboard built with React and Vite. It provides real-time situational awareness through an interactive interface featuring tactical maps, surveillance feeds, intelligence updates, and mission planning tools.',
     tags: ['UX Design', 'Prototype', 'Frontend'],
     url: 'https://armycommandointel.netlify.app/',
-    docUrl: 'https://drive.google.com/file/d/1mswtSn298SUVZmk1iHAvI0L5mvxiX1Kh/view'
+    docUrl: 'ACIS.html'
   },
   6: {
     title: 'SteamVerde - Online Streaming Platform',
@@ -1118,7 +1118,7 @@ const projectData = {
     desc: 'A cloud-native OTT/IPTV platform delivering Live TV, VOD, Catch-up TV, Cloud DVR, AI-powered recommendations, and full operator management. Built as a complete SaaS/OTT/Middleware solution for subscribers, and content providers. I led the UX strategy, prototyping, and design system creation to ensure a seamless and engaging user experience across web and mobile platforms.',
     tags: ['UX Prototyping', 'Front-End Design', 'Content Strategy'],
     url: 'https://streamverde.netlify.app/',
-    docUrl: 'https://streamverde.netlify.app/README.md'
+    docUrl: 'StreamVerde_IA.html'
   },
 
   /* ── WEBSITES ─────────────────────────────────────────── */
@@ -1130,7 +1130,7 @@ const projectData = {
     desc: 'VOXAR transforms written scripts into studio-quality videos with photorealistic avatars and 140+ voice clones — in minutes, not months.',
     tags: ['Web Design', 'UX', 'Frontend'],
     url: 'https://venkateshcreations.github.io/VOXAR-AI/',
-    docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/VOXAR_AI_FEATURES_AND_EXPERIENCE.html'
   },
   8: {
     title: 'Zippo.SYS - Financial Operations Terminal',
@@ -1140,7 +1140,7 @@ const projectData = {
     desc: 'Secure Finance vault with advanced encryption and access controls, booting financial operations, optimizing spend protocols, with system terminal control.',
     tags: ['Branding', 'UI Design', 'Creative Frontend'],
     url: 'https://venkateshcreations.github.io/Zippo.SYS/',
-    docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/WEBSITE_FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/Zippo_sys_WEBSITE_FEATURES_AND_EXPERIENCE.html'
   },
   9: {
     title: 'AXIOM — Autonomous Cyber Defense Platform',
@@ -1150,7 +1150,7 @@ const projectData = {
     desc: 'A full-styled, client-side cybersecurity dashboard and marketing website for a fictional autonomous AI-driven security platform called **AXIOM**.',
     tags: ['Dashboard UX', 'App UX Design', 'Frontend Development'],
     url: 'https://venkateshcreations.github.io/AXIOM/',
-    docUrl: 'https://venkateshcreations.github.io/AXIOM/README.md'
+    docUrl: 'https://venkateshcreations.github.io/AXIOM/AXIOM_README.html'
   },
   10: {
     title: 'ORBITA - Next-Gen Space Communications',
@@ -1160,7 +1160,7 @@ const projectData = {
     desc: 'A sovereign constellation of satellites delivering ultra-low latency broadband, precision telemetry, and secure inter-agency communications across every orbital regime.',
     tags: ['Frontend Development', 'UI Design', 'UX Lead'],
     url: 'https://venkateshcreations.github.io/ORBITA/',
-    docUrl: 'https://venkateshcreations.github.io/ORBITA/README.md'
+    docUrl: 'https://venkateshcreations.github.io/ORBITA/ORBITA_README.html'
   },
   11: {
     title: 'Deepfake Defense - 2026 Initiative',
@@ -1180,7 +1180,7 @@ const projectData = {
     desc: 'Direct operational control for analytical power users. Raw performance metrics delivered via proprietary recursive engine. Zero abstraction layer. Optimized for 100% throughput efficiency.',
     tags: ['Portfolio Site', 'Motion Design', 'GSAP'],
     url: 'https://venkateshcreations.github.io/Autofy/',
-    docUrl: 'https://venkateshcreations.github.io/Autofy/FEATURES_AND_EXPERIENCE.md'
+    docUrl: 'https://venkateshcreations.github.io/Autofy/Autofy_FEATURES_AND_EXPERIENCE.html'
   },
   13: {
     title: 'Enterprise Digital Banking Ecosystem',
@@ -1190,7 +1190,7 @@ const projectData = {
     desc: 'An interactive, single-page visualization of an enterprise banking IT ecosystem built with **D3.js v7**. Displays 103 connected services across 9 domains with 6 chart types, real-time analytics, status tracking, and 13 power-user features.',
     tags: ['UX Architecture', 'Front-End', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DataVisualization-1/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/doc.html'
   },
   14: {
     title: 'Digital Transformation Intelligence Hub',
@@ -1200,7 +1200,7 @@ const projectData = {
     desc: 'An interactive enterprise portfolio dashboard built with **D3.js v7** featuring 9 interconnected data visualizations that map GlobalTech Industries\' digital transformation journey from 2023 to 2027.',
     tags: ['UX Design', 'Frontend Design', 'Mapping'],
     url: 'https://venkateshcreations.github.io/DataVisualization-2/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/doc.html'
   },
   15: {
     title: 'GEC — Global Supply Chain Analytics Dashboard',
@@ -1210,7 +1210,7 @@ const projectData = {
     desc: 'A portfolio-grade, single-page data visualization dashboard for **Global Electronics Corporation (GEC)**, built entirely with **D3.js v7**. Features 12 interactive sections covering the end-to-end supply chain from raw materials to retail.',
     tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
     url: 'https://venkateshcreations.github.io/DataVisualization-3/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/doc.html'
   },
   16: {
     title: 'IntelliAssist AI - Product Lifecycle Dashboard',
@@ -1220,7 +1220,7 @@ const projectData = {
     desc: 'An interactive data visualization dashboard built with [ECharts](https://echarts.apache.org/) that maps the full AI product development lifecycle for **IntelliAssist AI**, an enterprise AI assistant platform.',
     tags: ['UX Architecture', 'Front-End', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DataVisualization-4/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/doc.html'
   },
   17: {
     title: 'Enterprise Analytics Dashboard',
@@ -1230,7 +1230,7 @@ const projectData = {
     desc: 'An interactive startup ecosystem visualization dashboard for the fictional **FutureVerse Startup Ecosystem (2026)**. Built with a 3D force graph and rich charting to explore entities, funding flows, sector synergies, and predictive projections.',
     tags: ['UX Design', 'Frontend Design', 'Mapping'],
     url: 'https://venkateshcreations.github.io/DataVisualization-5/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/doc.html'
   },
   18: {
     title: 'Apex Global Enterprises — SOC Command Center',
@@ -1240,7 +1240,7 @@ const projectData = {
     desc: 'A cybersecurity data visualization dashboard simulating a fictional multinational enterprise\'s Security Operations Center (SOC). Built with **Apache ECharts**, the dashboard provides real-time threat monitoring, attack path analysis, and enterprise-wide security posture visualization.',
     tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
     url: 'https://venkateshcreations.github.io/DataVisualization-6/',
-    docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/doc.html'
   },
 
   /* ── DESIGN SYSTEMS ──────────────────────────────────── */
@@ -1252,7 +1252,7 @@ const projectData = {
     desc: 'The Enterprise Digital Banking Design System is a complete UI framework purpose-built for visualizing complex banking ecosystems, service dependencies, and real-time system status. It provides 38 documented UI components, 58 design tokens, and a consistent motion language — all within a single, portable HTML file.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.html'
   },
   20: {
     title: 'Design System-2',
@@ -1262,7 +1262,7 @@ const projectData = {
     desc: 'This single-file HTML document serves as the canonical source of truth for product engineering teams building the GlobalTech Digital Transformation Hub. It documents every structural element, interactive component, animation protocol, data model, and usage instruction required to build and maintain the platform.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.html'
   },
   21: {
     title: 'Design System-3',
@@ -1272,7 +1272,7 @@ const projectData = {
     desc: 'A comprehensive component library and design token system for building supply chain analytics interfaces. Features a dark-first theme with cyan (#22d3ee) and purple (#a78bfa) accents, light mode support, 12 documented components, D3.js chart integration patterns, and a lazy-initialized section routing system.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.html'
   },
   22: {
     title: 'Design System-4',
@@ -1282,7 +1282,7 @@ const projectData = {
     desc: 'A comprehensive reference for engineers, designers, and system integrators building on the Deepfake Defense program. This document covers every design token, component specification, layout pattern, and usage convention in the system. Use it as the source of truth for extending the site, building the Interactive Dashboard, or integrating detection signals into existing security tooling.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DFD-Design-System/',
-    docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/README.md'
+    docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/Designsystem-4_README.html'
   },
   23: {
     title: 'Design System-5',
@@ -1292,7 +1292,7 @@ const projectData = {
     desc: 'A comprehensive design system for the Radiostream live radio platform. Dark-themed, neon-accented, and built for real-time audio experiences. This reference documents all design tokens, components, and usage patterns.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.html'
   },
   24: {
     title: 'Design System-6',
@@ -1302,7 +1302,7 @@ const projectData = {
     desc: 'AXIOM embodies a dark cyber aesthetic — precise, technical, and authoritative. Every design decision prioritizes clarity in high-stakes environments. The system balances atmospheric immersion with functional readability, using neon accents against deep navy backgrounds to create interfaces that feel both advanced and trustworthy.',
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6.html',
-    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.md'
+    docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.html'
   }
 };
 
@@ -1735,148 +1735,40 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Garuda Audio Player Logic (Popover & Visualizer)
+// Meet Garuda Video Popover Logic
 document.addEventListener('DOMContentLoaded', () => {
-  const triggerBtn = document.getElementById('openGarudaPlayerBtn');
-  const popover = document.getElementById('garudaAudioPopover');
-  const backdrop = document.getElementById('garudaPopoverBackdrop');
-  const closeBtn = document.getElementById('garudaPopoverClose');
-  
-  const garudaAudio = document.getElementById('garudaAudio');
-  const garudaMainPlayBtn = document.getElementById('garudaMainPlayBtn');
-  const garudaPrevBtn = document.getElementById('garudaPrevBtn');
-  const garudaNextBtn = document.getElementById('garudaNextBtn');
-  
-  const playIcon = document.querySelector('.media-play-icon');
-  const pauseIcon = document.querySelector('.media-pause-icon');
-  
-  const canvas = document.getElementById('audioVisualizer');
-  
-  let audioCtx;
-  let analyser;
-  let source;
-  let isInitialized = false;
-  let animationId;
+  const triggerBtn = document.getElementById('openMeetGarudaBtn');
+  const popover = document.getElementById('meetGarudaPopover');
+  const backdrop = document.getElementById('meetGarudaBackdrop');
+  const closeBtn = document.getElementById('meetGarudaClose');
+  const video = document.getElementById('meetGarudaVideo');
 
-  if (!triggerBtn || !popover || !garudaAudio) return;
+  if (!triggerBtn || !popover) return;
 
-  const initWebAudio = () => {
-    if (isInitialized) return;
-    
-    // Create audio context
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 256;
-    
-    // Connect audio element to analyzer
-    source = audioCtx.createMediaElementSource(garudaAudio);
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    
-    isInitialized = true;
-  };
-
-  const drawVisualizer = () => {
-    if (!canvas || !analyser) return;
-    
-    const ctx = canvas.getContext('2d');
-    const width = canvas.width = canvas.offsetWidth;
-    const height = canvas.height = canvas.offsetHeight;
-    
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-    
-    const draw = () => {
-      if (garudaAudio.paused) return; // stop animation loop if paused
-      animationId = requestAnimationFrame(draw);
-      
-      analyser.getByteFrequencyData(dataArray);
-      
-      ctx.clearRect(0, 0, width, height);
-      
-      const barWidth = (width / bufferLength) * 2.5;
-      let barHeight;
-      let x = 0;
-      
-      for (let i = 0; i < bufferLength; i++) {
-        barHeight = (dataArray[i] / 255) * height;
-        
-        // Gradient coloring based on frequency (like a heat map)
-        const hue = (i / bufferLength) * 120; // 0 to 120 (Red to Green)
-        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-        
-        // Draw bars from bottom up
-        ctx.fillRect(x, height - barHeight, barWidth, barHeight);
-        
-        x += barWidth + 1;
-      }
-    };
-    
-    draw();
-  };
-
-  const updatePlayState = (isPlaying) => {
-    if (isPlaying) {
-      garudaMainPlayBtn.setAttribute('aria-label', 'Pause');
-      if (playIcon) playIcon.style.display = 'none';
-      if (pauseIcon) pauseIcon.style.display = 'block';
-      if (audioCtx && audioCtx.state === 'suspended') {
-         audioCtx.resume();
-      }
-      drawVisualizer(); // restart animation loop
-    } else {
-      garudaMainPlayBtn.setAttribute('aria-label', 'Play');
-      if (playIcon) playIcon.style.display = 'block';
-      if (pauseIcon) pauseIcon.style.display = 'none';
-      cancelAnimationFrame(animationId);
-    }
-  };
-
-  const openPlayer = () => {
-    initWebAudio(); // Init audio context on user interaction
+  const openPopover = () => {
     popover.classList.add('open');
     document.body.style.overflow = 'hidden';
   };
 
-  const closePlayer = () => {
+  const closeVideoPopover = () => {
     popover.classList.remove('open');
     document.body.style.overflow = '';
-    garudaAudio.pause();
-    updatePlayState(false);
+    if (video) {
+      video.pause();
+    }
   };
 
-  // Popover Triggers
   triggerBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    openPlayer();
+    openPopover();
   });
-  
-  closeBtn.addEventListener('click', closePlayer);
-  backdrop.addEventListener('click', closePlayer);
-  
-  // Media Controls
-  garudaMainPlayBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (garudaAudio.paused) {
-      garudaAudio.play().then(() => updatePlayState(true)).catch(console.error);
-    } else {
-      garudaAudio.pause();
-      updatePlayState(false);
+
+  closeBtn.addEventListener('click', closeVideoPopover);
+  backdrop.addEventListener('click', closeVideoPopover);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popover.classList.contains('open')) {
+      closeVideoPopover();
     }
-  });
-
-  // Prev/Next functionality (-10s / +10s)
-  garudaPrevBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    garudaAudio.currentTime = Math.max(0, garudaAudio.currentTime - 10);
-  });
-
-  garudaNextBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    garudaAudio.currentTime = Math.min(garudaAudio.duration, garudaAudio.currentTime + 10);
-  });
-
-  garudaAudio.addEventListener('ended', () => {
-    updatePlayState(false);
   });
 });

@@ -2971,164 +2971,346 @@ textarea {
   }
 }
 
-/* Garuda Audio Trigger Button */
-#openGarudaPlayerBtn {
+/* ═══════════════════════════════════════════════════
+   MEET GARUDA — Golden Cinematic Button
+═══════════════════════════════════════════════════ */
+#openMeetGarudaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(80, 70, 220, 0.15);
-  border: 1px solid rgba(80, 70, 220, 0.4);
-  padding: 6px 16px;
-  border-radius: 30px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  animation: garudaBtnPulse 2.5s infinite;
-}
-
-#openGarudaPlayerBtn::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  animation: garudaBtnSweep 4s infinite;
-}
-
-@keyframes garudaBtnPulse {
-  0% { box-shadow: 0 0 0 0 rgba(80, 70, 220, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(80, 70, 220, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(80, 70, 220, 0); }
-}
-
-@keyframes garudaBtnSweep {
-  0% { left: -100%; }
-  20% { left: 100%; }
-  100% { left: 100%; }
-}
-
-#openGarudaPlayerBtn:hover {
-  background: rgba(80, 70, 220, 0.3);
-  border-color: rgba(80, 70, 220, 0.6);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 15px rgba(80, 70, 220, 0.3);
-  animation: none;
-}
-
-/* Garuda Player Modal */
-.garuda-player-modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.garuda-player-content {
-  background: rgba(15, 15, 22, 0.95);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 40px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 1001;
-  text-align: center;
-}
-
-.garuda-avatar-large {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: 0 auto 20px auto;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.garuda-avatar-large img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.garuda-player-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #fff;
-}
-
-.garuda-player-subtitle {
-  font-size: 0.9rem;
-  color: #aaa;
-  margin-bottom: 30px;
-}
-
-.visualizer-container {
-  width: 100%;
-  height: 80px;
-  margin-bottom: 30px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#audioVisualizer {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.garuda-media-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
-
-.media-btn {
-  background: transparent;
+  gap: 10px;
+  padding: 10px 22px 10px 14px;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #1a0e00;
+  margin-left: 1rem;
+  /* Golden gradient base */
+  background: linear-gradient(
+    135deg,
+    #f7c948 0%,
+    #ffdf6b 18%,
+    #ffd700 35%,
+    #ffb300 52%,
+    #ff9800 68%,
+    #ffb300 80%,
+    #ffd700 90%,
+    #f7c948 100%
+  );
+  background-size: 200% 200%;
+  animation: mgbGoldShift 3s ease infinite, mgbPulse 2s ease-in-out infinite;
+  box-shadow:
+    0 0 0 1.5px rgba(255, 180, 0, 0.7),
+    0 0 10px 2px rgba(255, 193, 7, 0.35),
+    0 4px 20px rgba(255, 140, 0, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              filter 0.25s ease;
+  will-change: transform, box-shadow;
 }
 
-.media-btn svg {
-  width: 24px;
-  height: 24px;
+/* Diagonal shimmer sweep */
+#openMeetGarudaBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: mgbShimmer 2.2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* NO ::after spin ring — replaced by layered box-shadow border glow below */
+
+/* ── Keyframes ── */
+@keyframes mgbGoldShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes mgbShimmer {
+  0%   { background-position: -100% 0; }
+  60%  { background-position: 200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes mgbPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1.5px rgba(255, 180, 0, 0.7),
+      0 0 10px 2px rgba(255, 193, 7, 0.35),
+      0 4px 20px rgba(255, 140, 0, 0.45),
+      0 2px 6px rgba(0,0,0,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.45);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1.5px rgba(255, 210, 0, 1),
+      0 0 18px 5px rgba(255, 193, 7, 0.55),
+      0 6px 30px rgba(255, 140, 0, 0.65),
+      0 2px 6px rgba(0,0,0,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.45);
+    transform: scale(1.022);
+  }
+}
+
+
+
+/* ── Glow Ring (decorative halo around btn boundary) ── */
+.mgb-glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 56px;
+  border: 1.5px solid rgba(255, 215, 0, 0.4);
+  box-shadow:
+    0 0 12px 2px rgba(255, 193, 7, 0.35),
+    inset 0 0 8px rgba(255, 215, 0, 0.15);
+  animation: mgbRingPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes mgbRingPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.04); }
+}
+
+/* ── Sparkle Particles ── */
+.mgb-spark {
+  position: absolute;
+  color: #ffe066;
+  font-size: 10px;
+  pointer-events: none;
+  z-index: 2;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.9);
+}
+
+.mgb-spark-1 {
+  top: -8px; left: 14%;
+  animation: mgbSparkFloat1 2.4s infinite;
+  font-size: 9px;
+}
+.mgb-spark-2 {
+  top: -10px; right: 22%;
+  animation: mgbSparkFloat2 2.8s 0.4s infinite;
+  font-size: 11px;
+}
+.mgb-spark-3 {
+  bottom: -8px; left: 30%;
+  animation: mgbSparkFloat3 2.2s 0.8s infinite;
+  font-size: 8px;
+}
+.mgb-spark-4 {
+  bottom: -9px; right: 18%;
+  animation: mgbSparkFloat4 3s 0.2s infinite;
+  font-size: 9px;
+}
+
+@keyframes mgbSparkFloat1 {
+  0%, 100% { transform: translateY(0) rotate(0deg)  scale(0.8); opacity: 0; }
+  30%       { transform: translateY(-7px) rotate(30deg)  scale(1.2); opacity: 1; }
+  70%       { transform: translateY(-4px) rotate(-15deg) scale(1);   opacity: 0.7; }
+}
+@keyframes mgbSparkFloat2 {
+  0%, 100% { transform: translateY(0) rotate(0deg)  scale(0.6); opacity: 0; }
+  40%       { transform: translateY(-9px) rotate(-20deg) scale(1.3); opacity: 1; }
+  70%       { transform: translateY(-5px) rotate(10deg)  scale(0.9); opacity: 0.6; }
+}
+@keyframes mgbSparkFloat3 {
+  0%, 100% { transform: translateY(0) rotate(0deg)  scale(0.7); opacity: 0; }
+  35%       { transform: translateY(7px) rotate(25deg)  scale(1.1); opacity: 1; }
+  65%       { transform: translateY(4px) rotate(-10deg) scale(0.9); opacity: 0.5; }
+}
+@keyframes mgbSparkFloat4 {
+  0%, 100% { transform: translateY(0) rotate(0deg)  scale(0.5); opacity: 0; }
+  45%       { transform: translateY(8px) rotate(-30deg) scale(1.2); opacity: 1; }
+  75%       { transform: translateY(3px) rotate(15deg)  scale(1);   opacity: 0.6; }
+}
+
+/* ── Play Ring Icon ── */
+.mgb-play-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
   transition: transform 0.2s ease;
 }
 
-.media-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+/* ── Garuda Icon ── */
+.mgb-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-.media-btn:hover svg {
-  transform: scale(1.1);
+/* ── Label ── */
+.mgb-label {
+  position: relative;
+  z-index: 3;
+  color: #1a0e00;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+  letter-spacing: 0.02em;
 }
 
-.play-pause-btn {
-  background: #5b4fe3;
-  width: 60px;
-  height: 60px;
-  box-shadow: 0 10px 20px rgba(91, 79, 227, 0.4);
+/* ── WATCH Badge ── */
+.mgb-badge {
+  position: relative;
+  z-index: 3;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 20px;
+  padding: 1px 7px;
+  text-transform: uppercase;
+  line-height: 1.6;
+  backdrop-filter: blur(4px);
 }
 
-.play-pause-btn svg {
-  width: 30px;
-  height: 30px;
+/* ── HOVER STATE ── */
+#openMeetGarudaBtn:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow:
+    0 0 0 5px rgba(255, 193, 7, 0.18),
+    0 8px 32px rgba(255, 165, 0, 0.75),
+    0 4px 12px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+  filter: brightness(1.08) saturate(1.15);
 }
 
-.play-pause-btn:hover {
-  background: #4a3ec2;
-  transform: scale(1.05);
+#openMeetGarudaBtn:hover .mgb-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+#openMeetGarudaBtn:hover .mgb-play-ring {
+  transform: scale(1.2);
+}
+
+#openMeetGarudaBtn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* ── Light Theme adjustments ── */
+[data-theme="light"] #openMeetGarudaBtn {
+  color: #1a0e00;
+  box-shadow:
+    0 0 0 0 rgba(255, 193, 7, 0.0),
+    0 4px 16px rgba(255, 140, 0, 0.4),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+
+/* Meet Garuda Video Modal */
+.garuda-video-modal {
+  align-items: center;
+  justify-content: center;
+}
+
+.garuda-video-content {
+  background: rgba(8, 8, 16, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(80, 70, 220, 0.25);
+  border-radius: 20px;
+  padding: 32px 32px 28px;
+  width: 95%;
+  max-width: 960px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(80, 70, 220, 0.15);
+  position: relative;
+  z-index: 1001;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popover-modal.open .garuda-video-content {
+  transform: scale(1) translateY(0);
+}
+
+.garuda-video-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.garuda-video-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(80, 70, 220, 0.5);
+  box-shadow: 0 4px 16px rgba(80, 70, 220, 0.3);
+  flex-shrink: 0;
+}
+
+.garuda-video-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 3px;
+}
+
+.garuda-video-subtitle {
+  font-size: 0.85rem;
+  color: rgba(161, 165, 179, 0.9);
+  margin: 0;
+}
+
+.garuda-video-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  aspect-ratio: 16 / 9;
+}
+
+.garuda-video-player {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  object-fit: contain;
+  background: #000;
 }
 
 /* Garuda Header Layout */
@@ -3179,7 +3361,7 @@ textarea {
 }
 
 
-[data-theme="light"] #openGarudaPlayerBtn {
+[data-theme="light"] #openMeetGarudaBtn {
   color: var(--text-primary);
   background: rgba(80, 70, 220, 0.1);
   font-weight: 500;

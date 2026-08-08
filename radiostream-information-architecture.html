@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="neon">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="https://radioflowlive.netlify.app/favicon.svg"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RadioFlow — Information Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #7c3aed;
+    --accent: #22d3ee;
+    --primary-rgb: 124, 58, 237;
+    --accent-rgb: 34, 211, 238;
+    --bg: #050508;
+    --surface: #0a0a12;
+    --surface-2: #0f0f1a;
+    --surface-3: #1a1a2e;
+    --text: #cbd5e1;
+    --text-muted: #6b7280;
+    --heading: #f1f5f9;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --nav-w: 260px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+  body::after {
+    content: ''; position: fixed; inset: 0; z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.06) 2px, rgba(0,0,0,.06) 4px);
+  }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 9998;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    opacity: .4;
+  }
+
+  #mouse-glow {
+    position: fixed; width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), .06) 0%, transparent 70%);
+    pointer-events: none; z-index: 9997;
+    transform: translate(-50%, -50%);
+    transition: opacity .3s;
+    opacity: 0;
+  }
+
+  .layout { display: flex; max-width: 1280px; margin: 0 auto; min-height: 100vh; }
+
+  nav {
+    width: var(--nav-w); flex-shrink: 0;
+    position: sticky; top: 0; height: 100vh;
+    padding: 28px 12px 28px 24px;
+    overflow-y: auto;
+    border-right: 1px solid var(--surface-3);
+    display: flex; flex-direction: column;
+    z-index: 100;
+  }
+  nav .brand {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px; padding: 0 10px;
+    text-decoration: none;
+  }
+  nav .brand .logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 12px; color: #fff; flex-shrink: 0;
+  }
+  nav .brand .logo-text {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 600;
+    color: var(--heading);
+    line-height: 1.2;
+  }
+  nav .brand .logo-text small {
+    display: block;
+    font-size: 10px; font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+  }
+
+  nav .nav-list { list-style: none; flex: 1; }
+  nav .nav-list li { margin-bottom: 1px; }
+  nav .nav-list a {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text-muted);
+    font-size: 13px; padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    transition: all .25s var(--ease-out);
+    border-left: 2px solid transparent;
+    position: relative;
+  }
+  nav .nav-list a .num {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--text-muted);
+    width: 20px; flex-shrink: 0;
+    transition: color .25s;
+  }
+  nav .nav-list a:hover {
+    background: rgba(var(--primary-rgb), .08);
+    color: var(--text);
+  }
+  nav .nav-list a:hover .num { color: var(--primary); }
+  nav .nav-list a.active {
+    color: var(--heading);
+    background: rgba(var(--primary-rgb), .1);
+    border-left-color: var(--primary);
+  }
+  nav .nav-list a.active .num { color: var(--primary); }
+
+  nav .nav-footer {
+    padding: 16px 10px 0;
+    border-top: 1px solid var(--surface-3);
+    margin-top: auto;
+  }
+  nav .nav-footer .status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  nav .nav-footer .status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--success);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,.4); }
+    50% { opacity: .6; box-shadow: 0 0 0 8px transparent; }
+  }
+
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    z-index: 10000;
+    transition: width .1s linear;
+  }
+
+  main { flex: 1; min-width: 0; padding-bottom: 80px; }
+
+  .hero {
+    padding: 56px 56px 36px;
+    border-bottom: 1px solid var(--surface-3);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; right: -15%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), .1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 12px;
+    background: rgba(var(--primary-rgb), .1);
+    padding: 4px 12px; border-radius: var(--radius-full);
+  }
+  .hero .eyebrow .eq {
+    display: inline-flex; align-items: flex-end; gap: 2px; height: 10px;
+  }
+  .hero .eyebrow .eq span {
+    display: block; width: 3px; background: var(--primary);
+    border-radius: 2px;
+    animation: eq 1s ease-in-out infinite alternate;
+  }
+  .hero .eyebrow .eq span:nth-child(1) { height: 5px; animation-delay: 0s; }
+  .hero .eyebrow .eq span:nth-child(2) { height: 9px; animation-delay: .15s; }
+  .hero .eyebrow .eq span:nth-child(3) { height: 3px; animation-delay: .3s; }
+  .hero .eyebrow .eq span:nth-child(4) { height: 7px; animation-delay: .1s; }
+  .hero .eyebrow .eq span:nth-child(5) { height: 4px; animation-delay: .25s; }
+  @keyframes eq {
+    0% { transform: scaleY(.3); }
+    100% { transform: scaleY(1); }
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; margin: 0 0 8px;
+    letter-spacing: -.02em; line-height: 1.1;
+    background: linear-gradient(135deg, var(--heading) 0%, var(--primary) 50%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p { color: var(--text-muted); font-size: 14.5px; max-width: 620px; line-height: 1.6; }
+  .hero .meta {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .hero .meta .tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 500;
+    background: rgba(var(--primary-rgb), .1);
+    color: var(--primary);
+    font-family: var(--font-mono);
+  }
+  .hero .meta .tag.cy { background: rgba(var(--accent-rgb), .1); color: var(--accent); }
+  .hero .meta .tag.su { background: rgba(16,185,129,.1); color: var(--success); }
+
+  .section {
+    padding: 44px 56px;
+    border-bottom: 1px solid var(--surface-3);
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section:last-of-type { border-bottom: none; }
+
+  .section .sh {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .section .sh .idx {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--primary); font-weight: 500;
+    background: rgba(var(--primary-rgb), .1);
+    padding: 2px 10px; border-radius: 4px;
+  }
+  .section .sh h2 {
+    font-family: var(--font-heading);
+    font-size: 20px; font-weight: 600;
+    color: var(--heading); letter-spacing: -.01em;
+  }
+  .section .sh h2 .sub {
+    font-weight: 400; color: var(--text-muted);
+    font-size: 14px; font-family: var(--font-body);
+  }
+  .section .sh .collapse-icon {
+    margin-left: auto;
+    font-size: 14px; color: var(--text-muted);
+    transition: transform .3s var(--ease-out);
+  }
+  .section .sh .collapse-icon.collapsed { transform: rotate(-90deg); }
+  .section > .lede {
+    color: var(--text-muted); font-size: 14px;
+    margin: 0 0 24px; max-width: 620px; line-height: 1.6;
+  }
+  .section .body-wrap { overflow: hidden; transition: max-height .4s var(--ease-out); }
+  .section .body-wrap.closed { max-height: 0 !important; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .card:hover {
+    border-color: rgba(var(--primary-rgb), .25);
+    box-shadow: 0 0 40px rgba(var(--primary-rgb), .04);
+  }
+  .card .label {
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-muted); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card .label .glow {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--primary);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  svg { display: block; width: 100%; height: auto; }
+  .t { font-size: 13px; fill: var(--text); font-family: var(--font-body); }
+  .ts { font-size: 11px; fill: var(--text-muted); font-family: var(--font-body); }
+  .th { font-size: 13px; font-weight: 600; fill: var(--heading); font-family: var(--font-heading); }
+
+  .box { fill: var(--surface-2); stroke: var(--surface-3); stroke-width: 1; rx: 8; }
+  .node-group { cursor: pointer; }
+  .node-group .box { transition: all .35s var(--ease-out); }
+  .node-group:hover .box {
+    filter: drop-shadow(0 0 20px rgba(var(--primary-rgb), .2));
+    stroke: rgba(var(--primary-rgb), .5);
+  }
+  .node-group:hover .th { fill: var(--primary); }
+  .node-group.highlight .box { stroke: var(--accent); stroke-width: 1.5; }
+
+  .cat-surface .box { fill: var(--surface-2); stroke: var(--surface-3); }
+  .cat-surface .th { fill: var(--heading); }
+  .cat-surface:hover .box { stroke: var(--primary); }
+
+  .cat-primary .box { fill: rgba(var(--primary-rgb), .08); stroke: rgba(var(--primary-rgb), .3); }
+  .cat-primary .th { fill: var(--primary); }
+  .cat-primary .ts { fill: rgba(var(--primary-rgb), .7); }
+
+  .cat-accent .box { fill: rgba(var(--accent-rgb), .06); stroke: rgba(var(--accent-rgb), .25); }
+  .cat-accent .th { fill: var(--accent); }
+  .cat-accent .ts { fill: rgba(var(--accent-rgb), .7); }
+
+  .cat-success .box { fill: rgba(16,185,129,.06); stroke: rgba(16,185,129,.25); }
+  .cat-success .th { fill: var(--success); }
+
+  .cat-warning .box { fill: rgba(245,158,11,.06); stroke: rgba(245,158,11,.25); }
+  .cat-warning .th { fill: var(--warning); }
+
+  .cat-error .box { fill: rgba(239,68,68,.06); stroke: rgba(239,68,68,.25); }
+  .cat-error .th { fill: var(--error); }
+
+  .arr { stroke: var(--text-muted); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+  .arr-dash { stroke: var(--text-muted); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-dasharray: 6 5; }
+  .arr-anim {
+    stroke: rgba(var(--primary-rgb), .5);
+    stroke-width: 1.5; fill: none; stroke-linecap: round;
+    stroke-dasharray: 400; stroke-dashoffset: 400;
+    animation: draw 1.2s var(--ease-out) forwards;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .glow-bg {
+    stroke: rgba(var(--primary-rgb), .06);
+    stroke-width: 40; fill: none;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: .4; }
+    50% { opacity: .8; }
+  }
+
+  .pulse { animation: pulse-el 2.5s ease-in-out infinite; }
+  @keyframes pulse-el {
+    0%, 100% { opacity: .3; }
+    50% { opacity: .9; }
+  }
+
+  .note {
+    background: var(--surface-2);
+    border-left: 2px solid var(--primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 16px;
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .note strong { color: var(--heading); font-weight: 500; }
+  .note code {
+    font-family: var(--font-mono); font-size: 11.5px;
+    background: var(--bg); padding: 1px 5px;
+    border-radius: 4px; color: var(--accent);
+  }
+
+  .rt { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .rt thead th {
+    text-align: left; font-family: var(--font-mono);
+    font-weight: 400; font-size: 10px; text-transform: uppercase;
+    letter-spacing: .04em; color: var(--text-muted);
+    padding: 8px 12px; border-bottom: 1px solid var(--surface-3);
+  }
+  .rt tbody td {
+    padding: 10px 12px; border-bottom: 1px solid var(--surface-3);
+    color: var(--text-muted); transition: background .2s;
+  }
+  .rt tbody tr { cursor: pointer; transition: background .2s; }
+  .rt tbody tr:hover td { background: rgba(var(--primary-rgb), .04); }
+  .rt tbody tr:hover td:first-child { color: var(--primary); }
+  .rt tbody td:first-child { font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
+  .rt tbody td:nth-child(2) { color: var(--text); font-weight: 500; }
+  .rt .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-family: var(--font-mono);
+  }
+  .rt .badge-none { background: rgba(var(--accent-rgb), .1); color: var(--accent); }
+  .rt .badge-res { background: rgba(var(--primary-rgb), .1); color: var(--primary); }
+
+  .cl { list-style: none; }
+  .cl li {
+    padding: 9px 0 9px 18px;
+    border-left: 2px solid var(--surface-3);
+    margin-bottom: 6px; padding-left: 16px;
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.6;
+    transition: border-color .3s;
+    cursor: pointer;
+  }
+  .cl li:hover { border-left-color: var(--primary); }
+  .cl li:hover strong { color: var(--primary); }
+  .cl li strong { color: var(--heading); font-weight: 500; transition: color .3s; }
+
+  #tooltip {
+    position: fixed; padding: 8px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius-sm);
+    font-size: 12px; color: var(--heading);
+    pointer-events: none; opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .2s, transform .2s var(--ease-out);
+    z-index: 10001; max-width: 300px;
+    line-height: 1.5;
+    box-shadow: 0 8px 32px rgba(0,0,0,.6);
+  }
+  #tooltip.show { opacity: 1; transform: translateY(0); }
+
+  #detail-panel {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%);
+    max-width: 600px; width: 90%;
+    background: var(--surface); border: 1px solid var(--surface-3);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 20px 24px;
+    z-index: 10002;
+    box-shadow: 0 -8px 40px rgba(0,0,0,.5);
+    transition: transform .4s var(--ease-spring);
+  }
+  #detail-panel.open { transform: translateX(-50%) translateY(0); }
+  #detail-panel .dp-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  #detail-panel .dp-title {
+    font-family: var(--font-heading); font-size: 15px;
+    color: var(--heading); font-weight: 600;
+  }
+  #detail-panel .dp-close {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid var(--surface-3); background: transparent;
+    color: var(--text-muted); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s; font-size: 14px;
+  }
+  #detail-panel .dp-close:hover { background: var(--surface-3); color: var(--heading); }
+  #detail-panel .dp-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  #detail-overlay {
+    position: fixed; inset: 0; z-index: 10001;
+    background: rgba(0,0,0,.5);
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  #detail-overlay.show { opacity: 1; pointer-events: auto; }
+
+  .view-toggle {
+    display: inline-flex; gap: 2px;
+    background: var(--surface-2); padding: 2px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 14px;
+  }
+  .view-toggle button {
+    padding: 4px 12px; border: none; border-radius: 6px;
+    font-size: 11px; font-family: var(--font-mono);
+    cursor: pointer; transition: all .2s;
+    background: transparent; color: var(--text-muted);
+  }
+  .view-toggle button.active {
+    background: var(--surface-3); color: var(--primary);
+  }
+  .view-toggle button:hover:not(.active) { color: var(--text); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 14px; padding: 8px 12px;
+    background: var(--surface-2); border-radius: var(--radius-sm);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .legend-item .sw {
+    width: 10px; height: 10px; border-radius: 3px;
+  }
+
+  footer {
+    max-width: 1280px; margin: 0 auto;
+    padding: 20px 56px 40px calc(var(--nav-w) + 56px);
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--text-muted); font-size: 11px;
+    font-family: var(--font-mono);
+    border-top: 1px solid var(--surface-3);
+  }
+  footer .freq { color: var(--primary); }
+
+  #erd-wrap {
+    background: var(--bg); border: 1px solid var(--surface-3);
+    border-radius: var(--radius-lg); padding: 16px;
+    overflow: auto; margin-top: 14px;
+  }
+
+  .interact-hint {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; color: var(--text-muted);
+    font-family: var(--font-mono); margin-left: 8px;
+    padding: 2px 8px; border-radius: 4px;
+    background: rgba(var(--primary-rgb), .06);
+    border: 1px solid rgba(var(--primary-rgb), .1);
+  }
+
+  .pill-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .pill-tabs button {
+    padding: 4px 14px; border: 1px solid var(--surface-3);
+    border-radius: var(--radius-full);
+    font-size: 11px; font-family: var(--font-mono);
+    cursor: pointer; transition: all .2s;
+    background: transparent; color: var(--text-muted);
+  }
+  .pill-tabs button.active {
+    background: rgba(var(--primary-rgb), .12);
+    border-color: rgba(var(--primary-rgb), .3);
+    color: var(--primary);
+  }
+  .pill-tabs button:hover:not(.active) { border-color: var(--surface-3); color: var(--text); }
+  .pill-content { display: none; }
+  .pill-content.active { display: block; }
+
+  @media (max-width: 960px) {
+    .layout { flex-direction: column; }
+    nav {
+      position: static; width: 100%; height: auto;
+      padding: 16px 20px;
+      border-right: none; border-bottom: 1px solid var(--surface-3);
+    }
+    nav .nav-list { display: flex; flex-wrap: wrap; gap: 2px; }
+    nav .nav-list li { margin-bottom: 0; }
+    nav .nav-list a { padding: 5px 8px; font-size: 12px; }
+    nav .nav-list a .num { display: none; }
+    nav .nav-list a.active { border-left-color: transparent; border-bottom: 2px solid var(--primary); }
+    nav .nav-footer { display: none; }
+    .hero { padding: 32px 20px 24px; }
+    .section { padding: 28px 20px; }
+    footer { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+    #detail-panel { width: 96%; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 24px 14px 20px; }
+    .section { padding: 20px 14px; }
+    .card { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="mouse-glow"></div>
+<div id="progress-bar"></div>
+<div id="tooltip"></div>
+<div id="detail-overlay"></div>
+
+<svg style="position:fixed;top:0;left:0;width:0;height:0;">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arr-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:rgba(var(--primary-rgb),.5)"/>
+    </marker>
+    <linearGradient id="g-primary" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--primary)"/>
+      <stop offset="100%" stop-color="var(--accent)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div id="detail-panel">
+  <div class="dp-header">
+    <span class="dp-title" id="dp-title"></span>
+    <button class="dp-close" onclick="closeDetail()">✕</button>
+  </div>
+  <div class="dp-body" id="dp-body"></div>
+</div>
+
+<div class="layout">
+  <nav>
+    <a class="brand" href="#">
+      <div class="logo">RF</div>
+      <div class="logo-text">RadioFlow <small>Information Architecture</small></div>
+    </a>
+    <ul class="nav-list">
+      <li><a href="#sitemap"><span class="num">01</span> Site Map</a></li>
+      <li><a href="#entities"><span class="num">02</span> Entities</a></li>
+      <li><a href="#listener"><span class="num">03</span> Listener Journey</a></li>
+      <li><a href="#dj"><span class="num">04</span> DJ Flow</a></li>
+      <li><a href="#admin"><span class="num">05</span> Admin Flow</a></li>
+      <li><a href="#state"><span class="num">06</span> State Flow</a></li>
+      <li><a href="#data"><span class="num">07</span> Data Flows</a></li>
+      <li><a href="#routes"><span class="num">08</span> Routes</a></li>
+      <li><a href="#takeaways"><span class="num">09</span> Takeaways</a></li>
+    </ul>
+    <div class="nav-footer">
+      <div class="status">
+        <span class="dot"></span>
+        Architecture v1.0 · online
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="eyebrow">
+        <span class="eq"><span></span><span></span><span></span><span></span><span></span></span>
+        Information Architecture
+      </div>
+      <h1>RadioFlow</h1>
+      <p>A modern digital radio station SPA — React 18, TypeScript, Vite, Zustand, TailwindCSS, React Router v6. Frontend-only with mock data and simulated real-time features.</p>
+      <div class="meta">
+        <span class="tag">React 18</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Vite</span>
+        <span class="tag cy">Zustand</span>
+        <span class="tag">TailwindCSS</span>
+        <span class="tag su">7 Routes</span>
+        <span class="tag su">Frontend-only</span>
+      </div>
+    </header>
+
+    <!-- 01. SITE MAP -->
+    <section class="section" id="sitemap">
+      <div class="sh">
+        <span class="idx">01</span>
+        <h2>Site Map <span class="sub">— Page Hierarchy</span></h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Two zones inside one persistent SPA shell: public discovery pages and reserved staff pages.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> 7 routes · 2 zones</div>
+          <svg viewBox="0 0 700 420" role="img" style="overflow:visible">
+            
+            <rect x="-20" y="-20" width="740" height="460" rx="16" class="glow-bg"/>
+            <g class="cat-surface node-group" data-label="SPA Shell" data-detail="The &lt;Layout&gt; component wraps all pages. Sidebar nav, AudioPlayer, and ChatPanel never unmount across route transitions.">
+              <rect x="40" y="80" width="620" height="300" rx="14"/>
+              <rect x="40" y="80" width="620" height="36" rx="14" style="fill:var(--surface-3)"/>
+              <text class="th" x="350" y="103" text-anchor="middle">RADIOFLOW SPA SHELL</text>
+              <text class="ts" x="350" y="125" text-anchor="middle">React Router · &lt;Layout&gt; · Sidebar · AudioPlayer · ChatPanel</text>
+            </g>
+            <text class="ts" x="210" y="44" text-anchor="middle">Listeners (no auth)</text>
+            <line x1="210" y1="50" x2="210" y2="80" class="arr-anim"/>
+            <text class="ts" x="490" y="44" text-anchor="middle">DJ / Admin (reserved)</text>
+            <line x1="490" y1="50" x2="490" y2="80" class="arr-anim" style="animation-delay:.12s"/>
+            <g class="cat-primary node-group" data-label="Public Pages" data-detail="5 pages: Home, Live, Schedule, Shows, DJs. No auth required. Discover, listen, browse content.">
+              <rect x="72" y="155" width="270" height="200" rx="12"/>
+              <text class="th" x="207" y="182" text-anchor="middle">Public Pages</text>
+              <text class="ts" x="207" y="198" text-anchor="middle">No auth required</text>
+              <rect x="90" y="214" width="110" height="30" rx="6" class="box"/><text class="t" x="145" y="233" text-anchor="middle" font-size="12">/ Home</text>
+              <rect x="212" y="214" width="110" height="30" rx="6" class="box"/><text class="t" x="267" y="233" text-anchor="middle" font-size="12">/ Live</text>
+              <rect x="90" y="252" width="110" height="30" rx="6" class="box"/><text class="t" x="145" y="271" text-anchor="middle" font-size="12">/ Schedule</text>
+              <rect x="212" y="252" width="110" height="30" rx="6" class="box"/><text class="t" x="267" y="271" text-anchor="middle" font-size="12">/ Shows</text>
+              <rect x="151" y="290" width="110" height="30" rx="6" class="box"/><text class="t" x="206" y="309" text-anchor="middle" font-size="12">/ DJs</text>
+            </g>
+            <g class="cat-accent node-group" data-label="Staff Pages" data-detail="2 reserved pages: DJ Studio with broadcast controls and Admin Panel with analytics. No auth guard yet.">
+              <rect x="365" y="155" width="270" height="200" rx="12"/>
+              <text class="th" x="500" y="182" text-anchor="middle">Studio &amp; Admin</text>
+              <text class="ts" x="500" y="198" text-anchor="middle">Reserved (no guard yet)</text>
+              <rect x="385" y="224" width="230" height="40" rx="6" class="box"/>
+              <text class="t" x="500" y="240" text-anchor="middle" font-size="12">/ dj-dashboard</text>
+              <text class="ts" x="500" y="256" text-anchor="middle" font-size="10">Playlist · Requests · Chat · Announce</text>
+              <rect x="385" y="280" width="230" height="40" rx="6" class="box"/>
+              <text class="t" x="500" y="296" text-anchor="middle" font-size="12">/ admin</text>
+              <text class="ts" x="500" y="312" text-anchor="middle" font-size="10">Overview · Shows · DJs · Settings</text>
+            </g>
+          </svg>
+          <div class="note" style="margin-top:12px">All 7 routes render inside <code>&lt;Layout&gt;</code>. Sidebar nav, AudioPlayer, and ChatPanel never unmount. <strong>No route is auth-gated</strong>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. ENTITIES -->
+    <section class="section" id="entities">
+      <div class="sh">
+        <span class="idx">02</span>
+        <h2>Entity Relationships</h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Content model centers on DJs and Shows. Chat, polls, requests, and analytics are looser side-entities referencing Users or Tracks.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> Core entities · 6 types</div>
+          <svg viewBox="0 0 700 320" role="img">
+            
+            <g class="cat-primary node-group" data-label="DJ" data-detail="Core content creator. Has name, genres, onAir status, social links, 1..* shows. Expandable profile cards on /djs.">
+              <rect x="40" y="30" width="150" height="90" rx="10"/>
+              <text class="th" x="115" y="55" text-anchor="middle">DJ</text>
+              <text class="ts" x="115" y="73" text-anchor="middle">name, genres</text>
+              <text class="ts" x="115" y="89" text-anchor="middle">onAir, socialLinks</text>
+              <text class="ts" x="115" y="105" text-anchor="middle">1..* shows</text>
+            </g>
+            <path d="M190 75 L238 75" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="Show" data-detail="A radio show. Has title, category, tags, belongs to 1 DJ, 0..* ScheduleSlots, 0..* ArchivedEpisodes.">
+              <rect x="240" y="30" width="150" height="90" rx="10"/>
+              <text class="th" x="315" y="55" text-anchor="middle">Show</text>
+              <text class="ts" x="315" y="73" text-anchor="middle">title, category</text>
+              <text class="ts" x="315" y="89" text-anchor="middle">tags: string[]</text>
+              <text class="ts" x="315" y="105" text-anchor="middle">0..* schedule slots</text>
+            </g>
+            <path d="M390 75 L438 75" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-surface node-group" data-label="ScheduleSlot" data-detail="Time allocation for a Show. Has dayOfWeek, startTime, endTime. References Show + DJ. Displayed in 24h timeline grid on /schedule.">
+              <rect x="440" y="30" width="150" height="90" rx="10"/>
+              <text class="th" x="515" y="55" text-anchor="middle">ScheduleSlot</text>
+              <text class="ts" x="515" y="73" text-anchor="middle">dayOfWeek</text>
+              <text class="ts" x="515" y="89" text-anchor="middle">startTime / endTime</text>
+              <text class="ts" x="515" y="105" text-anchor="middle">references Show + DJ</text>
+            </g>
+            <g class="cat-warning node-group" data-label="User" data-detail="App user with role: listener | dj | admin | super-admin. Has favorite shows, sends ChatMessage, submits SongRequest. Currently hardcoded demo user.">
+              <rect x="40" y="180" width="150" height="90" rx="10"/>
+              <text class="th" x="115" y="205" text-anchor="middle">User</text>
+              <text class="ts" x="115" y="223" text-anchor="middle">role: listener|dj|admin</text>
+              <text class="ts" x="115" y="239" text-anchor="middle">favorite shows</text>
+              <text class="ts" x="115" y="255" text-anchor="middle">sends ChatMessage</text>
+            </g>
+            <path d="M190 225 L238 225" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-success node-group" data-label="ChatMessage" data-detail="Live chat message. Belongs to User, has content, reactions, optional DJ flag. Simulated with setInterval from mock data.">
+              <rect x="240" y="180" width="150" height="90" rx="10"/>
+              <text class="th" x="315" y="205" text-anchor="middle">ChatMessage</text>
+              <text class="ts" x="315" y="223" text-anchor="middle">belongs to User</text>
+              <text class="ts" x="315" y="239" text-anchor="middle">reactions: emoji→count</text>
+              <text class="ts" x="315" y="255" text-anchor="middle">optional DJ flag</text>
+            </g>
+            <path d="M390 225 L438 225" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-error node-group" data-label="SongRequest" data-detail="Listener song request. Status: pending | approved | playing | rejected. References Track. Managed in DJDashboard with approve/reject.">
+              <rect x="440" y="180" width="150" height="90" rx="10"/>
+              <text class="th" x="515" y="205" text-anchor="middle">SongRequest</text>
+              <text class="ts" x="515" y="223" text-anchor="middle">status: pending|approved</text>
+              <text class="ts" x="515" y="239" text-anchor="middle">references Track</text>
+              <text class="ts" x="515" y="255" text-anchor="middle">optional message</text>
+            </g>
+            <text class="ts" x="215" y="68" text-anchor="middle" font-size="9">hosts</text>
+            <text class="ts" x="415" y="68" text-anchor="middle" font-size="9">scheduled in</text>
+            <text class="ts" x="215" y="218" text-anchor="middle" font-size="9">sends</text>
+            <text class="ts" x="415" y="218" text-anchor="middle" font-size="9">submits</text>
+            <path d="M190 120 L190 180" class="arr-dash" marker-end="url(#arr)"/>
+            <text class="ts" x="178" y="153" text-anchor="end" font-size="9">on-air status</text>
+          </svg>
+        </div>
+        <div id="erd-wrap"></div>
+        <div class="note" style="margin-top:12px"><strong>Poll</strong>, <strong>AnalyticsData</strong>, and <strong>Track</strong> (from radio-browser-api) are standalone mock or fetched objects — consumed wherever needed.</div>
+      </div>
+    </section>
+
+    <!-- 03. LISTENER JOURNEY -->
+    <section class="section" id="listener">
+      <div class="sh">
+        <span class="idx">03</span>
+        <h2>Listener Journey <span class="sub">— Primary Persona</span></h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Every path converges on playback. The mini player means tune in from any page.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> discovery → playback → interaction</div>
+          <svg viewBox="0 0 700 420" role="img">
+            
+            <rect x="-20" y="-20" width="740" height="460" rx="16" class="glow-bg" style="stroke:rgba(var(--accent-rgb),.06)"/>
+            <g class="cat-surface node-group" data-label="Landing (/)" data-detail="Home page entry point. Hero with ON AIR badge, live listener count. Stats bar, Top Global Stations, DJ highlights, Coming Up schedule preview.">
+              <rect x="250" y="16" width="200" height="44" rx="8"/>
+              <text class="th" x="350" y="35" text-anchor="middle" font-size="12">Landing (Home /)</text>
+              <text class="ts" x="350" y="50" text-anchor="middle" font-size="10">Hero · Stats · Previews</text>
+            </g>
+            <path d="M350 60 L350 90" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-primary node-group" data-label="Discover" data-detail="Explore content: Top Global Stations, Resident DJs, Coming Up preview, Show library with search/filter.">
+              <rect x="190" y="92" width="320" height="44" rx="8"/>
+              <text class="th" x="350" y="111" text-anchor="middle">Discover</text>
+              <text class="ts" x="350" y="126" text-anchor="middle" font-size="10">Stations · Shows · DJs · Schedule</text>
+            </g>
+            <path d="M350 136 L350 166" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="Tune In" data-detail="Audio playback starts. Two paths: click any station card for mini player, or visit /live for full-screen experience.">
+              <rect x="210" y="168" width="280" height="44" rx="8"/>
+              <text class="th" x="350" y="187" text-anchor="middle">Tune In</text>
+              <text class="ts" x="350" y="202" text-anchor="middle" font-size="10">AudioPlayer starts streaming</text>
+            </g>
+            <path d="M570 114 L620 114 L620 190 L490 190" class="arr-dash" marker-end="url(#arr)"/>
+            <g class="cat-surface node-group" data-label="Mini Player" data-detail="Persists in sidebar footer. Shows cover art, track title, artist, animated EQ bars. Click any station to play.">
+              <rect x="530" y="88" width="130" height="24" rx="6"/>
+              <text class="ts" x="595" y="104" text-anchor="middle" font-size="10">Mini Player</text>
+            </g>
+            <path d="M350 212 L350 242" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-success node-group" data-label="/live Page" data-detail="Full-screen listening. Visualizer, controls, song request, show info, live poll, share buttons.">
+              <rect x="190" y="244" width="320" height="44" rx="8"/>
+              <text class="th" x="350" y="263" text-anchor="middle">Full Screen (/live)</text>
+              <text class="ts" x="350" y="278" text-anchor="middle" font-size="10">Visualizer · Controls · Poll · Chat</text>
+            </g>
+            <path d="M350 288 L350 318" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-success node-group" data-label="Interact" data-detail="Live Poll, Song Request, Chat panel with emoji reactions, Share buttons.">
+              <rect x="160" y="320" width="380" height="44" rx="8"/>
+              <text class="th" x="350" y="339" text-anchor="middle">Interact</text>
+              <text class="ts" x="350" y="354" text-anchor="middle" font-size="10">Chat · Poll · Song Request · Share</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. DJ FLOW -->
+    <section class="section" id="dj">
+      <div class="sh">
+        <span class="idx">04</span>
+        <h2>DJ Broadcast Flow <span class="sub">— Broadcaster Persona</span></h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Toggle-bounded loop: playlist, requests, announcements, and chat only matter while broadcasting is on.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> /dj-dashboard — 4 tabs</div>
+          <svg viewBox="0 0 700 400" role="img">
+            
+            <rect x="-20" y="-20" width="740" height="440" rx="16" class="glow-bg" style="stroke:rgba(239,68,68,.06)"/>
+            <g class="cat-error node-group" data-label="Go Live" data-detail="Toggle broadcast ON. Red live banner appears. Equalizer animates. Stats panel updates with listeners, peak, requests, duration.">
+              <rect x="250" y="16" width="200" height="44" rx="8"/>
+              <text class="th" x="350" y="35" text-anchor="middle" font-size="12">Go Live</text>
+              <circle cx="260" cy="30" r="4" fill="var(--error)" class="pulse"/>
+            </g>
+            <path d="M350 60 L350 90" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-surface node-group" data-label="Dashboard Hub" data-detail="Central DJ dashboard with tabbed panel. 3 sub-tabs: Playlist, Requests, Chat.">
+              <rect x="150" y="92" width="400" height="44" rx="8"/>
+              <text class="th" x="350" y="111" text-anchor="middle">DJ Dashboard Hub</text>
+              <text class="ts" x="350" y="126" text-anchor="middle" font-size="10">Tabbed: Playlist · Requests · Chat</text>
+            </g>
+            <path d="M230 136 L230 172" class="arr" marker-end="url(#arr)"/>
+            <path d="M350 136 L350 172" class="arr" marker-end="url(#arr)"/>
+            <path d="M470 136 L470 172" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="Playlist Tab" data-detail="Current queue with now-playing indicator. Skip forward/back. Add new tracks.">
+              <rect x="110" y="174" width="180" height="50" rx="8"/>
+              <text class="th" x="200" y="193" text-anchor="middle" font-size="12">Playlist</text>
+              <text class="ts" x="200" y="210" text-anchor="middle" font-size="10">Queue · Skip · Add tracks</text>
+            </g>
+            <g class="cat-primary node-group" data-label="Requests Tab" data-detail="Pending song requests with badge count. Approve or reject. Filter by status.">
+              <rect x="260" y="174" width="180" height="50" rx="8"/>
+              <text class="th" x="350" y="193" text-anchor="middle" font-size="12">Requests</text>
+              <text class="ts" x="350" y="210" text-anchor="middle" font-size="10">Approve / Reject</text>
+            </g>
+            <g class="cat-success node-group" data-label="Chat Tab" data-detail="Read-only view of listener messages. Simulated streaming.">
+              <rect x="410" y="174" width="180" height="50" rx="8"/>
+              <text class="th" x="500" y="193" text-anchor="middle" font-size="12">Chat</text>
+              <text class="ts" x="500" y="210" text-anchor="middle" font-size="10">Read listener messages</text>
+            </g>
+            <path d="M350 224 L350 260" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-warning node-group" data-label="Announcements" data-detail="Composer with textarea and Broadcast Message button. Recent history shown below.">
+              <rect x="250" y="262" width="200" height="44" rx="8"/>
+              <text class="th" x="350" y="281" text-anchor="middle" font-size="12">Announcements</text>
+              <text class="ts" x="350" y="296" text-anchor="middle" font-size="10">Composer · History</text>
+            </g>
+            <path d="M350 306 L350 340" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-error node-group" data-label="End Broadcast" data-detail="Toggle OFF. Red banner clears. Stats freeze. Session ends.">
+              <rect x="250" y="342" width="200" height="44" rx="8"/>
+              <text class="th" x="350" y="361" text-anchor="middle" font-size="12">End Broadcast</text>
+            </g>
+            <path d="M90 199 L40 199 L40 38 L250 38" class="arr-dash" marker-end="url(#arr)"/>
+          </svg>
+          <div class="note" style="margin-top:12px">Tabs are freely navigable. Dashed loop shows broadcast cycle until <strong>End Broadcast</strong>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. ADMIN FLOW -->
+    <section class="section" id="admin">
+      <div class="sh">
+        <span class="idx">05</span>
+        <h2>Admin Panel Flow <span class="sub">— Station Operator</span></h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Four-tab panel: analytics dashboards, content management, and station configuration.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> /admin — 4 tabs</div>
+          <svg viewBox="0 0 700 320" role="img">
+            
+            <rect x="-20" y="-20" width="740" height="360" rx="16" class="glow-bg"/>
+            <g class="cat-surface node-group" data-label="Admin Panel" data-detail="Entry point with tab navigation. 4 tabs: Overview, Shows, DJs, Settings. No auth guard.">
+              <rect x="240" y="16" width="220" height="36" rx="8"/>
+              <text class="th" x="350" y="38" text-anchor="middle" font-size="12">Admin Panel (/admin)</text>
+            </g>
+            <path d="M350 52 L350 76" class="arr" marker-end="url(#arr)"/>
+            <g><rect x="80" y="78" width="540" height="26" rx="6" style="fill:var(--surface-2);stroke:var(--surface-3)"/><text class="ts" x="135" y="95" text-anchor="middle" font-size="10">Overview</text><text class="ts" x="250" y="95" text-anchor="middle" font-size="10">Shows</text><text class="ts" x="370" y="95" text-anchor="middle" font-size="10">DJs</text><text class="ts" x="490" y="95" text-anchor="middle" font-size="10">Settings</text><rect x="110" y="98" width="50" height="3" rx="2" fill="var(--primary)"/></g>
+            <path d="M135 104 L135 128" class="arr" marker-end="url(#arr)"/>
+            <path d="M350 104 L350 128" class="arr" marker-end="url(#arr)"/>
+            <path d="M565 104 L565 128" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-primary node-group" data-label="Overview Tab" data-detail="4 KPI cards, Recharts visualizations (bar, donut, line), popular shows ranking. All mock data.">
+              <rect x="40" y="130" width="200" height="140" rx="10"/>
+              <text class="th" x="140" y="154" text-anchor="middle" font-size="12">Overview</text>
+              <text class="ts" x="140" y="172" text-anchor="middle" font-size="10">4 KPI cards</text>
+              <text class="ts" x="140" y="188" text-anchor="middle" font-size="10">Recharts: Bar, Donut, Line</text>
+              <text class="ts" x="140" y="208" text-anchor="middle" font-size="10">Popular shows ranking</text>
+            </g>
+            <g class="cat-accent node-group" data-label="Shows Tab" data-detail="Show list with cover, title, DJ, category. New Show, Edit, Delete actions (UI only).">
+              <rect x="250" y="130" width="200" height="140" rx="10"/>
+              <text class="th" x="350" y="154" text-anchor="middle" font-size="12">Shows</text>
+              <text class="ts" x="350" y="172" text-anchor="middle" font-size="10">New Show button</text>
+              <text class="ts" x="350" y="188" text-anchor="middle" font-size="10">Edit / Delete (UI)</text>
+            </g>
+            <g class="cat-success node-group" data-label="DJs + Settings Tabs" data-detail="DJ cards with avatar, genres, followers. Station config: name, stream URL, tagline, bitrate. Theme picker with Save.">
+              <rect x="460" y="130" width="200" height="140" rx="10"/>
+              <text class="th" x="560" y="154" text-anchor="middle" font-size="12">DJs + Settings</text>
+              <text class="ts" x="560" y="172" text-anchor="middle" font-size="10">DJ cards · Edit</text>
+              <text class="ts" x="560" y="188" text-anchor="middle" font-size="10">Station fields</text>
+              <text class="ts" x="560" y="204" text-anchor="middle" font-size="10">Theme: Neon/Crimson/Emerald</text>
+            </g>
+          </svg>
+          <div class="note" style="margin-top:12px">Theme switching is the only action with real persistence — updates <code>&lt;html data-theme&gt;</code> via <code>setTheme()</code>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. STATE FLOW -->
+    <section class="section" id="state">
+      <div class="sh">
+        <span class="idx">06</span>
+        <h2>Global State Flow</h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Zustand is the source of truth. 5 slices in one AppState union. Real-time is client-simulated.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> Zustand store · src/store/index.ts</div>
+          <svg viewBox="0 0 700 400" role="img">
+            
+            <rect x="-20" y="-20" width="740" height="440" rx="16" class="glow-bg"/>
+            <g class="cat-surface node-group" data-label="User Action / Event" data-detail="Any trigger: user click, setInterval tick, API response, local mutation. All feed into Zustand store actions.">
+              <rect x="240" y="16" width="220" height="36" rx="8"/>
+              <text class="th" x="350" y="36" text-anchor="middle" font-size="12">User Action / Event</text>
+            </g>
+            <path d="M350 52 L350 80" class="arr-anim" marker-end="url(#arr)"/>
+            <g class="cat-primary node-group" data-label="Zustand Store (AppState)" data-detail="Central store with 5 slices composed into AppState. useAppStore() hook exposes all state and actions.">
+              <rect x="120" y="82" width="460" height="76" rx="14"/>
+              <text class="th" x="350" y="108" text-anchor="middle">Zustand Store (AppState)</text>
+              <text class="ts" x="350" y="126" text-anchor="middle" font-size="10">5 slices · create&lt;AppState&gt;()</text>
+              <text class="ts" x="350" y="142" text-anchor="middle" font-size="10">useAppStore() hook</text>
+            </g>
+            <rect x="138" y="164" width="80" height="22" rx="4" style="fill:var(--surface-3)"/><text class="ts" x="178" y="179" text-anchor="middle" font-size="9">Player</text>
+            <rect x="226" y="164" width="80" height="22" rx="4" style="fill:var(--surface-3)"/><text class="ts" x="266" y="179" text-anchor="middle" font-size="9">Chat</text>
+            <rect x="314" y="164" width="80" height="22" rx="4" style="fill:var(--surface-3)"/><text class="ts" x="354" y="179" text-anchor="middle" font-size="9">Requests</text>
+            <rect x="402" y="164" width="80" height="22" rx="4" style="fill:var(--surface-3)"/><text class="ts" x="442" y="179" text-anchor="middle" font-size="9">Auth</text>
+            <rect x="490" y="164" width="72" height="22" rx="4" style="fill:var(--surface-3)"/><text class="ts" x="526" y="179" text-anchor="middle" font-size="9">UI</text>
+            <path d="M230 186 L130 218" class="arr" marker-end="url(#arr)"/>
+            <path d="M350 186 L350 218" class="arr" marker-end="url(#arr)"/>
+            <path d="M470 186 L570 218" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="Pages (7)" data-detail="All 7 page components consume store. Each selects only needed slices.">
+              <rect x="36" y="220" width="190" height="120" rx="10"/>
+              <text class="th" x="131" y="244" text-anchor="middle" font-size="12">Pages (7)</text>
+              <text class="ts" x="131" y="264" text-anchor="middle" font-size="10">HomePage · LivePage</text>
+              <text class="ts" x="131" y="278" text-anchor="middle" font-size="10">SchedulePage · ShowsPage</text>
+              <text class="ts" x="131" y="292" text-anchor="middle" font-size="10">DJsPage · DJDashboard</text>
+              <text class="ts" x="131" y="306" text-anchor="middle" font-size="10">AdminPage</text>
+            </g>
+            <g class="cat-success node-group" data-label="Components (4)" data-detail="Persistent components: Navigation, AudioPlayer, ChatPanel. Per-page: PollCard.">
+              <rect x="256" y="220" width="190" height="120" rx="10"/>
+              <text class="th" x="351" y="244" text-anchor="middle" font-size="12">Components (4)</text>
+              <text class="ts" x="351" y="264" text-anchor="middle" font-size="10">Navigation (sidebar)</text>
+              <text class="ts" x="351" y="278" text-anchor="middle" font-size="10">AudioPlayer (sticky)</text>
+              <text class="ts" x="351" y="292" text-anchor="middle" font-size="10">ChatPanel (floating)</text>
+              <text class="ts" x="351" y="306" text-anchor="middle" font-size="10">PollCard</text>
+            </g>
+            <g class="cat-warning node-group" data-label="Simulated Sources" data-detail="listenerCount via setInterval (5s), chat via setInterval (8s), polls/requests via local mutations.">
+              <rect x="476" y="220" width="190" height="120" rx="10"/>
+              <text class="th" x="571" y="244" text-anchor="middle" font-size="12">Simulated Sources</text>
+              <text class="ts" x="571" y="264" text-anchor="middle" font-size="10">setInterval (5s) → count</text>
+              <text class="ts" x="571" y="278" text-anchor="middle" font-size="10">setInterval (8s) → chat</text>
+              <text class="ts" x="571" y="292" text-anchor="middle" font-size="10">Local mutations</text>
+            </g>
+          </svg>
+        </div>
+        <div class="card">
+          <div class="label"><span class="glow"></span> State slices</div>
+          <table class="rt">
+            <thead><tr><th>Slice</th><th>Key State</th><th>Source</th><th>Consumers</th></tr></thead>
+            <tbody>
+              <tr><td>Player</td><td>isPlaying, isLive, volume, currentTrack, stations</td><td>User action / API</td><td>Nav, Player, Live, Home, DJ</td></tr>
+              <tr><td>Chat</td><td>messages[], isOpen, unreadCount</td><td>addMessage action</td><td>ChatPanel</td></tr>
+              <tr><td>Requests</td><td>requests[]</td><td>addRequest / updateStatus</td><td>DJDashboard</td></tr>
+              <tr><td>Auth</td><td>user, isAuthenticated</td><td>Hardcoded demo user</td><td>ChatPanel</td></tr>
+              <tr><td>UI</td><td>sidebarOpen, theme</td><td>User toggle / Admin save</td><td>Navigation, App.tsx</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. DATA FLOWS -->
+    <section class="section" id="data">
+      <div class="sh">
+        <span class="idx">07</span>
+        <h2>Data Flow Diagrams</h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Four key flows: audio playback, station fetching, listener simulation, and theme switching.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> Flow 1 · Audio Playback</div>
+          <svg viewBox="0 0 700 120" role="img">
+            <g class="cat-primary node-group" data-label="User clicks Play" data-detail="Any play button triggers setPlaying(true) in Zustand."><rect x="20" y="20" width="140" height="36" rx="8"/><text class="t" x="90" y="42" text-anchor="middle" font-size="12">User clicks Play</text></g>
+            <path d="M160 38 L210 38" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-surface node-group" data-label="setPlaying(true)" data-detail="Zustand updates isPlaying. Triggers re-render."><rect x="212" y="20" width="150" height="36" rx="8"/><text class="t" x="287" y="42" text-anchor="middle" font-size="12">setPlaying(true)</text></g>
+            <path d="M362 38 L412 38" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="AudioPlayer useEffect" data-detail="Watches isPlaying. On true → play(). On false → pause()."><rect x="414" y="20" width="150" height="36" rx="8"/><text class="t" x="489" y="42" text-anchor="middle" font-size="12">AudioPlayer useEffect</text></g>
+            <path d="M489 56 L489 80" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-success node-group" data-label="audioRef.play()" data-detail="Native HTML5 audio. On error: setPlaying(false)."><rect x="414" y="80" width="150" height="28" rx="6"/><text class="ts" x="489" y="98" text-anchor="middle" font-size="10">audioRef.play()</text></g>
+            <path d="M564 38 L620 38 L620 94 L564 94" class="arr-dash" marker-end="url(#arr)"/>
+            <g class="cat-error node-group" data-label="Error handler" data-detail="Play rejected → setPlaying(false), console.error."><rect x="570" y="18" width="110" height="36" rx="6"/><text class="ts" x="625" y="32" text-anchor="middle" font-size="10">Error:</text><text class="ts" x="625" y="46" text-anchor="middle" font-size="10">setPlaying(false)</text></g>
+          </svg>
+        </div>
+        <div class="card">
+          <div class="label"><span class="glow"></span> Flow 2 · Station Fetching</div>
+          <svg viewBox="0 0 700 110" role="img">
+            <g class="cat-surface node-group" data-label="Page Mount" data-detail="Home/LivePage mount calls fetchStations()."><rect x="20" y="20" width="120" height="36" rx="8"/><text class="t" x="80" y="42" text-anchor="middle" font-size="12">Page mounts</text></g>
+            <path d="M140 38 L190 38" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-primary node-group" data-label="fetchStations()" data-detail="Sets isLoading: true. Calls radioApi wrapper."><rect x="192" y="20" width="150" height="36" rx="8"/><text class="t" x="267" y="42" text-anchor="middle" font-size="12">fetchStations()</text></g>
+            <path d="M342 38 L392 38" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="radio-browser-api" data-detail="Fetches top 20 stations. Maps to Track[]. npm v6.0."><rect x="394" y="20" width="160" height="36" rx="8"/><text class="t" x="474" y="42" text-anchor="middle" font-size="12">radio-browser-api</text></g>
+            <path d="M474 56 L474 78" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-success node-group" data-label="✓ stations[]" data-detail="Success: set({ stations, isLoadingStations: false })"><rect x="394" y="72" width="160" height="28" rx="6"/><text class="ts" x="474" y="90" text-anchor="middle" font-size="10">✓ set stations[]</text></g>
+            <path d="M554 38 L610 38 L610 86 L554 86" class="arr-dash" marker-end="url(#arr)"/>
+            <g class="cat-error node-group" data-label="✗ empty []" data-detail="Error: empty array, console.error."><rect x="560" y="72" width="110" height="28" rx="6"/><text class="ts" x="615" y="90" text-anchor="middle" font-size="10">✗ empty []</text></g>
+          </svg>
+        </div>
+        <div class="card">
+          <div class="label"><span class="glow"></span> Flow 3 · Listener Count</div>
+          <svg viewBox="0 0 700 100" role="img">
+            <g class="cat-surface node-group" data-label="App.tsx mount" data-detail="useEffect starts setInterval timer."><rect x="20" y="14" width="120" height="32" rx="8"/><text class="t" x="80" y="34" text-anchor="middle" font-size="12">App.tsx mount</text></g>
+            <path d="M140 30 L200 30" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-warning node-group" data-label="setInterval 5s" data-detail="Every 5s: count += random(-5, +9), clamped ≥ 0."><rect x="202" y="14" width="170" height="32" rx="8"/><text class="t" x="287" y="34" text-anchor="middle" font-size="12">setInterval (5s)</text></g>
+            <path d="M372 30 L432 30" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="5 components update" data-detail="Nav, HomePage, LivePage, AudioPlayer, DJDashboard reactively update."><rect x="434" y="14" width="200" height="32" rx="8"/><text class="t" x="534" y="34" text-anchor="middle" font-size="12">5 components update</text></g>
+          </svg>
+        </div>
+        <div class="card">
+          <div class="label"><span class="glow"></span> Flow 4 · Theme Switching</div>
+          <svg viewBox="0 0 700 100" role="img">
+            <g class="cat-surface node-group" data-label="Pick Theme" data-detail="Admin Settings tab. User clicks swatch, stored in local state."><rect x="20" y="14" width="120" height="32" rx="8"/><text class="t" x="80" y="34" text-anchor="middle" font-size="12">Pick theme</text></g>
+            <path d="M140 30 L200 30" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-primary node-group" data-label="Save → setTheme()" data-detail="Calls setTheme(pendingTheme) on Zustand store."><rect x="202" y="14" width="150" height="32" rx="8"/><text class="t" x="277" y="34" text-anchor="middle" font-size="12">Save → setTheme()</text></g>
+            <path d="M352 30 L412 30" class="arr" marker-end="url(#arr)"/>
+            <g class="cat-accent node-group" data-label="&lt;html data-theme&gt;" data-detail="useEffect sets dataset.theme. CSS variables respond globally."><rect x="414" y="14" width="170" height="32" rx="8"/><text class="t" x="499" y="34" text-anchor="middle" font-size="12">&lt;html data-theme&gt;</text></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. ROUTES -->
+    <section class="section" id="routes">
+      <div class="sh">
+        <span class="idx">08</span>
+        <h2>Route Reference</h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">All routes unprotected. Auth state in store, no route wrapper.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> 7 routes · 0 guards</div>
+          <table class="rt">
+            <thead><tr><th>Route</th><th>Component</th><th>Auth</th><th>Primary Goal</th></tr></thead>
+            <tbody>
+              <tr data-detail="Landing page with Hero, Stats Bar, Top Global Stations, DJ highlights, Coming Up schedule preview."><td>/</td><td>HomePage</td><td><span class="badge badge-none">None</span></td><td>Discover + start listening</td></tr>
+              <tr data-detail="Full-screen live experience: visualizer, controls, song request, poll, share buttons."><td>/live</td><td>LivePage</td><td><span class="badge badge-none">None</span></td><td>Full-screen listening + interact</td></tr>
+              <tr data-detail="Programme schedule with day/week view, 24h timeline, current time indicator, reminders."><td>/schedule</td><td>SchedulePage</td><td><span class="badge badge-none">None</span></td><td>Browse programme timeline</td></tr>
+              <tr data-detail="Show library with search, category filters, card grid."><td>/shows</td><td>ShowsPage</td><td><span class="badge badge-none">None</span></td><td>Explore show library</td></tr>
+              <tr data-detail="DJ profile cards, expandable with bio, shows list, social links."><td>/djs</td><td>DJsPage</td><td><span class="badge badge-none">None</span></td><td>Meet DJ roster</td></tr>
+              <tr data-detail="DJ broadcast control: Go Live toggle, playlist, requests, chat, announcements."><td>/dj-dashboard</td><td>DJDashboardPage</td><td><span class="badge badge-res">Reserved</span></td><td>Broadcast control</td></tr>
+              <tr data-detail="Admin panel: Overview (KPI + charts), Shows, DJs, Settings (theme picker)."><td>/admin</td><td>AdminPage</td><td><span class="badge badge-res">Reserved</span></td><td>Station management</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. TAKEAWAYS -->
+    <section class="section" id="takeaways">
+      <div class="sh">
+        <span class="idx">09</span>
+        <h2>Key Takeaways</h2>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <p class="lede">Three architectural decisions shape every other choice in RadioFlow.</p>
+      <div class="body-wrap">
+        <div class="card">
+          <div class="label"><span class="glow"></span> Architectural decisions</div>
+          <svg viewBox="0 0 700 220" role="img">
+            <rect x="-20" y="-20" width="740" height="260" rx="16" class="glow-bg" style="stroke:rgba(var(--primary-rgb),.06)"/>
+            <g class="cat-error node-group" data-label="No Auth Guard" data-detail="All 7 routes public. Auth state in store but no route wrapper. DJ and Admin marked reserved in intent only."><rect x="30" y="30" width="195" height="160" rx="12"/><text class="th" x="127" y="60" text-anchor="middle" font-size="13">No Auth Guard</text><text class="ts" x="127" y="84" text-anchor="middle" font-size="10">All routes public</text><text class="ts" x="127" y="100" text-anchor="middle" font-size="10">Auth in store, unenforced</text><text class="ts" x="127" y="120" text-anchor="middle" font-size="10">Reserved = intent only</text></g>
+            <g class="cat-primary node-group" data-label="Shell Never Unmounts" data-detail="Sidebar, AudioPlayer, and ChatPanel persist across all routes through the Layout component."><rect x="252" y="30" width="195" height="160" rx="12"/><text class="th" x="350" y="60" text-anchor="middle" font-size="13">Shell Never Unmounts</text><text class="ts" x="350" y="84" text-anchor="middle" font-size="10">&lt;Layout&gt; wraps all</text><text class="ts" x="350" y="100" text-anchor="middle" font-size="10">Sidebar · AudioPlayer</text><text class="ts" x="350" y="120" text-anchor="middle" font-size="10">ChatPanel persistent</text></g>
+            <g class="cat-accent node-group" data-label="Simulated Real-time" data-detail="Chat, listener count, polls, requests are client-simulated. Zustand actions shaped for WebSocket swap."><rect x="475" y="30" width="195" height="160" rx="12"/><text class="th" x="572" y="60" text-anchor="middle" font-size="13">Simulated Real-time</text><text class="ts" x="572" y="84" text-anchor="middle" font-size="10">setInterval + local state</text><text class="ts" x="572" y="100" text-anchor="middle" font-size="10">Ready for WebSocket</text><text class="ts" x="572" y="120" text-anchor="middle" font-size="10">Only API = radio-browser</text></g>
+            <line x1="225" y1="110" x2="252" y2="110" class="arr-dash"/>
+            <line x1="447" y1="110" x2="475" y2="110" class="arr-dash"/>
+          </svg>
+        </div>
+        <ul class="cl">
+          <li><strong>No auth guard exists</strong> — /dj-dashboard and /admin reachable by anyone. Auth state in Zustand but no route wrapper.</li>
+          <li><strong>The shell never unmounts</strong> — sidebar, AudioPlayer, ChatPanel persist across all routes.</li>
+          <li><strong>Real-time is entirely client-simulated</strong> — Zustand actions shaped for future WebSocket swap.</li>
+          <li><strong>Theme switching is the only persistence</strong> — Zustand → useEffect → CSS custom properties.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <span>RadioFlow — Information Architecture v1.0</span>
+  <span class="freq">◈ Cyberpunk · Dark Neon · Reference Document</span>
+</footer>
+
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: "'Inter', -apple-system, sans-serif",
+  themeVariables: {
+    darkMode: true,
+    fontSize: '12px',
+    primaryColor: '#0f0f1a',
+    primaryTextColor: '#cbd5e1',
+    primaryBorderColor: '#1a1a2e',
+    lineColor: '#6b7280',
+    textColor: '#cbd5e1',
+    secondaryColor: '#1a1a2e',
+    tertiaryColor: '#050508',
+    mainBkg: '#0a0a12',
+    nodeBorder: '#1a1a2e',
+    clusterBkg: '#050508',
+    clusterBorder: '#1a1a2e',
+    titleColor: '#f1f5f9',
+    edgeLabelBackground: '#0f0f1a',
+    nodeTextColor: '#cbd5e1',
+  }
+});
+
+const { svg } = await mermaid.render('erd-svg', `erDiagram
+  DJ ||--o{ SHOW : hosts
+  SHOW ||--o{ SCHEDULE_SLOT : "scheduled in"
+  USER ||--o{ CHAT_MESSAGE : sends
+  USER ||--o{ SONG_REQUEST : submits
+  SONG_REQUEST }o--|| TRACK : references
+  DJ {
+    string name
+    string_array genres
+    boolean onAir
+  }
+  SHOW {
+    string title
+    string category
+    string_array tags
+  }
+  USER {
+    string role
+    string_array favoriteShows
+  }`);
+
+document.getElementById('erd-wrap').innerHTML = svg;
+
+// ─── Mouse glow ───
+const glow = document.getElementById('mouse-glow');
+let glowTimer;
+document.addEventListener('mousemove', e => {
+  glow.style.opacity = '1';
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+  clearTimeout(glowTimer);
+  glowTimer = setTimeout(() => { glow.style.opacity = '0'; }, 2000);
+});
+
+// ─── Progress bar ───
+const pb = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  pb.style.width = (window.scrollY / h * 100) + '%';
+}, { passive: true });
+
+// ─── Scroll reveal ───
+const sectionEls = document.querySelectorAll('.section');
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
+sectionEls.forEach(s => secObs.observe(s));
+
+// ─── Nav tracking ───
+const navLinks = document.querySelectorAll('.nav-list a');
+function updateNav() {
+  let current = navLinks[0];
+  sectionEls.forEach((sec, i) => {
+    if (sec.getBoundingClientRect().top <= 100) current = navLinks[i];
+  });
+  navLinks.forEach(a => a.classList.remove('active'));
+  current.classList.add('active');
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// ─── Collapse sections ───
+document.querySelectorAll('.section .sh').forEach(header => {
+  header.addEventListener('click', () => {
+    const wrap = header.nextElementSibling.nextElementSibling;
+    const icon = header.querySelector('.collapse-icon');
+    if (!wrap || !icon) return;
+    wrap.classList.toggle('closed');
+    icon.classList.toggle('collapsed');
+    if (wrap.classList.contains('closed')) {
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      requestAnimationFrame(() => { wrap.style.maxHeight = '0'; });
+    } else {
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      wrap.addEventListener('transitionend', () => { wrap.style.maxHeight = ''; }, { once: true });
+    }
+  });
+});
+
+// ─── Tooltip (hover: label + detail only, no icon) ───
+const tipEl = document.getElementById('tooltip');
+document.querySelectorAll('.node-group').forEach(g => {
+  const label = g.getAttribute('data-label');
+  const detail = g.getAttribute('data-detail');
+  if (!label && !detail) return;
+  g.addEventListener('mouseenter', e => {
+    const l = label || '';
+    const d = detail || '';
+    tipEl.textContent = l && d ? `${l} — ${d}` : l || d;
+    tipEl.classList.add('show');
+  });
+  g.addEventListener('mousemove', e => {
+    const x = e.clientX + 14, y = e.clientY + 10;
+    const r = tipEl.getBoundingClientRect();
+    tipEl.style.left = Math.min(x, window.innerWidth - r.width - 16) + 'px';
+    tipEl.style.top = Math.min(y, window.innerHeight - r.height - 16) + 'px';
+  });
+  g.addEventListener('mouseleave', () => tipEl.classList.remove('show'));
+});
+
+// ─── Detail panel ───
+const dp = document.getElementById('detail-panel');
+const dovl = document.getElementById('detail-overlay');
+const dpTitle = document.getElementById('dp-title');
+const dpBody = document.getElementById('dp-body');
+
+function openDetail(label, detail) {
+  dpTitle.textContent = label || 'Node';
+  dpBody.textContent = detail || 'No additional information available.';
+  dp.classList.add('open');
+  dovl.classList.add('show');
+}
+window.closeDetail = () => { dp.classList.remove('open'); dovl.classList.remove('show'); };
+dovl.addEventListener('click', closeDetail);
+
+document.querySelectorAll('.node-group').forEach(g => {
+  g.addEventListener('click', e => {
+    const label = g.getAttribute('data-label');
+    const detail = g.getAttribute('data-detail');
+    if (!label && !detail) return;
+    openDetail(label, detail);
+    const box = g.querySelector('.box') || g.querySelector('rect');
+    if (box) {
+      box.style.transition = 'all .15s';
+      box.setAttribute('stroke', 'var(--accent)');
+      box.setAttribute('stroke-width', '2');
+      setTimeout(() => {
+        box.setAttribute('stroke', '');
+        box.setAttribute('stroke-width', '');
+      }, 500);
+    }
+  });
+});
+
+// ─── Route table click ───
+document.querySelectorAll('.rt tbody tr').forEach(row => {
+  row.addEventListener('click', () => {
+    const detail = row.getAttribute('data-detail');
+    const route = row.querySelector('td')?.textContent;
+    if (detail) openDetail(route || 'Route', detail);
+  });
+});
+
+// ─── Callout click ───
+document.querySelectorAll('.cl li').forEach(li => {
+  li.addEventListener('click', () => {
+    const strong = li.querySelector('strong');
+    const text = li.textContent.replace(strong?.textContent || '', '').trim();
+    if (strong) openDetail(strong.textContent, text);
+  });
+});
+
+// ─── Keyboard shortcuts ───
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDetail();
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    const active = document.querySelector('.nav-list a.active');
+    const links = Array.from(document.querySelectorAll('.nav-list a'));
+    const idx = links.indexOf(active);
+    if (e.key === 'ArrowDown' && idx < links.length - 1) {
+      e.preventDefault(); links[idx + 1].click(); links[idx + 1].focus();
+    }
+    if (e.key === 'ArrowUp' && idx > 0) {
+      e.preventDefault(); links[idx - 1].click(); links[idx - 1].focus();
+    }
+  }
+});
+</script>
+</body>
+</html>

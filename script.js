@@ -1750,11 +1750,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
   };
 
+  const GDRIVE_SRC = 'https://drive.google.com/file/d/1K3jj81oWlRUKUr1S8NN34CuWQj0Ev2i2/preview';
+
   const closeVideoPopover = () => {
     popover.classList.remove('open');
     document.body.style.overflow = '';
+    // Stop iframe playback by blanking src, then restore for next open
     if (video) {
-      video.pause();
+      video.src = '';
+      setTimeout(() => { video.src = GDRIVE_SRC; }, 300);
     }
   };
 

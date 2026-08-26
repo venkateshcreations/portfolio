@@ -1303,6 +1303,62 @@ const projectData = {
     tags: ['UX Architect', 'Frontend Design', 'UX Design'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.html'
+  },
+
+  /* ── USE CASES ───────────────────────────────────────── */
+  25: {
+    title: 'Enterprise Digital Banking Eco System',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_1.png',
+    images: ['images/usecases/usecase_1.png'],
+    desc: 'An interactive visualization of an enterprise digital banking ecosystem mapping 100+ connected services across 9 business domains. Built with D3.js v7, it features real-time analytics, service status tracking, dependency flows, and power-user controls designed for banking architects and technology leaders.',
+    tags: ['UX Architecture', 'Enterprise UX', 'Data Visualization'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_1.html'
+  },
+  26: {
+    title: 'Digital Transformation Intelligence Hub',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_2.png',
+    images: ['images/usecases/usecase_2.png'],
+    desc: 'An enterprise portfolio dashboard charting a complete digital transformation journey from 2023 to 2027. Features 9 interconnected D3.js visualizations covering investment flows, maturity roadmaps, and transformation KPIs — unified into a single strategic intelligence hub for decision makers.',
+    tags: ['UX Architecture', 'Data Visualization', 'Enterprise UX'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_2.html'
+  },
+  27: {
+    title: 'Deepfake Defence - 2026 Initiative',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_3.png',
+    images: ['images/usecases/usecase_3.png'],
+    desc: 'A strategic initiative addressing deepfake threats as a board-level enterprise risk. Covers detection signals, threat landscape analysis, workforce training cadence, and a complete defense program framework for organization-wide synthetic media protection.',
+    tags: ['AI UX Design', 'UX Architecture', 'Content Strategy'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_3.html'
+  },
+  28: {
+    title: 'APEX Global Enterprises',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_4.png',
+    images: ['images/usecases/usecase_4.png'],
+    desc: 'A cybersecurity SOC command center delivering real-time threat monitoring for a multinational enterprise. Built with Apache ECharts, it provides live threat feeds, attack path analysis, and enterprise-wide security posture visualization for security operations teams.',
+    tags: ['Dashboard UX', 'Enterprise UX', 'Data Visualization'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_4.html'
+  },
+  29: {
+    title: 'Radio Flow - Live Stations',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_5.png',
+    images: ['images/usecases/usecase_5.png'],
+    desc: 'A worldwide radio streaming platform experience featuring schedule management, live DJ shows, studio interactions, and listener engagement tools. Designed for seamless station discovery and immersive real-time audio experiences across all devices.',
+    tags: ['UX Strategy', 'Product Design', 'Real-time UX'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_5.html'
+  },
+  30: {
+    title: 'Stream Verde - IPTV Live Channels',
+    role: 'Lead UX Architect',
+    image: 'images/usecases/usecase_6.png',
+    images: ['images/usecases/usecase_6.png'],
+    desc: 'A cloud-native IPTV platform concept delivering live channels, VOD, catch-up TV, and AI-powered recommendations. Designed for operator-grade content management with a seamless, engaging viewer experience across web and connected TV platforms.',
+    tags: ['UX Strategy', 'OTT/IPTV', 'Product Design'],
+    url: 'https://venkateshcreations.github.io/Use-Cases/usecase_6.html'
   }
 };
 

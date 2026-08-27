@@ -1359,6 +1359,62 @@ const projectData = {
     desc: 'A cloud-native IPTV platform concept delivering live channels, VOD, catch-up TV, and AI-powered recommendations. Designed for operator-grade content management with a seamless, engaging viewer experience across web and connected TV platforms.',
     tags: ['UX Strategy', 'OTT/IPTV', 'Product Design'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_6.html'
+  },
+
+  /* ── CASE STUDIES ────────────────────────────────────── */
+  31: {
+    title: 'Enterprise Digital Banking Eco System',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_1.png',
+    images: ['images/casestudies/casestudy_1.png'],
+    desc: 'Comprehensive UX case study detailing the end-to-end transformation of an enterprise digital banking ecosystem mapping 100+ microservices across core financial domains.\nArchitected human-centered workflows, high-density data visualizations, and resilient component design systems to handle multi-tenant banking operations.\nDelivers actionable insights into service dependency mapping, real-time transaction telemetry, and executive decision-making frameworks.',
+    tags: ['UX Architecture', 'Enterprise UX', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_1.html'
+  },
+  32: {
+    title: 'Digital Transformation Intelligence Hub',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_2.png',
+    images: ['images/casestudies/casestudy_2.png'],
+    desc: 'In-depth case study analyzing the UX design strategy for a centralized digital transformation platform unifying 9 strategic enterprise initiatives from 2023 to 2027.\nTranslates multi-dimensional portfolio metrics, funding flows, and technology adoption signals into intuitive interactive dashboard views.\nEstablishes executive alignment through progressive disclosure patterns, executive summary cards, and automated KPI tracking.',
+    tags: ['UX Strategy', 'Enterprise UX', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_2.html'
+  },
+  33: {
+    title: 'Deepfake Defence - 2026 Initiative',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_3.png',
+    images: ['images/casestudies/casestudy_3.png'],
+    desc: 'Strategic AI-UX case study exploring board-level risk mitigation interfaces for synthetic media threats and deepfake detection workflows.\nDefines human-in-the-loop verification patterns, incident escalation paths, and cognitive load reduction for security operations analysts.\nOutlines continuous threat modeling, real-time alert triage, and enterprise-wide defense protocol integration.',
+    tags: ['AI UX Design', 'Cybersecurity UX', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_3.html'
+  },
+  34: {
+    title: 'APEX Global Enterprises',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_4.png',
+    images: ['images/casestudies/casestudy_4.png'],
+    desc: 'UX case study on designing a high-stakes SOC Command Center for APEX Global Enterprises to monitor real-time cyber threats across global infrastructure.\nEngineered low-latency visual feeds, interactive attack surface maps, and contextual incident response workflows for security operations.\nOptimized dark-themed high-density telemetry dashboards to minimize operator fatigue and accelerate mean time to detect (MTTD).',
+    tags: ['SOC UX', 'Enterprise Platform', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_4.html'
+  },
+  35: {
+    title: 'Radio Flow - Live Stations',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_5.png',
+    images: ['images/casestudies/casestudy_5.png'],
+    desc: 'User experience case study detailing the end-to-end product design of a next-generation worldwide live radio streaming platform.\nBlends real-time audio visualizers, interactive station schedules, DJ live interaction feeds, and social listening features into a seamless web app.\nFocuses on frictionless navigation, tactile media control interfaces, and adaptive audio streaming UX across mobile and desktop.',
+    tags: ['Product UX', 'Audio Streaming', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_5.html'
+  },
+  36: {
+    title: 'Stream Verde - IPTV Live Channels',
+    role: 'Lead UX Architect',
+    image: 'images/casestudies/casestudy_6.png',
+    images: ['images/casestudies/casestudy_6.png'],
+    desc: 'Comprehensive product design case study for a cloud-native IPTV platform delivering live streaming, VOD, and AI-driven recommendations.\nArchitected multi-screen layouts, EPG (Electronic Program Guide) grid systems, and intuitive channel discovery workflows.\nBalanced operator platform scalability with a premium, cinema-grade viewer experience across web and smart TV ecosystems.',
+    tags: ['IPTV / OTT', 'Media UX', 'Case Study'],
+    url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_6.html'
   }
 };
 

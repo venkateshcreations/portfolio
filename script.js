@@ -1888,3 +1888,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Showcase Intro Video Popover Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const triggerBtn = document.getElementById('openShowcaseIntroBtn');
+  const popover = document.getElementById('showcaseIntroPopover');
+  const backdrop = document.getElementById('showcaseIntroBackdrop');
+  const closeBtn = document.getElementById('showcaseIntroClose');
+  const video = document.getElementById('showcaseIntroVideo');
+
+  if (!triggerBtn || !popover) return;
+
+  const GDRIVE_SRC = 'https://drive.google.com/file/d/17oAgnsk5VeIquKfbmswZ7hnohf8vk-Em/preview';
+
+  const openPopover = () => {
+    popover.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideoPopover = () => {
+    popover.classList.remove('open');
+    document.body.style.overflow = '';
+    // Stop iframe playback by blanking src, then restore for next open
+    if (video) {
+      video.src = '';
+      setTimeout(() => { video.src = GDRIVE_SRC; }, 300);
+    }
+  };
+
+  triggerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPopover();
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeVideoPopover);
+  if (backdrop) backdrop.addEventListener('click', closeVideoPopover);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popover.classList.contains('open')) {
+      closeVideoPopover();
+    }
+  });
+});
+

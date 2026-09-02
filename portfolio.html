@@ -2628,6 +2628,420 @@
             z-index: 0;
             opacity: 0.5;
         }
+
+        /* ===================================================
+           PRO VISUAL UPGRADES — Hero, Search, Sticky Nav, Badges
+           =================================================== */
+        
+        .hero-tagline {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 12px auto 20px;
+            line-height: 1.6;
+            animation: heroElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s forwards;
+            opacity: 0;
+            text-align: center;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0 28px;
+            animation: heroElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s forwards;
+            opacity: 0;
+        }
+
+        .stat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-pill:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .stat-pill-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Search Bar Box */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 36px;
+            position: relative;
+            animation: heroElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.75s forwards;
+            opacity: 0;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 44px 14px 48px;
+            background: rgba(18, 18, 26, 0.75);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
+            background: rgba(26, 26, 36, 0.9);
+        }
+
+        .search-input:focus + .search-icon {
+            color: var(--accent-primary);
+        }
+
+        .search-clear-btn {
+            position: absolute;
+            right: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-muted);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-clear-btn.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .search-clear-btn:hover {
+            background: rgba(236, 72, 153, 0.3);
+            color: white;
+        }
+
+        /* Sticky Glass Sub-Nav Bar */
+        .sticky-subnav-wrapper {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+
+        .sticky-subnav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(10, 10, 15, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            overflow-x: auto;
+            scrollbar-width: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+        }
+
+        .sticky-subnav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .subnav-link {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .subnav-link:hover,
+        .subnav-link.active {
+            color: white;
+            background: var(--gradient-accent);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .subnav-count {
+            padding: 2px 7px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .subnav-link:hover .subnav-count,
+        .subnav-link.active .subnav-count {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Section Title Count Badge */
+        .section-count-badge {
+            margin-left: 8px;
+            padding: 2px 10px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+            vertical-align: middle;
+        }
+
+        /* Card Live Dots & Meta Header */
+        .card-header-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .live-dot-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 3px 8px;
+            border-radius: 50px;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .live-dot-glow {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseDot 1.8s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .card-tag {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--accent-secondary);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hover Shine Effect on Project Link Buttons */
+        .project-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-link:hover::after {
+            transform: rotate(30deg) translateY(100%);
+        }
+
+        /* Search No Results View */
+        #no-results-msg {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-card);
+            border: 1px dashed var(--border-subtle);
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+
+        /* ===================================================
+           OPEN SOURCE FEATURE BANNER & ENHANCED CARDS
+           =================================================== */
+        .os-intro-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(236, 72, 153, 0.06) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .os-intro-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .os-intro-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .os-intro-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .os-github-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--gradient-accent);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .os-github-profile-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+        }
+
+        .os-intro-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .os-pillars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .os-pillar-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .os-repo-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.75rem;
+        }
+
+        .os-repo-name {
+            color: var(--accent-primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: monospace;
+        }
+
+        .os-tech-badge {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.72rem;
+        }
+
+        @media (max-width: 768px) {
+            .os-intro-card {
+                padding: 24px 20px;
+            }
+            .os-intro-title {
+                font-size: 1.15rem;
+            }
+        }
     </style>
 
     <!-- Structured Data (JSON-LD) -->
@@ -2675,74 +3089,14 @@
               "position": 1,
               "item": {
                 "@type": "CreativeWork",
-                "name": "Army Commando Intel System",
-                "genre": "Web Prototype",
-                "url": "https://armycommandointel.netlify.app/"
+                "name": "Deepfake Defense Dashboard - 2026 Initiative",
+                "genre": "Web Application",
+                "url": "https://deepfakedefence-dashboard.vercel.app/"
               }
             },
             {
               "@type": "ListItem",
               "position": 2,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "NetVision - Network Monitoring Dashboard",
-                "genre": "Web Prototype",
-                "url": "https://net-vision-fd14.vercel.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "RadioFlow - Live Radio Streaming Dashboard",
-                "genre": "Web Prototype",
-                "url": "https://radioflowlive.netlify.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "Health Bridge - Smart Kiosk",
-                "genre": "Web Prototype",
-                "url": "https://healthbridgeadmin.vercel.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "FlowTrack-Ai - Project Management & Issue Tracking System",
-                "genre": "Web Prototype",
-                "url": "https://flowtrackai.netlify.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 6,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "School Management - Role Based System",
-                "genre": "Web Prototype",
-                "url": "https://schoolmgmtapp.vercel.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 7,
-              "item": {
-                "@type": "CreativeWork",
-                "name": "ProOS - The Property Management Software",
-                "genre": "Web Prototype",
-                "url": "https://propos-property-mgmt.vercel.app/"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 8,
               "item": {
                 "@type": "CreativeWork",
                 "name": "AeroFlow - Flight Ticket Management Software",
@@ -2752,7 +3106,17 @@
             },
             {
               "@type": "ListItem",
-              "position": 9,
+              "position": 3,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "SteamVerde - IPTV Platform",
+                "genre": "Web Prototype",
+                "url": "https://streamverde.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
               "item": {
                 "@type": "CreativeWork",
                 "name": "AI HRMS Pro - Next Gen HRMS Web Application",
@@ -2762,12 +3126,122 @@
             },
             {
               "@type": "ListItem",
-              "position": 10,
+              "position": 5,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "School Management - Role Based System",
+                "genre": "Web Prototype",
+                "url": "https://schoolmgmtapp.vercel.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "FlowTrack-Ai - Project Management & Issue Tracking System",
+                "genre": "Web Prototype",
+                "url": "https://flowtrackai.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Health Bridge - Smart Kiosk",
+                "genre": "Web Prototype",
+                "url": "https://healthbridgeadmin.vercel.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
               "item": {
                 "@type": "CreativeWork",
                 "name": "Nexus AI - CRM Platform Web Application",
                 "genre": "Web Prototype",
                 "url": "https://nexusaicrm.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Nyay-AI - AI Enabled Legal Advisor",
+                "genre": "Web Prototype",
+                "url": "https://nyay-ai-india.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "MedCare - Medical Online Appointments",
+                "genre": "Web Prototype",
+                "url": "https://medcareonline.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 11,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "ProOS - The Property Management Software",
+                "genre": "Web Prototype",
+                "url": "https://propos-property-mgmt.vercel.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 12,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Army Commando Intel System",
+                "genre": "Web Prototype",
+                "url": "https://armycommandointel.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 13,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "NetVision - Network Monitoring Dashboard",
+                "genre": "Web Prototype",
+                "url": "https://net-vision-fd14.vercel.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 14,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Radiostream - Live Radio Streaming Dashboard",
+                "genre": "Web Prototype",
+                "url": "https://radioflowlive.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 15,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "LetterForgeAi - Autonomous Newsletter Automation Engine",
+                "genre": "Web Prototype",
+                "url": "https://letterforge-newsletter-ai.netlify.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 16,
+              "item": {
+                "@type": "CreativeWork",
+                "name": "Ride Share Plus - Travel Smart",
+                "genre": "Web Prototype",
+                "url": "https://rideshareplus.netlify.app/"
               }
             }
           ]
@@ -2957,22 +3431,66 @@
         <div class="container">
             <div class="profile">
                 <h1>Venkatesh Ammireddy</h1>
-                <p class="year">Portfolio 2025-2026</p>
+                <p class="year">Showcase 2025-2026</p>
+                <p class="hero-tagline">UX Creative Director & AI UX Architect • 13+ Years Transforming Enterprise Platforms, Agentic AI Systems & High-Impact Digital Experiences</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-pill"><span class="stat-pill-val">50+</span> Live Projects</div>
+                    <div class="stat-pill"><span class="stat-pill-val">13+ Yrs</span> UX Architecture</div>
+                    <div class="stat-pill"><span class="stat-pill-val">6</span> Enterprise Design Systems</div>
+                    <div class="stat-pill"><span class="stat-pill-val">10+</span> Autonomous AI Engines</div>
+                </div>
+
+                <!-- Instant Live Search Bar -->
+                <div class="search-container">
+                    <div class="search-input-wrap">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" id="projectSearchInput" class="search-input" placeholder="Search projects (e.g. AI, Banking, D3, Cyber, IPTV, System)..." autocomplete="off" />
+                        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">✕</button>
+                    </div>
+                </div>
+
                 <div class="divider"></div>
             </div>
         </div>
     </header>
 
+    <div class="sticky-subnav-wrapper">
+        <div class="container">
+            <nav class="sticky-subnav" id="stickySubnav">
+                <a href="#sec-web-apps" class="subnav-link active">Web Apps <span class="subnav-count">16</span></a>
+                <a href="#sec-websites" class="subnav-link">Websites & AI <span class="subnav-count">6</span></a>
+                <a href="#sec-dataviz" class="subnav-link">Data Viz <span class="subnav-count">6</span></a>
+                <a href="#sec-design-systems" class="subnav-link">Design Systems <span class="subnav-count">6</span></a>
+                <a href="#sec-usecases" class="subnav-link">Use Cases <span class="subnav-count">6</span></a>
+                <a href="#sec-casestudies" class="subnav-link">Case Studies <span class="subnav-count">6</span></a>
+                <a href="#sec-opensource" class="subnav-link">Open Source <span class="subnav-count">10</span></a>
+                <a href="#sec-wireframes" class="subnav-link">Figma Wireframes <span class="subnav-count">12</span></a>
+            </nav>
+        </div>
+    </div>
+
     <main class="container">
+        <!-- Search No Results View -->
+        <div id="no-results-msg">
+            <h3>No Matching Projects Found</h3>
+            <p>Try searching for terms like "AI", "Banking", "Dashboard", "D3", "Security", or "System".</p>
+        </div>
         <!-- 2025-2026 Web Projects -->
-        <section class="fade-in">
-            <h2 class="section-title">Web Applications</h2>
+        <section id="sec-web-apps" class="fade-in">
+            <h2 class="section-title">Web Applications <span class="section-count-badge">16</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3 class="project-name">Army Commando Intel System</h3>
-                    <p class="project-type">Web Prototype</p>
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">AI Security</span>
+                    </div>
+                    <h3 class="project-name">Deepfake Defense Dashboard - 2026 Initiative</h3>
+                    <p class="project-type">Web Application</p>
                     <div class="project-links">
-                        <a href="https://armycommandointel.netlify.app/" target="_blank" class="project-link">
+                        <a href="https://deepfakedefence-dashboard.vercel.app/" target="_blank" class="project-link">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -2984,105 +3502,10 @@
                 </div>
 
                 <div class="project-card">
-                    <h3 class="project-name">NetVision - Network Monitoring Dashboard</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://net-vision-fd14.vercel.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">SaaS / Travel</span>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">Radiostream - Live Radio Streaming Dashboard</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://radioflowlive.netlify.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">Health Bridge - Smart Kiosk</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://healthbridgeadmin.vercel.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                        <a href="https://docs.google.com/document/d/1zjnI1a137BHjw5je73lU093NcPX3ILUw/edit"
-                            target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Documentation
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">FlowTrack-Ai - Project Management & Issue Tracking System</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://flowtrackai.netlify.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">School Management - Role Based System</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://schoolmgmtapp.vercel.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">ProOS - The Property Management Software</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://propos-property-mgmt.vercel.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
                     <h3 class="project-name">AeroFlow - Flight Ticket Management Software</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
@@ -3098,36 +3521,10 @@
                 </div>
 
                 <div class="project-card">
-                    <h3 class="project-name">AI HRMS Pro - Next Gen HRMS Web Application</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://ai-hrms-pro.netlify.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">IPTV Media</span>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">Nexus AI - CRM Platform Web Application</h3>
-                    <p class="project-type">Web Prototype</p>
-                    <div class="project-links">
-                        <a href="https://nexusaicrm.netlify.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
                     <h3 class="project-name">SteamVerde - IPTV Platform</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
@@ -3143,10 +3540,14 @@
                 </div>
 
                 <div class="project-card">
-                    <h3 class="project-name">LetterForgeAi - Autonomous Newsletter Automation Engine</h3>
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">AI HRMS</span>
+                    </div>
+                    <h3 class="project-name">AI HRMS Pro - Next Gen HRMS Web Application</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
-                        <a href="https://letterforge-newsletter-ai.netlify.app/" target="_blank" class="project-link">
+                        <a href="https://ai-hrms-pro.netlify.app/" target="_blank" class="project-link">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -3158,6 +3559,86 @@
                 </div>
 
                 <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Role-Based</span>
+                    </div>
+                    <h3 class="project-name">School Management - Role Based System</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://schoolmgmtapp.vercel.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Issue Tracking</span>
+                    </div>
+                    <h3 class="project-name">FlowTrack-Ai - Project Management & Issue Tracking System</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://flowtrackai.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Smart Kiosk</span>
+                    </div>
+                    <h3 class="project-name">Health Bridge - Smart Kiosk</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://healthbridgeadmin.vercel.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">AI CRM</span>
+                    </div>
+                    <h3 class="project-name">Nexus AI - CRM Platform Web Application</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://nexusaicrm.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Legal AI</span>
+                    </div>
                     <h3 class="project-name">Nyay-AI - AI Enabled Legal Advisor</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
@@ -3173,6 +3654,10 @@
                 </div>
 
                 <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Healthcare</span>
+                    </div>
                     <h3 class="project-name">MedCare - Medical Online Appointments</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
@@ -3188,6 +3673,105 @@
                 </div>
 
                 <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">PropTech</span>
+                    </div>
+                    <h3 class="project-name">ProOS - The Property Management Software</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://propos-property-mgmt.vercel.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Defense Intel</span>
+                    </div>
+                    <h3 class="project-name">Army Commando Intel System</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://armycommandointel.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Telemetry</span>
+                    </div>
+                    <h3 class="project-name">NetVision - Network Monitoring Dashboard</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://net-vision-fd14.vercel.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Live Media</span>
+                    </div>
+                    <h3 class="project-name">Radiostream - Live Radio Streaming Dashboard</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://radioflowlive.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Autonomous AI</span>
+                    </div>
+                    <h3 class="project-name">LetterForgeAi - Autonomous Newsletter Automation Engine</h3>
+                    <p class="project-type">Web Prototype</p>
+                    <div class="project-links">
+                        <a href="https://letterforge-newsletter-ai.netlify.app/" target="_blank" class="project-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header-meta">
+                        <span class="live-dot-pill"><span class="live-dot-glow"></span> Live System</span>
+                        <span class="card-tag">Mobility</span>
+                    </div>
                     <h3 class="project-name">Ride Share Plus - Travel Smart</h3>
                     <p class="project-type">Web Prototype</p>
                     <div class="project-links">
@@ -3201,27 +3785,12 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="project-card">
-                    <h3 class="project-name">Deepfake Defense Dashboard - 2026 Initiative</h3>
-                    <p class="project-type">Web Application</p>
-                    <div class="project-links">
-                        <a href="https://deepfakedefence-dashboard.vercel.app/" target="_blank" class="project-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
 
         <!-- Websites & Autonomous AI Platforms -->
-        <section class="fade-in">
-            <h2 class="section-title">Websites & Autonomous AI Platforms</h2>
+        <section id="sec-websites" class="fade-in">
+            <h2 class="section-title">Websites & Autonomous AI Platforms <span class="section-count-badge">6</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-name">VOXAR - AI Video Intelligence</h3>
@@ -3299,8 +3868,8 @@
         </section>
 
         <!-- Enterprise Data Visualization Dashboards -->
-        <section class="fade-in">
-            <h2 class="section-title">Enterprise Data Visualization Dashboards</h2>
+        <section id="sec-dataviz" class="fade-in">
+            <h2 class="section-title">Enterprise Data Visualization Dashboards <span class="section-count-badge">6</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-name">Enterprise Digital Banking Ecosystem</h3>
@@ -3378,8 +3947,8 @@
         </section>
 
         <!-- Enterprise Design Systems -->
-        <section class="fade-in">
-            <h2 class="section-title">Enterprise Design Systems</h2>
+        <section id="sec-design-systems" class="fade-in">
+            <h2 class="section-title">Enterprise Design Systems <span class="section-count-badge">6</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-name">Design System-1: Enterprise Digital Banking</h3>
@@ -3457,8 +4026,8 @@
         </section>
 
         <!-- Interactive Use Cases -->
-        <section class="fade-in">
-            <h2 class="section-title">Interactive Use Cases</h2>
+        <section id="sec-usecases" class="fade-in">
+            <h2 class="section-title">Interactive Use Cases <span class="section-count-badge">6</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-name">Enterprise Digital Banking Eco System</h3>
@@ -3536,8 +4105,8 @@
         </section>
 
         <!-- Executive Case Studies -->
-        <section class="fade-in">
-            <h2 class="section-title">Executive Case Studies</h2>
+        <section id="sec-casestudies" class="fade-in">
+            <h2 class="section-title">Executive Case Studies <span class="section-count-badge">6</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3 class="project-name">Enterprise Digital Banking Eco System</h3>
@@ -3615,170 +4184,217 @@
         </section>
 
         <!-- Passion of OpenSource -->
-        <section class="opensource-section fade-in">
-            <h2 class="section-title">Passion of OpenSource — Learning & Growth</h2>
+        <section id="sec-opensource" class="opensource-section fade-in">
+            <h2 class="section-title">Passion of OpenSource — Learning & Growth <span class="section-count-badge">10</span></h2>
+            
+            <!-- Open Source Hero Feature Banner -->
+            <div class="os-intro-card">
+                <div class="os-intro-header">
+                    <div class="os-intro-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        Building Open-Source AI & UX Intelligence Systems
+                    </div>
+                </div>
+                <p class="os-intro-desc">
+                    Pioneering open-access cognitive engines, autonomous UX skill frameworks, and multi-agent AI platforms designed to bridge human design principles with autonomous execution. All repositories are open-sourced under public access.
+                </p>
+                <div class="os-pillars">
+                    <span class="os-pillar-tag">⚡ Multi-Agent Orchestration</span>
+                    <span class="os-pillar-tag">🧠 Cognitive UX Reasoning</span>
+                    <span class="os-pillar-tag">🛠️ 30+ Agentic Skill Modules</span>
+                    <span class="os-pillar-tag">🌐 100% Public Access</span>
+                </div>
+            </div>
+
             <div class="opensource-grid">
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            UI-UX-Intelligence-System
+                        </span>
+                        <span class="os-tech-badge">Multi-Agent Engine</span>
+                    </div>
                     <h4 class="opensource-title">UI/UX Intelligence System</h4>
                     <p class="opensource-desc">A multi-agent orchestrating platform that transforms product requirements
                         into polished, user-centered interface designs through a layered pipeline of cognitive
                         reasoning, execution, simulation, evaluation, and memory.</p>
-                    <a href="https://github.com/venkateshcreations/UI-UX-Intelligence-System" target="_blank"
-                        class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                    <a href="https://github.com/venkateshcreations/UI-UX-Intelligence-System" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            ExperienceOS
+                        </span>
+                        <span class="os-tech-badge">UX Intelligence</span>
+                    </div>
                     <h4 class="opensource-title">ExperienceOS - Experience Intelligence Multi-Agent System</h4>
                     <p class="opensource-desc">A complete AI-powered engine that transforms user experiences through
                         intelligent multi-agent analysis, auditing, and redesign. Acts as your full product team,
                         delivering comprehensive UX insights, emotional analysis, AI-powered interactions, and
                         production-ready frontend code.</p>
                     <a href="https://github.com/venkateshcreations/ExperienceOS" target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            AI-Product-Builder-Engine
+                        </span>
+                        <span class="os-tech-badge">Self-Learning</span>
+                    </div>
                     <h4 class="opensource-title">AI Product Builder Engine - Autonomous Memory Self Learning</h4>
                     <p class="opensource-desc">An autonomous, self-learning system that transforms user ideas into
                         complete products through refined smart skills with memory-based learning capabilities.</p>
-                    <a href="https://github.com/venkateshcreations/AI-Product-Builder-Engine-Autonomous-Self-Learning"
-                        target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                    <a href="https://github.com/venkateshcreations/AI-Product-Builder-Engine-Autonomous-Self-Learning" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            AI-Product-Builder-Legacy
+                        </span>
+                        <span class="os-tech-badge">High-Speed Pipeline</span>
+                    </div>
                     <h4 class="opensource-title">AI Product Builder Engine - Legacy (Faster)</h4>
                     <p class="opensource-desc">A sophisticated autonomous system designed to convert raw user input into
                         production-ready product blueprints. Follows a structured pipeline through six specialized
                         skills, ensuring consistent, high-quality outputs ready for immediate development.</p>
-                    <a href="https://github.com/venkateshcreations/AI-Product-Builder-Engine-Legacy-Faster"
-                        target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                    <a href="https://github.com/venkateshcreations/AI-Product-Builder-Engine-Legacy-Faster" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            Autonomous-UX-Intelligence-Skills
+                        </span>
+                        <span class="os-tech-badge">30+ Agentic Modules</span>
+                    </div>
                     <h4 class="opensource-title">Autonomous UX Intelligence Skills</h4>
                     <p class="opensource-desc">A system of 30+ structured intelligence modules that can: → Turn product
                         ideas into full UX systems → Generate strategy, design, content, and optimization → Simulate how
                         real product teams think — end-to-end</p>
-                    <a href="https://github.com/venkateshcreations/Autonomous-UX-Intelligence-Skills" target="_blank"
-                        class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                    <a href="https://github.com/venkateshcreations/Autonomous-UX-Intelligence-Skills" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            UX-Content-Intelligence-Engine
+                        </span>
+                        <span class="os-tech-badge">Content AI Engine</span>
+                    </div>
                     <h4 class="opensource-title">UX Content Intelligence Engine (UCIE)</h4>
                     <p class="opensource-desc">An intelligent engine that bridges UX design and content strategy —
                         autonomously generating, evaluating, and refining user-facing content aligned with interface
                         context, cognitive load principles, and product goals.</p>
-                    <a href="https://github.com/venkateshcreations/UX-Content-Intelligence-Engine-UCIE-" target="_blank"
-                        class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                    <a href="https://github.com/venkateshcreations/UX-Content-Intelligence-Engine-UCIE-" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            Signature-Maker
+                        </span>
+                        <span class="os-tech-badge">Studio Pro Tool</span>
+                    </div>
                     <h4 class="opensource-title">Email Signature Maker — Studio Pro</h4>
                     <p class="opensource-desc">Email Signature Maker — Studio Pro is a premium, browser-based tool that
                         lets anyone create beautiful, professional email signatures in seconds — no login or server
                         required. It features a real-time split-pane interface with a dark Studio Pro builder on the
                         left and a live email client preview on the right, so every change is instantly visible.</p>
                     <a href="https://github.com/venkateshcreations/Signature-Maker" target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            PersonaForge
+                        </span>
+                        <span class="os-tech-badge">React + TypeScript</span>
+                    </div>
                     <h4 class="opensource-title">PersonaForge</h4>
                     <p class="opensource-desc">PersonaForge is an AI-powered persona creation and management tool built
                         with React, TypeScript, and Vite. It enables users to generate, build, and manage detailed user
-                        personas with features like AI generation, 50+ templates, version history, and export options.
-                        The app includes a dashboard, team library, side-by-side comparison, and presentation</p>
+                        personas with features like AI generation, 50+ templates, version history, and export options.</p>
                     <a href="https://github.com/venkateshcreations/PersonaForge" target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            idforge
+                        </span>
+                        <span class="os-tech-badge">Browser App</span>
+                    </div>
                     <h4 class="opensource-title">IDForge</h4>
                     <p class="opensource-desc">IDForge is a powerful, frontend-only web application for creating
                         professional digital ID cards with QR codes. Design, customize, and export beautiful ID cards
                         for employees, events, or personal use - all directly in your browser.</p>
                     <a href="https://github.com/venkateshcreations/idforge" target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
 
                 <div class="opensource-card">
+                    <div class="os-repo-meta">
+                        <span class="os-repo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            PLANNEX_AI
+                        </span>
+                        <span class="os-tech-badge">AI Project Planner</span>
+                    </div>
                     <h4 class="opensource-title">Plannex AI</h4>
                     <p class="opensource-desc">A modern, AI-powered project planning and management tool built with
                         React, TypeScript, and Tailwind CSS. Plannex AI helps teams manage features, tasks, sprints, and
                         roadmaps with integrated AI capabilities for risk assessment and task estimation.</p>
                     <a href="https://github.com/venkateshcreations/PLANNEX_AI" target="_blank" class="github-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        GitHub Repository
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub Repo
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- 2022-2025 Projects -->
-        <section class="year-section fade-in">
+        <section id="sec-wireframes" class="year-section fade-in">
+            <h2 class="section-title" style="margin-bottom: 24px;">Figma & Wireframe Prototypes <span class="section-count-badge">12</span></h2>
             <div class="year-header">
                 <span class="year-label">2022-2025</span>
             </div>
@@ -4247,6 +4863,110 @@
             window.addEventListener('resize', resize);
             resize();
             requestAnimationFrame(draw);
+        })();
+    </script>
+
+    <!-- Search & Sticky Subnav Script -->
+    <script>
+        (function() {
+            const searchInput = document.getElementById('projectSearchInput');
+            const clearBtn = document.getElementById('searchClearBtn');
+            const noResultsMsg = document.getElementById('no-results-msg');
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.subnav-link');
+
+            if (!searchInput) return;
+
+            // Instant Live Search Function
+            function filterProjects() {
+                const query = searchInput.value.trim().toLowerCase();
+                
+                if (query.length > 0) {
+                    clearBtn.classList.add('active');
+                } else {
+                    clearBtn.classList.remove('active');
+                }
+
+                let totalVisibleCards = 0;
+
+                sections.forEach(section => {
+                    const cards = section.querySelectorAll('.project-card, .opensource-card, .design-card');
+                    let visibleInSection = 0;
+
+                    cards.forEach(card => {
+                        const title = card.querySelector('h3, h4')?.textContent.toLowerCase() || '';
+                        const desc = card.querySelector('p, span')?.textContent.toLowerCase() || '';
+                        const links = Array.from(card.querySelectorAll('a')).map(a => a.textContent.toLowerCase()).join(' ');
+
+                        if (query === '' || title.includes(query) || desc.includes(query) || links.includes(query)) {
+                            card.style.display = '';
+                            visibleInSection++;
+                            totalVisibleCards++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Hide section if no cards match
+                    if (cards.length > 0) {
+                        if (visibleInSection === 0) {
+                            section.style.display = 'none';
+                        } else {
+                            section.style.display = '';
+                        }
+                    }
+                });
+
+                if (totalVisibleCards === 0 && query !== '') {
+                    noResultsMsg.style.display = 'block';
+                } else {
+                    noResultsMsg.style.display = 'none';
+                }
+            }
+
+            searchInput.addEventListener('input', filterProjects);
+            
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                filterProjects();
+                searchInput.focus();
+            });
+
+            // Smooth scroll for subnav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetEl = document.querySelector(targetId);
+                        if (targetEl) {
+                            const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 90;
+                            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Active section indicator on scroll
+            window.addEventListener('scroll', function() {
+                let currentSectionId = '';
+                sections.forEach(sec => {
+                    const rect = sec.getBoundingClientRect();
+                    if (rect.top <= 140 && rect.bottom >= 140) {
+                        currentSectionId = sec.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === '#' + currentSectionId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
         })();
     </script>
 </body>

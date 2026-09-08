@@ -1931,4 +1931,29 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* ══════════════════════════════════
+   ABOUT VIDEO SOUND TOGGLE LOGIC
+   ══════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const aboutVideo = document.getElementById('aboutVideo');
+  const videoSoundToggle = document.getElementById('videoSoundToggle');
+
+  if (aboutVideo && videoSoundToggle) {
+    videoSoundToggle.addEventListener('click', () => {
+      aboutVideo.muted = !aboutVideo.muted;
+      if (aboutVideo.muted) {
+        videoSoundToggle.classList.add('is-muted');
+        const textSpan = videoSoundToggle.querySelector('.sound-btn-text');
+        if (textSpan) textSpan.textContent = 'Muted';
+      } else {
+        videoSoundToggle.classList.remove('is-muted');
+        const textSpan = videoSoundToggle.querySelector('.sound-btn-text');
+        if (textSpan) textSpan.textContent = 'Sound ON';
+        aboutVideo.play().catch(() => {});
+      }
+    });
+  }
+});
+
+
 

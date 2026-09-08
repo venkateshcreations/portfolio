@@ -56,7 +56,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="styles.css?v=30" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -229,95 +229,74 @@
   </section>
 
   <!-- ─── ABOUT ─── -->
+  <!-- ─── ABOUT ─── -->
   <section id="about" class="about section-pad">
     <div class="section-divider"></div>
     <div class="container">
-      <div class="section-label reveal-fade">About Me</div>
-      <div class="about-grid">
-        <!-- Left: Text -->
-        <div class="about-text">
-          <h2 class="section-title reveal-up">Designing the Future<br />of Human–AI Interaction</h2>
-          <p class="about-lead reveal-up">I'm a senior UX design leader with 13+ years of experience crafting products
-            that sit at the intersection of human behaviour and intelligent systems.</p>
+      <div class="about-header text-center">
+        <div class="section-label reveal-fade">About Me</div>
+        <h2 class="section-title reveal-up">Designing the Future<br />of Human–AI Interaction</h2>
+        <p class="about-lead reveal-up">I'm a senior UX design leader with 13+ years of experience crafting products
+          that sit at the intersection of human behaviour and intelligent systems.</p>
+      </div>
 
-          <div class="about-specialities reveal-up">
-            <div class="speciality-item">
-              <div class="spec-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
-                </svg>
-              </div>
-              <div>
-                <h4>Product UX Architecture</h4>
-                <p>Structuring scalable, user-centred product experiences from first principles.</p>
-              </div>
-            </div>
-            <div class="speciality-item">
-              <div class="spec-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <div>
-                <h4>AI-first UX Systems</h4>
-                <p>Designing human-centred experiences for ML-driven and LLM-powered products.</p>
-              </div>
-            </div>
-            <div class="speciality-item">
-              <div class="spec-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 8v4l3 3" />
-                </svg>
-              </div>
-              <div>
-                <h4>Enterprise UX Platforms</h4>
-                <p>Leading design at scale across large organisations and complex ecosystems.</p>
-              </div>
-            </div>
-            <div class="speciality-item">
-              <div class="spec-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-              </div>
-              <div>
-                <h4>Agentic AI Experiences</h4>
-                <p>Pioneering UX frameworks for autonomous agents, co-pilots, and AI workflows.</p>
-              </div>
-            </div>
+      <!-- Centered HUD Video Showcase -->
+      <div class="about-visual reveal-fade" data-delay="0.2">
+        <div class="visual-wrapper">
+          <iframe id="aboutVideo" class="about-video" src="https://drive.google.com/file/d/17PmxKszoTubw6roGh719wiXX1KZxrKZI/preview" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
+          <div class="visual-glow"></div>
+        </div>
+      </div>
+
+      <!-- Speciality Cards (4 columns) -->
+      <div class="about-specialities reveal-up">
+        <div class="speciality-item">
+          <div class="spec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
           </div>
-
-          <div class="about-stats reveal-up">
-            <div class="stat"><span class="stat-number" data-count="13">0</span><span class="stat-plus">+</span><span
-                class="stat-label">Years</span></div>
-            <div class="stat"><span class="stat-number" data-count="30">0</span><span class="stat-plus">+</span><span
-                class="stat-label">Projects</span></div>
-            <div class="stat"><span class="stat-number" data-count="10">0</span><span class="stat-plus">+</span><span
-                class="stat-label">Enterprises</span></div>
+          <div>
+            <h4>Product UX Architecture</h4>
+            <p>Structuring scalable, user-centred product experiences from first principles.</p>
           </div>
         </div>
-
-        <!-- Right: Illustration -->
-        <div class="about-visual reveal-fade" data-delay="0.2">
-          <div class="visual-wrapper">
-            <video class="about-video" autoplay loop muted playsinline>
-              <source src="videoplayback.mp4" type="video/mp4">
-            </video>
-            <div class="visual-glow"></div>
-            <a href="https://videohive.net/item/hud-ui-pack-700/19326628" target="_blank" rel="noopener noreferrer"
-              class="video-credit">HUD UI Pack Credits</a>
-            <div class="visual-badge v-badge-1">
-              <span>AI-first</span>
-            </div>
-            <div class="visual-badge v-badge-2">
-              <span>13+ Yrs</span>
-            </div>
+        <div class="speciality-item">
+          <div class="spec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <div>
+            <h4>AI-first UX Systems</h4>
+            <p>Designing human-centred experiences for ML-driven and LLM-powered products.</p>
           </div>
         </div>
+        <div class="speciality-item">
+          <div class="spec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4l3 3" />
+            </svg>
+          </div>
+          <div>
+            <h4>Enterprise UX Platforms</h4>
+            <p>Leading design at scale across large organisations and complex ecosystems.</p>
+          </div>
+        </div>
+        <div class="speciality-item">
+          <div class="spec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <div>
+            <h4>Agentic AI Experiences</h4>
+            <p>Pioneering UX frameworks for autonomous agents, co-pilots, and AI workflows.</p>
+          </div>
       </div>
     </div>
   </section>
@@ -1686,7 +1665,7 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=19"></script>
 </body>
 
 </html>

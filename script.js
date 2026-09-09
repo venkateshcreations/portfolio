@@ -1184,7 +1184,7 @@ const projectData = {
   },
   13: {
     title: 'Enterprise Digital Banking Ecosystem',
-    role: 'UX Lead Architect',
+    role: 'Enterprise Data Vis Architect',
     image: 'images/project-13/1.png',
     images: ['images/project-13/1.png', 'images/project-13/2.png'],
     desc: 'An interactive, single-page visualization of an enterprise banking IT ecosystem built with **D3.js v7**. Displays 103 connected services across 9 domains with 6 chart types, real-time analytics, status tracking, and 13 power-user features.',
@@ -1194,7 +1194,7 @@ const projectData = {
   },
   14: {
     title: 'Digital Transformation Intelligence Hub',
-    role: 'UX Lead Architect',
+    role: 'Strategic UX Systems Lead',
     image: 'images/project-14/1.png',
     images: ['images/project-14/1.png'],
     desc: 'An interactive enterprise portfolio dashboard built with **D3.js v7** featuring 9 interconnected data visualizations that map GlobalTech Industries\' digital transformation journey from 2023 to 2027.',
@@ -1204,7 +1204,7 @@ const projectData = {
   },
   15: {
     title: 'GEC — Global Supply Chain Analytics Dashboard',
-    role: 'UX Lead Architect',
+    role: 'Analytics UX Architect',
     image: 'images/project-15/1.png',
     images: ['images/project-15/1.png'],
     desc: 'A portfolio-grade, single-page data visualization dashboard for **Global Electronics Corporation (GEC)**, built entirely with **D3.js v7**. Features 12 interactive sections covering the end-to-end supply chain from raw materials to retail.',
@@ -1214,7 +1214,7 @@ const projectData = {
   },
   16: {
     title: 'IntelliAssist AI - Product Lifecycle Dashboard',
-    role: 'UX Lead Architect',
+    role: 'AI Data Vis Architect',
     image: 'images/project-16/1.png',
     images: ['images/project-16/1.png'],
     desc: 'An interactive data visualization dashboard built with [ECharts](https://echarts.apache.org/) that maps the full AI product development lifecycle for **IntelliAssist AI**, an enterprise AI assistant platform.',
@@ -1224,7 +1224,7 @@ const projectData = {
   },
   17: {
     title: 'Enterprise Analytics Dashboard',
-    role: 'UX Lead Architect',
+    role: 'Lead Information Architect',
     image: 'images/project-17/1.png',
     images: ['images/project-17/1.png'],
     desc: 'An interactive startup ecosystem visualization dashboard for the fictional **FutureVerse Startup Ecosystem (2026)**. Built with a 3D force graph and rich charting to explore entities, funding flows, sector synergies, and predictive projections.',
@@ -1234,7 +1234,7 @@ const projectData = {
   },
   18: {
     title: 'Apex Global Enterprises — SOC Command Center',
-    role: 'UX Lead Architect',
+    role: 'Cybersecurity UX Director',
     image: 'images/project-18/1.png',
     images: ['images/project-18/1.png'],
     desc: 'A cybersecurity data visualization dashboard simulating a fictional multinational enterprise\'s Security Operations Center (SOC). Built with **Apache ECharts**, the dashboard provides real-time threat monitoring, attack path analysis, and enterprise-wide security posture visualization.',
@@ -1246,7 +1246,7 @@ const projectData = {
   /* ── DESIGN SYSTEMS ──────────────────────────────────── */
   19: {
     title: 'Design System-1',
-    role: 'Lead UX Architect',
+    role: 'Design System Architect',
     image: 'images/project-19/1.png',
     images: ['images/project-19/1.png'],
     desc: 'The Enterprise Digital Banking Design System is a complete UI framework purpose-built for visualizing complex banking ecosystems, service dependencies, and real-time system status. It provides 38 documented UI components, 58 design tokens, and a consistent motion language — all within a single, portable HTML file.',
@@ -1256,7 +1256,7 @@ const projectData = {
   },
   20: {
     title: 'Design System-2',
-    role: 'Lead UX Architect',
+    role: 'Head of Design Systems',
     image: 'images/project-20/1.png',
     images: ['images/project-20/1.png'],
     desc: 'This single-file HTML document serves as the canonical source of truth for product engineering teams building the GlobalTech Digital Transformation Hub. It documents every structural element, interactive component, animation protocol, data model, and usage instruction required to build and maintain the platform.',
@@ -1266,7 +1266,7 @@ const projectData = {
   },
   21: {
     title: 'Design System-3',
-    role: 'Lead UX Architect',
+    role: 'Principal UI Systems Lead',
     image: 'images/project-21/1.png',
     images: ['images/project-21/1.png'],
     desc: 'A comprehensive component library and design token system for building supply chain analytics interfaces. Features a dark-first theme with cyan (#22d3ee) and purple (#a78bfa) accents, light mode support, 12 documented components, D3.js chart integration patterns, and a lazy-initialized section routing system.',
@@ -1276,7 +1276,7 @@ const projectData = {
   },
   22: {
     title: 'Design System-4',
-    role: 'Lead UX Architect',
+    role: 'Security Design System Lead',
     image: 'images/project-22/1.png',
     images: ['images/project-22/1.png'],
     desc: 'A comprehensive reference for engineers, designers, and system integrators building on the Deepfake Defense program. This document covers every design token, component specification, layout pattern, and usage convention in the system. Use it as the source of truth for extending the site, building the Interactive Dashboard, or integrating detection signals into existing security tooling.',
@@ -1286,7 +1286,7 @@ const projectData = {
   },
   23: {
     title: 'Design System-5',
-    role: 'Lead UX Architect',
+    role: 'Design System Director',
     image: 'images/project-23/1.png',
     images: ['images/project-23/1.png'],
     desc: 'A comprehensive design system for the Radiostream live radio platform. Dark-themed, neon-accented, and built for real-time audio experiences. This reference documents all design tokens, components, and usage patterns.',
@@ -1296,7 +1296,7 @@ const projectData = {
   },
   24: {
     title: 'Design System-6',
-    role: 'Lead UX Architect',
+    role: 'Enterprise DS Architect',
     image: 'images/project-24/1.png',
     images: ['images/project-24/1.png'],
     desc: 'AXIOM embodies a dark cyber aesthetic — precise, technical, and authoritative. Every design decision prioritizes clarity in high-stakes environments. The system balances atmospheric immersion with functional readability, using neon accents against deep navy backgrounds to create interfaces that feel both advanced and trustworthy.',
@@ -1308,7 +1308,7 @@ const projectData = {
   /* ── USE CASES ───────────────────────────────────────── */
   25: {
     title: 'Enterprise Digital Banking Eco System',
-    role: 'Lead UX Architect',
+    role: 'FinTech UX Architect',
     image: 'images/usecases/usecase_1.png',
     images: ['images/usecases/usecase_1.png'],
     desc: 'An interactive visualization of an enterprise digital banking ecosystem mapping 100+ connected services across 9 business domains. Built with D3.js v7, it features real-time analytics, service status tracking, dependency flows, and power-user controls designed for banking architects and technology leaders.',
@@ -1317,7 +1317,7 @@ const projectData = {
   },
   26: {
     title: 'Digital Transformation Intelligence Hub',
-    role: 'Lead UX Architect',
+    role: 'Enterprise UX Director',
     image: 'images/usecases/usecase_2.png',
     images: ['images/usecases/usecase_2.png'],
     desc: 'An enterprise portfolio dashboard charting a complete digital transformation journey from 2023 to 2027. Features 9 interconnected D3.js visualizations covering investment flows, maturity roadmaps, and transformation KPIs — unified into a single strategic intelligence hub for decision makers.',
@@ -1326,7 +1326,7 @@ const projectData = {
   },
   27: {
     title: 'Deepfake Defence - 2026 Initiative',
-    role: 'Lead UX Architect',
+    role: 'AI Security UX Lead',
     image: 'images/usecases/usecase_3.png',
     images: ['images/usecases/usecase_3.png'],
     desc: 'A strategic initiative addressing deepfake threats as a board-level enterprise risk. Covers detection signals, threat landscape analysis, workforce training cadence, and a complete defense program framework for organization-wide synthetic media protection.',
@@ -1335,7 +1335,7 @@ const projectData = {
   },
   28: {
     title: 'APEX Global Enterprises',
-    role: 'Lead UX Architect',
+    role: 'Threat Intel UX Lead',
     image: 'images/usecases/usecase_4.png',
     images: ['images/usecases/usecase_4.png'],
     desc: 'A cybersecurity SOC command center delivering real-time threat monitoring for a multinational enterprise. Built with Apache ECharts, it provides live threat feeds, attack path analysis, and enterprise-wide security posture visualization for security operations teams.',
@@ -1344,7 +1344,7 @@ const projectData = {
   },
   29: {
     title: 'Radio Flow - Live Stations',
-    role: 'Lead UX Architect',
+    role: 'Live Media UX Director',
     image: 'images/usecases/usecase_5.png',
     images: ['images/usecases/usecase_5.png'],
     desc: 'A worldwide radio streaming platform experience featuring schedule management, live DJ shows, studio interactions, and listener engagement tools. Designed for seamless station discovery and immersive real-time audio experiences across all devices.',
@@ -1353,7 +1353,7 @@ const projectData = {
   },
   30: {
     title: 'Stream Verde - IPTV Live Channels',
-    role: 'Lead UX Architect',
+    role: 'OTT Platform UX Architect',
     image: 'images/usecases/usecase_6.png',
     images: ['images/usecases/usecase_6.png'],
     desc: 'A cloud-native IPTV platform concept delivering live channels, VOD, catch-up TV, and AI-powered recommendations. Designed for operator-grade content management with a seamless, engaging viewer experience across web and connected TV platforms.',
@@ -1364,7 +1364,7 @@ const projectData = {
   /* ── CASE STUDIES ────────────────────────────────────── */
   31: {
     title: 'Enterprise Digital Banking Eco System',
-    role: 'Lead UX Architect',
+    role: 'Principal UX Strategist',
     image: 'images/casestudies/casestudy_1.png',
     images: ['images/casestudies/casestudy_1.png'],
     desc: 'Comprehensive UX case study detailing the end-to-end transformation of an enterprise digital banking ecosystem mapping 100+ microservices across core financial domains.\nArchitected human-centered workflows, high-density data visualizations, and resilient component design systems to handle multi-tenant banking operations.\nDelivers actionable insights into service dependency mapping, real-time transaction telemetry, and executive decision-making frameworks.',
@@ -1373,7 +1373,7 @@ const projectData = {
   },
   32: {
     title: 'Digital Transformation Intelligence Hub',
-    role: 'Lead UX Architect',
+    role: 'Digital Transformation UX Lead',
     image: 'images/casestudies/casestudy_2.png',
     images: ['images/casestudies/casestudy_2.png'],
     desc: 'In-depth case study analyzing the UX design strategy for a centralized digital transformation platform unifying 9 strategic enterprise initiatives from 2023 to 2027.\nTranslates multi-dimensional portfolio metrics, funding flows, and technology adoption signals into intuitive interactive dashboard views.\nEstablishes executive alignment through progressive disclosure patterns, executive summary cards, and automated KPI tracking.',
@@ -1382,7 +1382,7 @@ const projectData = {
   },
   33: {
     title: 'Deepfake Defence - 2026 Initiative',
-    role: 'Lead UX Architect',
+    role: 'AI Risk UX Strategist',
     image: 'images/casestudies/casestudy_3.png',
     images: ['images/casestudies/casestudy_3.png'],
     desc: 'Strategic AI-UX case study exploring board-level risk mitigation interfaces for synthetic media threats and deepfake detection workflows.\nDefines human-in-the-loop verification patterns, incident escalation paths, and cognitive load reduction for security operations analysts.\nOutlines continuous threat modeling, real-time alert triage, and enterprise-wide defense protocol integration.',
@@ -1391,7 +1391,7 @@ const projectData = {
   },
   34: {
     title: 'APEX Global Enterprises',
-    role: 'Lead UX Architect',
+    role: 'SOC Operations UX Lead',
     image: 'images/casestudies/casestudy_4.png',
     images: ['images/casestudies/casestudy_4.png'],
     desc: 'UX case study on designing a high-stakes SOC Command Center for APEX Global Enterprises to monitor real-time cyber threats across global infrastructure.\nEngineered low-latency visual feeds, interactive attack surface maps, and contextual incident response workflows for security operations.\nOptimized dark-themed high-density telemetry dashboards to minimize operator fatigue and accelerate mean time to detect (MTTD).',
@@ -1400,7 +1400,7 @@ const projectData = {
   },
   35: {
     title: 'Radio Flow - Live Stations',
-    role: 'Lead UX Architect',
+    role: 'Streaming UX Strategist',
     image: 'images/casestudies/casestudy_5.png',
     images: ['images/casestudies/casestudy_5.png'],
     desc: 'User experience case study detailing the end-to-end product design of a next-generation worldwide live radio streaming platform.\nBlends real-time audio visualizers, interactive station schedules, DJ live interaction feeds, and social listening features into a seamless web app.\nFocuses on frictionless navigation, tactile media control interfaces, and adaptive audio streaming UX across mobile and desktop.',
@@ -1409,7 +1409,7 @@ const projectData = {
   },
   36: {
     title: 'Stream Verde - IPTV Live Channels',
-    role: 'Lead UX Architect',
+    role: 'Media Systems UX Lead',
     image: 'images/casestudies/casestudy_6.png',
     images: ['images/casestudies/casestudy_6.png'],
     desc: 'Comprehensive product design case study for a cloud-native IPTV platform delivering live streaming, VOD, and AI-driven recommendations.\nArchitected multi-screen layouts, EPG (Electronic Program Guide) grid systems, and intuitive channel discovery workflows.\nBalanced operator platform scalability with a premium, cinema-grade viewer experience across web and smart TV ecosystems.',

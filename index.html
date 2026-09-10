@@ -56,7 +56,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css?v=31" />
+  <link rel="stylesheet" href="styles.css?v=33" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -321,9 +321,8 @@
     <div class="container">
       <div class="section-label reveal-fade">Tools & Stack</div>
       <h2 class="section-title reveal-up">My Design-to-Dev<br /><span class="gradient-text">Handoff Arsenal</span></h2>
-      <p class="tools-intro reveal-up">A curated toolkit that bridges design intent and production code. From
-        pixel-perfect mockups in Figma to AI-assisted development with Claude and OpenCode — these tools accelerate the
-        entire design-to-dev lifecycle with precision and efficiency.</p>
+      <p class="tools-intro reveal-up">A curated toolkit that bridges design intent and production code. Accelerating
+        the entire design-to-dev lifecycle with precision, intelligent automation, and seamless execution.</p>
     </div>
 
     <div class="tools-marquee-wrapper reveal-fade">
@@ -401,7 +400,7 @@
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg></div>
         <h4>Design</h4>
-        <p>Figma, Adobe XD, Google Stitch for pixel-perfect mockups and design systems.</p>
+        <p>Crafting pixel-perfect mockups, interactive prototypes, and enterprise design systems.</p>
       </div>
       <div class="tools-divider"></div>
       <div class="tools-feature">
@@ -409,7 +408,7 @@
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
           </svg></div>
         <h4>AI Acceleration</h4>
-        <p>Claude, ChatGPT, Qwen for ideation, code generation, and intelligent automation.</p>
+        <p>Leveraging frontier AI models for rapid ideation, code generation, and intelligent automation.</p>
       </div>
       <div class="tools-divider"></div>
       <div class="tools-feature">
@@ -418,7 +417,7 @@
             <polyline points="8 6 2 12 8 18" />
           </svg></div>
         <h4>Development</h4>
-        <p>VSCode, Cursor, OpenCode, Windsurf for seamless code implementation.</p>
+        <p>Utilizing modern IDEs and intelligent pair-programming tools for seamless code implementation.</p>
       </div>
       <div class="tools-divider"></div>
       <div class="tools-feature">
@@ -428,7 +427,7 @@
             <line x1="12" y1="17" x2="12" y2="21" />
           </svg></div>
         <h4>Local Models</h4>
-        <p>Ollama, LM Studio for offline AI assistance and privacy-first workflows.</p>
+        <p>Deploying local LLMs and open-source models for offline AI assistance and privacy-first workflows.</p>
       </div>
     </div>
   </section>
@@ -1397,10 +1396,13 @@
       <div class="section-label reveal-fade">Contact</div>
       <div class="contact-grid">
         <div class="contact-left">
-          <h2 class="section-title reveal-up">Let's Create<br />Something<br /><span
-              class="gradient-text">Extraordinary</span></h2>
-          <p class="contact-lead reveal-up">Open to full-time remote contract roles, strategic UX consulting, AI design
-            advisory, and connecting engagements.</p>
+          <div class="hero-eyebrow reveal-fade" style="margin-bottom: 1.25rem;">
+            <span class="eyebrow-dot"></span>
+            <span>Available for Global Engagements</span>
+          </div>
+          <h2 class="section-title reveal-up">Let's Build the<br />Next Generation of<br /><span
+              class="gradient-text">Intelligent UX</span></h2>
+          <p class="contact-lead reveal-up">Available for strategic UX architecture, AI-first product leadership, enterprise platform transformations, and high-impact advisory engagements worldwide.</p>
 
           <div class="contact-links reveal-up">
             <a href="mailto:venkateshcreations@gmail.com" class="contact-link" id="emailLink">
@@ -1411,7 +1413,7 @@
                 </svg>
               </div>
               <div class="contact-link-info">
-                <span class="link-label">Email</span>
+                <span class="link-label">Direct Email</span>
                 <span class="link-value">venkateshcreations@gmail.com</span>
               </div>
               <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1430,7 +1432,7 @@
                 </svg>
               </div>
               <div class="contact-link-info">
-                <span class="link-label">LinkedIn</span>
+                <span class="link-label">Professional Network</span>
                 <span class="link-value">linkedin.com/in/venkateshammireddy</span>
               </div>
               <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1445,21 +1447,21 @@
           <form id="contactForm" class="contact-form" novalidate>
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="Enter Your Name" required />
+              <input type="text" id="name" name="name" placeholder="e.g. Alex Morgan" required />
               <span class="error-msg" id="nameError">Name is required</span>
             </div>
             <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="Enter Your Email" required />
+              <label for="email">Work Email</label>
+              <input type="email" id="email" name="email" placeholder="alex@company.com" required />
               <span class="error-msg" id="emailError">Please enter a valid email</span>
             </div>
             <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="Enter Your Subject" />
+              <label for="subject">Project Scope / Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="e.g. AI UX Architecture / Enterprise Consulting" />
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Enter Your Message" required></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your product goals, design system challenges, or collaboration opportunity..." required></textarea>
               <span class="error-msg" id="messageError">Message cannot be empty</span>
             </div>
             <button type="submit" class="btn-primary form-submit" id="submitBtn">
@@ -1470,7 +1472,7 @@
               </svg>
             </button>
             <div id="formSuccess" class="form-success" style="display:none;">
-              ✓ Message sent! I'll get back to you soon.
+              ✓ Message sent! I'll get back to you shortly.
             </div>
           </form>
         </div>

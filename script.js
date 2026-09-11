@@ -1247,7 +1247,7 @@ const projectData = {
 
   /* ── DESIGN SYSTEMS ──────────────────────────────────── */
   19: {
-    title: 'Design System-1',
+    title: 'Enterprise Digital Banking — Design System',
     role: 'Design System Architect',
     image: 'images/project-19/1.png',
     images: ['images/project-19/1.png'],
@@ -1257,7 +1257,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.html'
   },
   20: {
-    title: 'Design System-2',
+    title: 'Digital Transformation Intelligence Hub — Design System',
     role: 'Head of Design Systems',
     image: 'images/project-20/1.png',
     images: ['images/project-20/1.png'],
@@ -1267,7 +1267,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.html'
   },
   21: {
-    title: 'Design System-3',
+    title: 'Global Supply Chain Analytics — Design System',
     role: 'Principal UI Systems Lead',
     image: 'images/project-21/1.png',
     images: ['images/project-21/1.png'],
@@ -1277,7 +1277,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.html'
   },
   22: {
-    title: 'Design System-4',
+    title: 'Deepfake Defense 2026 Initiative — Design System',
     role: 'Security Design System Lead',
     image: 'images/project-22/1.png',
     images: ['images/project-22/1.png'],
@@ -1287,7 +1287,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/Designsystem-4_README.html'
   },
   23: {
-    title: 'Design System-5',
+    title: 'Radiostream Live Network — Design System',
     role: 'Design System Director',
     image: 'images/project-23/1.png',
     images: ['images/project-23/1.png'],
@@ -1297,7 +1297,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.html'
   },
   24: {
-    title: 'Design System-6',
+    title: 'AXIOM Cyber Defense — Design System',
     role: 'Enterprise DS Architect',
     image: 'images/project-24/1.png',
     images: ['images/project-24/1.png'],

@@ -56,7 +56,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css?v=33" />
+  <link rel="stylesheet" href="styles.css?v=34" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -732,6 +732,14 @@
           </svg>
           <span>Design Systems</span>
         </button>
+        <button class="portfolio-tab" id="tab-wireframes" role="tab" aria-selected="false" aria-controls="panel-wireframes"
+          data-tab="wireframes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 3h18v18H3z" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span>Wireframes</span>
+        </button>
         <button class="portfolio-tab" id="tab-usecases" role="tab" aria-selected="false" aria-controls="panel-usecases"
           data-tab="usecases">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -1171,6 +1179,109 @@
         </div>
       </div><!-- /panel-designsystems -->
 
+      <!-- ─── WIREFRAMES PANEL ─── -->
+      <div class="portfolio-panel" id="panel-wireframes" role="tabpanel" aria-labelledby="tab-wireframes">
+        <div class="portfolio-grid">
+
+          <div class="project-card reveal-up" data-delay="0" data-project="37">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/bankingecosystem_wireframes.png" alt="Enterprise Digital Banking Eco System" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="37">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Enterprise Digital Banking Eco System</h3>
+              <div class="card-meta">
+                <span class="card-role">FinTech UX Architect</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.1" data-project="38">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/deepfakedefence_wireframes.png" alt="Deepfake Defense - 2026 Initiative" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="38">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Deepfake Defense - 2026 Initiative</h3>
+              <div class="card-meta">
+                <span class="card-role">Enterprise UX Director</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.2" data-project="39">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/orbita_wireframes.png" alt="ORBITA - Next-Gen Space Communications" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="39">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">ORBITA - Next-Gen Space Communications</h3>
+              <div class="card-meta">
+                <span class="card-role">UX Lead – Frontend Designer</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.05" data-project="40">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/radiostream_wireframes.png" alt="SteamVerde - Online Streaming Platform" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="40">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">SteamVerde - Online Streaming Platform</h3>
+              <div class="card-meta">
+                <span class="card-role">Live Media UX Director</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.15" data-project="41">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/schoolapp_wireframes.png" alt="EduCore - School Mgmt. Software" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="41">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">EduCore - School Mgmt. Software</h3>
+              <div class="card-meta">
+                <span class="card-role">Lead UX Director</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal-up" data-delay="0.25" data-project="42">
+            <div class="card-image-wrap">
+              <img src="images/wireframes/transformationhub_wireframes.png" alt="Digital Transformation Intelligence Hub" class="card-img" loading="lazy" />
+              <div class="card-overlay">
+                <button class="card-preview-btn" data-project="42">View Project</button>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">Digital Transformation Intelligence Hub</h3>
+              <div class="card-meta">
+                <span class="card-role">Strategic UX Systems Lead</span>
+                <span class="card-year">2026</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /panel-wireframes -->
+
       <!-- ─── USE CASES PANEL ─── -->
       <div class="portfolio-panel" id="panel-usecases" role="tabpanel" aria-labelledby="tab-usecases">
         <div class="portfolio-grid">
@@ -1564,7 +1675,14 @@
               </svg>
             </a>
             <a href="#" id="modalLiveLink" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
-              <span>View Live</span>
+              <span id="modalLiveLinkText">View Live</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+            <a href="#" id="modalLiveLink2" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm" style="display: none;">
+              <span id="modalLiveLink2Text">View Live 2</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
@@ -1681,7 +1799,7 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=23"></script>
 </body>
 
 </html>

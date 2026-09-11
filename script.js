@@ -1066,7 +1066,7 @@ const projectData = {
     image: 'images/project-1/1.png',
     images: ['images/project-1/1.png', 'images/project-1/2.png', 'images/project-1/3.png', 'images/project-1/4.png'],
     desc: 'AI-Powered Project Management & Issue Tracking System - A world-class, production-ready frontend application inspired by Jira, built with React, Tailwind CSS, and AI integration. Featuring real-time drag-and-drop Kanban boards, sprint management, analytics, automation, and AI-powered features.',
-    tags: ['UX Architecture', 'Front-End Development', 'Enterprise UX'],
+    tags: ['AI Project Mgmt', 'Kanban UX', 'React & Tailwind'],
     url: 'https://flowtrackai.netlify.app/',
     docUrl: 'FlowTrack_AI_IA_Flow_Map.html'
   },
@@ -1076,7 +1076,7 @@ const projectData = {
     image: 'images/project-2/1.png',
     images: ['images/project-2/1.png', 'images/project-2/2.png', 'images/project-2/3.png'],
     desc: 'Understanding the technology behind synthetic media is the first step in defending against it. Deepfakes leverage deep neural networks—primarily Generative Adversarial Networks (GANs) and Diffusion Models—to synthesize hyper-realistic content.',
-    tags: ['UX Architecture', 'Enterprise UX'],
+    tags: ['AI Security UX', 'Deepfake Detection', 'Threat Analytics'],
     url: 'https://deepfakedefence-dashboard.vercel.app/',
     docUrl: 'deepfake-defense-ia-diagrams.html'
   },
@@ -1086,7 +1086,7 @@ const projectData = {
     image: 'images/project-3/1.png',
     images: ['images/project-3/1.png'],
     desc: 'Radiostream is a Online Radio stations live streaming platform. It has schedule management, live streaming, Radio Shows, Live DJ announcements, Dj Studio, and listener engagement features. I led the UX strategy, component library development to ensure a cohesive and intuitive user experience across the platform.',
-    tags: ['UX Strategy', 'React', 'Component Library', 'Documentation'],
+    tags: ['Live Audio Streaming', 'Radio Network UX', 'Component Library'],
     url: 'https://radioflowlive.netlify.app/',
     docUrl: 'radiostream-information-architecture.html'
   },
@@ -1096,7 +1096,7 @@ const projectData = {
     image: 'images/project-4/1.png',
     images: ['images/project-4/1.png'],
     desc: 'Develop a modern, scalable, cloud-ready School Management Software (SMS) tailored for Indian schools (CBSE, ICSE, State Boards). The system should centralize academic, administrative, financial, and communication workflows.',
-    tags: ['Agentic AI', 'Conversational UX', 'Prototyping'],
+    tags: ['School Mgmt System', 'EdTech UX', 'Multi-Role Workflows'],
     url: 'https://schoolmgmtapp.vercel.app/',
     docUrl: 'educore_sms.html'
   },
@@ -1106,7 +1106,7 @@ const projectData = {
     image: 'images/project-5/1.png',
     images: ['images/project-5/1.png'],
     desc: 'comprehensive military command dashboard built with React and Vite. It provides real-time situational awareness through an interactive interface featuring tactical maps, surveillance feeds, intelligence updates, and mission planning tools.',
-    tags: ['UX Design', 'Prototype', 'Frontend'],
+    tags: ['Military Intel UX', 'Tactical Telemetry', 'Situational Awareness'],
     url: 'https://armycommandointel.netlify.app/',
     docUrl: 'ACIS.html'
   },
@@ -1116,7 +1116,7 @@ const projectData = {
     image: 'images/project-6/1.png',
     images: ['images/project-6/1.png'],
     desc: 'A cloud-native OTT/IPTV platform delivering Live TV, VOD, Catch-up TV, Cloud DVR, AI-powered recommendations, and full operator management. Built as a complete SaaS/OTT/Middleware solution for subscribers, and content providers. I led the UX strategy, prototyping, and design system creation to ensure a seamless and engaging user experience across web and mobile platforms.',
-    tags: ['UX Prototyping', 'Front-End Design', 'Content Strategy'],
+    tags: ['IPTV & OTT Platform', 'Cloud DVR UX', 'Media Streaming'],
     url: 'https://streamverde.netlify.app/',
     docUrl: 'StreamVerde_IA.html'
   },
@@ -1128,7 +1128,7 @@ const projectData = {
     image: 'images/project-7/1.png',
     images: ['images/project-7/1.png'],
     desc: 'VOXAR transforms written scripts into studio-quality videos with photorealistic avatars and 140+ voice clones — in minutes, not months.',
-    tags: ['Web Design', 'UX', 'Frontend'],
+    tags: ['AI Video Generation', 'Avatar Synthesizer', 'SaaS Landing Page'],
     url: 'https://venkateshcreations.github.io/VOXAR-AI/',
     docUrl: 'https://venkateshcreations.github.io/VOXAR-AI/VOXAR_AI_FEATURES_AND_EXPERIENCE.html'
   },
@@ -1138,7 +1138,7 @@ const projectData = {
     image: 'images/project-8/1.png',
     images: ['images/project-8/1.png'],
     desc: 'Secure Finance vault with advanced encryption and access controls, booting financial operations, optimizing spend protocols, with system terminal control.',
-    tags: ['Branding', 'UI Design', 'Creative Frontend'],
+    tags: ['FinTech Vault UX', 'Terminal Interface', 'Encryption Ops'],
     url: 'https://venkateshcreations.github.io/Zippo.SYS/',
     docUrl: 'https://venkateshcreations.github.io/Zippo.SYS/Zippo_sys_WEBSITE_FEATURES_AND_EXPERIENCE.html'
   },
@@ -1148,7 +1148,7 @@ const projectData = {
     image: 'images/project-9/1.png',
     images: ['images/project-9/1.png', 'images/project-9/2.png'],
     desc: 'A full-styled, client-side cybersecurity dashboard and marketing website for a fictional autonomous AI-driven security platform called **AXIOM**.',
-    tags: ['Dashboard UX', 'App UX Design', 'Frontend Development'],
+    tags: ['Autonomous Cyber Defense', 'AI Threat Response', 'Dark Cyber UI'],
     url: 'https://venkateshcreations.github.io/AXIOM/',
     docUrl: 'https://venkateshcreations.github.io/AXIOM/AXIOM_README.html'
   },
@@ -1158,7 +1158,7 @@ const projectData = {
     image: 'images/project-10/1.png',
     images: ['images/project-10/1.png', 'images/project-10/2.png'],
     desc: 'A sovereign constellation of satellites delivering ultra-low latency broadband, precision telemetry, and secure inter-agency communications across every orbital regime.',
-    tags: ['Frontend Development', 'UI Design', 'UX Lead'],
+    tags: ['Space Communications', 'Satellite Telemetry', 'Aerospace UX'],
     url: 'https://venkateshcreations.github.io/ORBITA/',
     docUrl: 'https://venkateshcreations.github.io/ORBITA/ORBITA_README.html'
   },
@@ -1168,7 +1168,7 @@ const projectData = {
     image: 'images/project-11/1.png',
     images: ['images/project-11/1.png', 'images/project-11/2.png', 'images/project-11/3.png'],
     desc: 'Deepfakes are synthetic media created using artificial intelligence - audio voice clones, video face-swaps, and fabricated images/documents. The technology has crossed from novelty to a **board-level risk**.',
-    tags: ['AI UX Design', 'Content Strategy', 'UX Writing'],
+    tags: ['Synthetic Media Defense', 'Risk Framework', 'Enterprise Security'],
     url: 'https://deepfake-defence.vercel.app/',
     docUrl: 'https://deepfake-defence.vercel.app/Deepfake_Defense_Program_Guide.html'
   },
@@ -1178,17 +1178,19 @@ const projectData = {
     image: 'images/project-12/1.png',
     images: ['images/project-12/1.png'],
     desc: 'Direct operational control for analytical power users. Raw performance metrics delivered via proprietary recursive engine. Zero abstraction layer. Optimized for 100% throughput efficiency.',
-    tags: ['Portfolio Site', 'Motion Design', 'GSAP'],
+    tags: ['Analytics Engine', 'High-Throughput Dashboard', 'Power-User UX'],
     url: 'https://venkateshcreations.github.io/Autofy/',
     docUrl: 'https://venkateshcreations.github.io/Autofy/Autofy_FEATURES_AND_EXPERIENCE.html'
   },
+
+  /* ── DATA VISUALIZATION ───────────────────────────────── */
   13: {
     title: 'Enterprise Digital Banking Ecosystem',
     role: 'Enterprise Data Vis Architect',
     image: 'images/project-13/1.png',
     images: ['images/project-13/1.png', 'images/project-13/2.png'],
     desc: 'An interactive, single-page visualization of an enterprise banking IT ecosystem built with **D3.js v7**. Displays 103 connected services across 9 domains with 6 chart types, real-time analytics, status tracking, and 13 power-user features.',
-    tags: ['UX Architecture', 'Front-End', 'UX Design'],
+    tags: ['D3.js Visualization', 'Banking IT Ecosystem', '100+ Microservices'],
     url: 'https://venkateshcreations.github.io/DataVisualization-1/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-1/doc.html'
   },
@@ -1198,7 +1200,7 @@ const projectData = {
     image: 'images/project-14/1.png',
     images: ['images/project-14/1.png'],
     desc: 'An interactive enterprise portfolio dashboard built with **D3.js v7** featuring 9 interconnected data visualizations that map GlobalTech Industries\' digital transformation journey from 2023 to 2027.',
-    tags: ['UX Design', 'Frontend Design', 'Mapping'],
+    tags: ['D3.js Enterprise Hub', 'Transformation Roadmap', 'Multi-Chart Matrix'],
     url: 'https://venkateshcreations.github.io/DataVisualization-2/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-2/doc.html'
   },
@@ -1208,7 +1210,7 @@ const projectData = {
     image: 'images/project-15/1.png',
     images: ['images/project-15/1.png'],
     desc: 'A portfolio-grade, single-page data visualization dashboard for **Global Electronics Corporation (GEC)**, built entirely with **D3.js v7**. Features 12 interactive sections covering the end-to-end supply chain from raw materials to retail.',
-    tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
+    tags: ['Supply Chain Telemetry', 'D3.js Data Flow', 'End-to-End Logistics'],
     url: 'https://venkateshcreations.github.io/DataVisualization-3/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-3/doc.html'
   },
@@ -1218,7 +1220,7 @@ const projectData = {
     image: 'images/project-16/1.png',
     images: ['images/project-16/1.png'],
     desc: 'An interactive data visualization dashboard built with [ECharts](https://echarts.apache.org/) that maps the full AI product development lifecycle for **IntelliAssist AI**, an enterprise AI assistant platform.',
-    tags: ['UX Architecture', 'Front-End', 'UX Design'],
+    tags: ['ECharts Integration', 'AI Product Lifecycle', 'Predictive Analytics'],
     url: 'https://venkateshcreations.github.io/DataVisualization-4/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-4/doc.html'
   },
@@ -1228,7 +1230,7 @@ const projectData = {
     image: 'images/project-17/1.png',
     images: ['images/project-17/1.png'],
     desc: 'An interactive startup ecosystem visualization dashboard for the fictional **FutureVerse Startup Ecosystem (2026)**. Built with a 3D force graph and rich charting to explore entities, funding flows, sector synergies, and predictive projections.',
-    tags: ['UX Design', 'Frontend Design', 'Mapping'],
+    tags: ['3D Force Graph', 'Startup Ecosystem', 'Investment Flows'],
     url: 'https://venkateshcreations.github.io/DataVisualization-5/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-5/doc.html'
   },
@@ -1238,7 +1240,7 @@ const projectData = {
     image: 'images/project-18/1.png',
     images: ['images/project-18/1.png'],
     desc: 'A cybersecurity data visualization dashboard simulating a fictional multinational enterprise\'s Security Operations Center (SOC). Built with **Apache ECharts**, the dashboard provides real-time threat monitoring, attack path analysis, and enterprise-wide security posture visualization.',
-    tags: ['UX Architecture', 'Frontend Design', 'UX Designing'],
+    tags: ['SOC Command Center', 'Apache ECharts', 'Real-Time Threat Telemetry'],
     url: 'https://venkateshcreations.github.io/DataVisualization-6/',
     docUrl: 'https://venkateshcreations.github.io/DataVisualization-6/doc.html'
   },
@@ -1250,7 +1252,7 @@ const projectData = {
     image: 'images/project-19/1.png',
     images: ['images/project-19/1.png'],
     desc: 'The Enterprise Digital Banking Design System is a complete UI framework purpose-built for visualizing complex banking ecosystems, service dependencies, and real-time system status. It provides 38 documented UI components, 58 design tokens, and a consistent motion language — all within a single, portable HTML file.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['Banking DS Architecture', '38 UI Components', '58 Design Tokens'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-1_README.html'
   },
@@ -1260,7 +1262,7 @@ const projectData = {
     image: 'images/project-20/1.png',
     images: ['images/project-20/1.png'],
     desc: 'This single-file HTML document serves as the canonical source of truth for product engineering teams building the GlobalTech Digital Transformation Hub. It documents every structural element, interactive component, animation protocol, data model, and usage instruction required to build and maintain the platform.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['Digital Transformation DS', 'Single-File System', 'Component Governance'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-2_README.html'
   },
@@ -1270,7 +1272,7 @@ const projectData = {
     image: 'images/project-21/1.png',
     images: ['images/project-21/1.png'],
     desc: 'A comprehensive component library and design token system for building supply chain analytics interfaces. Features a dark-first theme with cyan (#22d3ee) and purple (#a78bfa) accents, light mode support, 12 documented components, D3.js chart integration patterns, and a lazy-initialized section routing system.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['Supply Chain DS', 'Cyan & Purple Palette', 'D3.js Chart Patterns'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-3_README.html'
   },
@@ -1280,7 +1282,7 @@ const projectData = {
     image: 'images/project-22/1.png',
     images: ['images/project-22/1.png'],
     desc: 'A comprehensive reference for engineers, designers, and system integrators building on the Deepfake Defense program. This document covers every design token, component specification, layout pattern, and usage convention in the system. Use it as the source of truth for extending the site, building the Interactive Dashboard, or integrating detection signals into existing security tooling.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['Deepfake Defense DS', 'AI Risk Token System', 'Security Component Specs'],
     url: 'https://venkateshcreations.github.io/DFD-Design-System/',
     docUrl: 'https://venkateshcreations.github.io/DFD-Design-System/Designsystem-4_README.html'
   },
@@ -1290,7 +1292,7 @@ const projectData = {
     image: 'images/project-23/1.png',
     images: ['images/project-23/1.png'],
     desc: 'A comprehensive design system for the Radiostream live radio platform. Dark-themed, neon-accented, and built for real-time audio experiences. This reference documents all design tokens, components, and usage patterns.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['Radiostream Live DS', 'Neon Audio Palette', 'Real-Time Streaming UI'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-5_README.html'
   },
@@ -1300,9 +1302,68 @@ const projectData = {
     image: 'images/project-24/1.png',
     images: ['images/project-24/1.png'],
     desc: 'AXIOM embodies a dark cyber aesthetic — precise, technical, and authoritative. Every design decision prioritizes clarity in high-stakes environments. The system balances atmospheric immersion with functional readability, using neon accents against deep navy backgrounds to create interfaces that feel both advanced and trustworthy.',
-    tags: ['UX Architect', 'Frontend Design', 'UX Design'],
+    tags: ['AXIOM Cyber DS', 'Dark Cyber Aesthetic', 'High-Stakes Telemetry UI'],
     url: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6.html',
     docUrl: 'https://venkateshcreations.github.io/DesignSystems/designsystem-6_README.html'
+  },
+
+  /* ── WIREFRAMES ──────────────────────────────────────── */
+  37: {
+    title: 'Enterprise Digital Banking Eco System',
+    role: 'FinTech UX Architect',
+    image: 'images/wireframes/bankingecosystem_wireframes.png',
+    images: ['images/wireframes/bankingecosystem_wireframes.png'],
+    desc: 'Comprehensive structural wireframes mapping an enterprise digital banking ecosystem across 100+ microservices and 9 financial domains.\nArchitected clear visual hierarchy, multi-tenant navigation patterns, real-time transaction flows, and modular layout blueprints.\nServes as the foundational UX blueprint for high-density financial platforms, ensuring seamless scalability and operational clarity.',
+    tags: ['Banking Ecosystem Wireframes', 'Multi-Tenant Blueprints', 'Structural FinTech UX'],
+    url: 'https://venkateshcreations.github.io/Wireframes/BankingEcoSystemVisualization-wireframes.html'
+  },
+  38: {
+    title: 'Deepfake Defense - 2026 Initiative',
+    role: 'Enterprise UX Director',
+    image: 'images/wireframes/deepfakedefence_wireframes.png',
+    images: ['images/wireframes/deepfakedefence_wireframes.png'],
+    desc: 'Architectural wireframes and structural layouts for an enterprise-grade AI threat intelligence and deepfake defense platform.\nDefines low-latency incident triage workflows, multi-modal signal detection interfaces, and executive risk assessment dashboards.\nEstablishes human-in-the-loop verification wireframes to streamline synthetic media threat response for security teams.',
+    tags: ['Deepfake Defense Wireframes', 'Incident Triage Flow', 'AI Threat Blueprint'],
+    url: 'https://venkateshcreations.github.io/Wireframes/DeepFakeWebsite-wireframes.html',
+    urlLabel: 'View Live 1',
+    url2: 'https://venkateshcreations.github.io/Wireframes/DeepFakeDefenceDashboard-wireframes.html',
+    url2Label: 'View Live 2'
+  },
+  39: {
+    title: 'ORBITA - Next-Gen Space Communications',
+    role: 'UX Lead – Frontend Designer',
+    image: 'images/wireframes/orbita_wireframes.png',
+    images: ['images/wireframes/orbita_wireframes.png'],
+    desc: 'Low-fidelity wireframes and interaction flows for ORBITA, a next-generation space communications telemetry platform.\nFeatures structural layouts for real-time orbital tracking, satellite link status monitoring, and deep-space telemetry panels.\nDesigned with an information-dense yet intuitive visual layout to support mission-critical aerospace operations.',
+    tags: ['Aerospace Wireframes', 'Satellite Telemetry Flow', 'Space Comms Wireframes'],
+    url: 'https://venkateshcreations.github.io/Wireframes/Orbita-wireframes.html'
+  },
+  40: {
+    title: 'SteamVerde - Online Streaming Platform',
+    role: 'Live Media UX Director',
+    image: 'images/wireframes/radiostream_wireframes.png',
+    images: ['images/wireframes/radiostream_wireframes.png'],
+    desc: 'Comprehensive structural wireframes for SteamVerde, a high-performance live media and digital audio streaming platform.\nMaps out layout patterns for live channel browsing, interactive station schedules, DJ broadcast feeds, and player controls.\nPrioritizes frictionless content discovery and tactile playback controls across both web and mobile viewports.',
+    tags: ['Streaming Platform Wireframes', 'EPG Grid Blueprint', 'Audio Interaction Flow'],
+    url: 'https://venkateshcreations.github.io/Wireframes/RadioStream-wireframes.html'
+  },
+  41: {
+    title: 'EduCore - School Mgmt. Software',
+    role: 'Lead UX Director',
+    image: 'images/wireframes/schoolapp_wireframes.png',
+    images: ['images/wireframes/schoolapp_wireframes.png'],
+    desc: 'Enterprise Wireframe architecture for EduCore, an integrated school administration and learning management ecosystem.\nLays out multi-role dashboard views for administrators, educators, students, and parents with contextual navigation.\nStreamlines complex academic workflows including grade tracking, attendance monitoring, class scheduling, and fee management.',
+    tags: ['School Mgmt Wireframes', 'Multi-Role Admin Blueprint', 'Academic Workflow UX'],
+    url: 'https://venkateshcreations.github.io/Wireframes/SchoolApp-wireframes.html'
+  },
+  42: {
+    title: 'Digital Transformation Intelligence Hub',
+    role: 'Strategic UX Systems Lead',
+    image: 'images/wireframes/transformationhub_wireframes.png',
+    images: ['images/wireframes/transformationhub_wireframes.png'],
+    desc: 'Strategic UX wireframes outlining a centralized digital transformation platform monitoring 5-year enterprise tech roadmaps.\nStructures complex portfolio metrics, funding allocation views, and technology maturity matrices into clear dashboard wireframes.\nEnables executive decision-making through high-level KPI summaries and drill-down analytical wireframe layouts.',
+    tags: ['Transformation Hub Wireframes', '5-Year Tech Roadmap', 'Strategic Portfolio Blueprint'],
+    url: 'https://venkateshcreations.github.io/Wireframes/TransformationHub-wireframes.html'
   },
 
   /* ── USE CASES ───────────────────────────────────────── */
@@ -1312,7 +1373,7 @@ const projectData = {
     image: 'images/usecases/usecase_1.png',
     images: ['images/usecases/usecase_1.png'],
     desc: 'An interactive visualization of an enterprise digital banking ecosystem mapping 100+ connected services across 9 business domains. Built with D3.js v7, it features real-time analytics, service status tracking, dependency flows, and power-user controls designed for banking architects and technology leaders.',
-    tags: ['UX Architecture', 'Enterprise UX', 'Data Visualization'],
+    tags: ['FinTech Architecture', 'Microservice Ecosystem', 'Executive Strategy'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_1.html'
   },
   26: {
@@ -1321,7 +1382,7 @@ const projectData = {
     image: 'images/usecases/usecase_2.png',
     images: ['images/usecases/usecase_2.png'],
     desc: 'An enterprise portfolio dashboard charting a complete digital transformation journey from 2023 to 2027. Features 9 interconnected D3.js visualizations covering investment flows, maturity roadmaps, and transformation KPIs — unified into a single strategic intelligence hub for decision makers.',
-    tags: ['UX Architecture', 'Data Visualization', 'Enterprise UX'],
+    tags: ['Strategic Transformation', 'Enterprise Portfolio', 'Investment Alignment'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_2.html'
   },
   27: {
@@ -1330,7 +1391,7 @@ const projectData = {
     image: 'images/usecases/usecase_3.png',
     images: ['images/usecases/usecase_3.png'],
     desc: 'A strategic initiative addressing deepfake threats as a board-level enterprise risk. Covers detection signals, threat landscape analysis, workforce training cadence, and a complete defense program framework for organization-wide synthetic media protection.',
-    tags: ['AI UX Design', 'UX Architecture', 'Content Strategy'],
+    tags: ['Synthetic Media Risk', 'Board-Level Security', 'Defense Cadence'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_3.html'
   },
   28: {
@@ -1339,7 +1400,7 @@ const projectData = {
     image: 'images/usecases/usecase_4.png',
     images: ['images/usecases/usecase_4.png'],
     desc: 'A cybersecurity SOC command center delivering real-time threat monitoring for a multinational enterprise. Built with Apache ECharts, it provides live threat feeds, attack path analysis, and enterprise-wide security posture visualization for security operations teams.',
-    tags: ['Dashboard UX', 'Enterprise UX', 'Data Visualization'],
+    tags: ['SOC Telemetry UX', 'Threat Surface Mapping', 'SecOps Incident Response'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_4.html'
   },
   29: {
@@ -1348,7 +1409,7 @@ const projectData = {
     image: 'images/usecases/usecase_5.png',
     images: ['images/usecases/usecase_5.png'],
     desc: 'A worldwide radio streaming platform experience featuring schedule management, live DJ shows, studio interactions, and listener engagement tools. Designed for seamless station discovery and immersive real-time audio experiences across all devices.',
-    tags: ['UX Strategy', 'Product Design', 'Real-time UX'],
+    tags: ['Live Audio Infrastructure', 'Broadcast Scheduling', 'Listener Engagement'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_5.html'
   },
   30: {
@@ -1357,7 +1418,7 @@ const projectData = {
     image: 'images/usecases/usecase_6.png',
     images: ['images/usecases/usecase_6.png'],
     desc: 'A cloud-native IPTV platform concept delivering live channels, VOD, catch-up TV, and AI-powered recommendations. Designed for operator-grade content management with a seamless, engaging viewer experience across web and connected TV platforms.',
-    tags: ['UX Strategy', 'OTT/IPTV', 'Product Design'],
+    tags: ['Cloud IPTV Strategy', 'Operator Middleware', 'VOD Ecosystem'],
     url: 'https://venkateshcreations.github.io/Use-Cases/usecase_6.html'
   },
 
@@ -1368,7 +1429,7 @@ const projectData = {
     image: 'images/casestudies/casestudy_1.png',
     images: ['images/casestudies/casestudy_1.png'],
     desc: 'Comprehensive UX case study detailing the end-to-end transformation of an enterprise digital banking ecosystem mapping 100+ microservices across core financial domains.\nArchitected human-centered workflows, high-density data visualizations, and resilient component design systems to handle multi-tenant banking operations.\nDelivers actionable insights into service dependency mapping, real-time transaction telemetry, and executive decision-making frameworks.',
-    tags: ['UX Architecture', 'Enterprise UX', 'Case Study'],
+    tags: ['FinTech Case Study', 'Multi-Tenant Systems', '100+ Microservice Map'],
     url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_1.html'
   },
   32: {
@@ -1377,7 +1438,7 @@ const projectData = {
     image: 'images/casestudies/casestudy_2.png',
     images: ['images/casestudies/casestudy_2.png'],
     desc: 'In-depth case study analyzing the UX design strategy for a centralized digital transformation platform unifying 9 strategic enterprise initiatives from 2023 to 2027.\nTranslates multi-dimensional portfolio metrics, funding flows, and technology adoption signals into intuitive interactive dashboard views.\nEstablishes executive alignment through progressive disclosure patterns, executive summary cards, and automated KPI tracking.',
-    tags: ['UX Strategy', 'Enterprise UX', 'Case Study'],
+    tags: ['Transformation Case Study', '9 Strategic Initiatives', '5-Year Metric Tracking'],
     url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_2.html'
   },
   33: {
@@ -1386,7 +1447,7 @@ const projectData = {
     image: 'images/casestudies/casestudy_3.png',
     images: ['images/casestudies/casestudy_3.png'],
     desc: 'Strategic AI-UX case study exploring board-level risk mitigation interfaces for synthetic media threats and deepfake detection workflows.\nDefines human-in-the-loop verification patterns, incident escalation paths, and cognitive load reduction for security operations analysts.\nOutlines continuous threat modeling, real-time alert triage, and enterprise-wide defense protocol integration.',
-    tags: ['AI UX Design', 'Cybersecurity UX', 'Case Study'],
+    tags: ['AI Security Case Study', 'Human-in-the-Loop', 'Synthetic Threat Mitigation'],
     url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_3.html'
   },
   34: {
@@ -1395,7 +1456,7 @@ const projectData = {
     image: 'images/casestudies/casestudy_4.png',
     images: ['images/casestudies/casestudy_4.png'],
     desc: 'UX case study on designing a high-stakes SOC Command Center for APEX Global Enterprises to monitor real-time cyber threats across global infrastructure.\nEngineered low-latency visual feeds, interactive attack surface maps, and contextual incident response workflows for security operations.\nOptimized dark-themed high-density telemetry dashboards to minimize operator fatigue and accelerate mean time to detect (MTTD).',
-    tags: ['SOC UX', 'Enterprise Platform', 'Case Study'],
+    tags: ['SOC Command Case Study', 'Low-Latency Telemetry', 'MTTD Optimization'],
     url: 'https://venkateshcreations.github.io/Case-Studies/casestudy_4.html'
   },
   35: {
@@ -1464,6 +1525,9 @@ const modalRole = document.getElementById('modalRole');
 const modalDesc = document.getElementById('modalDesc');
 const modalTagsEl = document.getElementById('modalTags');
 const modalLiveLink = document.getElementById('modalLiveLink');
+const modalLiveLink2 = document.getElementById('modalLiveLink2');
+const modalLiveLinkText = document.getElementById('modalLiveLinkText');
+const modalLiveLink2Text = document.getElementById('modalLiveLink2Text');
 const modalDocLink = document.getElementById('modalDocLink');
 
 const sliderControls = document.getElementById('sliderControls');
@@ -1540,8 +1604,21 @@ function openModal(projectId) {
   if (data.url) {
     modalLiveLink.href = data.url;
     modalLiveLink.style.display = 'inline-flex';
+    if (modalLiveLinkText) {
+      modalLiveLinkText.textContent = data.urlLabel || 'View Live';
+    }
   } else {
     modalLiveLink.style.display = 'none';
+  }
+
+  if (data.url2 && modalLiveLink2) {
+    modalLiveLink2.href = data.url2;
+    modalLiveLink2.style.display = 'inline-flex';
+    if (modalLiveLink2Text) {
+      modalLiveLink2Text.textContent = data.url2Label || 'View Live 2';
+    }
+  } else if (modalLiveLink2) {
+    modalLiveLink2.style.display = 'none';
   }
 
   if (data.docUrl) {

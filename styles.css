@@ -2146,6 +2146,31 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  /* Swipeable scrollable tab bar on mobile */
+  .portfolio-tabs {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .portfolio-tab {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  /* Always show slider arrow controls in project modals on touch/mobile */
+  .slider-controls {
+    opacity: 1 !important;
+  }
+
+  .modal-image-wrap {
+    height: 230px;
+  }
+
   .footer-inner {
     flex-direction: column;
     gap: 16px;

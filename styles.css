@@ -2063,6 +2063,10 @@ textarea {
 }
 
 @media (max-width: 768px) {
+  #intelligence {
+    display: none !important;
+  }
+
   :root {
     --section-pad: 80px;
   }

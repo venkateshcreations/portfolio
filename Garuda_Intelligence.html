@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GARUDA • Master Orchestrator v1.0 — UI/UX Intelligence System</title>
+<meta name="description" content="GARUDA Master Orchestrator v1.0 by Venkatesh Ammireddy — full UI/UX Intelligence System: architecture, directory structure, 42-agent registry, pipeline, data flow.">
+<link rel="icon" type="image/png" href="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png">
+<link rel="apple-touch-icon" href="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png">
+<meta name="theme-color" content="#0f172a">
+<meta property="og:image" content="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png">
+<meta property="og:title" content="GARUDA • Master Orchestrator v1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Portfolio theme tokens (venkateshcreations.github.io/portfolio) */
+  --blue:#3B82F6; --blue-light:#60A5FA; --blue-dark:#1D4ED8; --blue-glow:rgba(59,130,246,.25);
+  --bg:#050508; --bg-2:#0A0A12; --bg-card:rgba(255,255,255,.03); --bg-glass:rgba(255,255,255,.05);
+  --border:rgba(255,255,255,.08); --border-light:rgba(255,255,255,.12);
+  --text-primary:#F8FAFC; --text-secondary:#A1A5B3; --text-muted:#6B7280;
+  --header-bg:rgba(5,5,8,.8); --divider:rgba(255,255,255,.06);
+  --radius-sm:8px; --radius-md:16px; --radius-lg:24px; --radius-xl:32px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.3); --shadow-md:0 8px 32px rgba(0,0,0,.4);
+  --shadow-blue:0 8px 32px var(--blue-glow);
+  --transition:.4s cubic-bezier(.16,1,.3,1); --transition-fast:.2s ease;
+  /* Local aliases mapped onto portfolio theme */
+  --panel:#0A0A12; --line2:var(--border);
+  --ink:var(--text-primary); --muted:var(--text-secondary); --dim:var(--text-muted);
+  --gold:var(--blue); --gold2:var(--blue-light);
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --serif:'Space Grotesk','Inter',system-ui,sans-serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --radius:18px;
+}
+[data-theme="light"]{
+  --bg:#FAFAFA; --bg-2:#F3F4F6; --bg-card:rgba(0,0,0,.02); --bg-glass:rgba(255,255,255,.7);
+  --border:rgba(0,0,0,.08); --border-light:rgba(0,0,0,.12);
+  --text-primary:#0F172A; --text-secondary:#475569; --text-muted:#94A3B8;
+  --header-bg:rgba(250,250,250,.85); --divider:rgba(0,0,0,.06);
+  --panel:#F3F4F6; --line2:var(--border);
+  --ink:var(--text-primary); --muted:var(--text-secondary); --dim:var(--text-muted);
+  --blue-glow:rgba(59,130,246,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.6;
+  background:radial-gradient(1100px 500px at 15% -5%,var(--blue-glow),transparent 60%),radial-gradient(900px 500px at 95% 10%,rgba(96,165,250,.10),transparent 60%),var(--bg);
+  -webkit-font-smoothing:antialiased;transition:background-color .5s ease,color .5s ease}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(900px 600px at 50% 0%,black 30%,transparent 75%);pointer-events:none;z-index:0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,36px);position:relative;z-index:1}
+.topbar{position:sticky;top:0;z-index:50;background:transparent;border-bottom:1px solid transparent;transition:background-color .4s ease,border-bottom .4s ease,box-shadow .4s ease}
+.topbar.scrolled{background:var(--header-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.topbar-inner{display:flex;align-items:center;gap:12px;min-height:72px;padding:8px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.mark{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--bg-glass);flex:0 0 auto;overflow:hidden;border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
+.mark img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-emblem{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.hero-emblem img{width:64px;height:64px;border-radius:18px;object-fit:cover;border:1px solid var(--border-light);box-shadow:var(--shadow-blue)}
+.hero-emblem small{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);display:block}
+.foot-brand{display:flex;align-items:center;gap:12px}
+.foot-brand img{width:44px;height:44px;border-radius:12px;object-fit:cover;border:1px solid var(--border-light)}
+.brand b{font-family:var(--serif);letter-spacing:.06em;font-size:15px;display:block;line-height:1}
+.brand small{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted)}
+nav.main{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap;align-items:center}
+nav.main a{text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 4px 10px;border-radius:0;color:var(--muted);position:relative;letter-spacing:.01em}
+nav.main a::after{content:"";position:absolute;bottom:4px;left:0;width:0;height:1.5px;background:var(--blue);transition:width var(--transition);border-radius:4px}
+nav.main a:hover,nav.main a.active{background:none;color:var(--ink)}
+nav.main a:hover::after,nav.main a.active::after{width:100%}
+.theme-toggle{position:relative;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--bg-glass);border:1px solid var(--border);cursor:pointer;transition:background var(--transition-fast),transform .2s;flex:0 0 auto}
+.theme-toggle:hover{background:rgba(107,114,128,.15);transform:scale(1.05)}
+.theme-toggle svg{width:18px;height:18px;color:var(--muted)}
+.backlink{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:8px 14px;background:var(--bg-glass);white-space:nowrap}
+.backlink:hover{border-color:var(--blue);color:var(--ink);background:var(--blue-glow)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 20px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;background:var(--blue);color:#fff;font-size:.9rem;font-weight:600;border-radius:8px;border:1px solid transparent;text-decoration:none;letter-spacing:.01em;box-shadow:0 4px 16px rgba(59,130,246,.3);transition:background var(--transition-fast),transform .2s,box-shadow .2s}
+.btn-primary svg{width:16px;height:16px;transition:transform .2s}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(59,130,246,.4);color:#fff}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border:1px solid var(--border);color:var(--ink);font-size:.9rem;font-weight:500;border-radius:8px;background:var(--bg-glass);backdrop-filter:blur(8px);text-decoration:none;cursor:pointer;font-family:inherit;transition:border-color var(--transition-fast),background var(--transition-fast),transform .2s}
+.btn-ghost:hover{border-color:var(--blue);background:var(--blue-glow);transform:translateY(-1px)}
+.btn-ghost svg{width:16px;height:16px}
+.mgb-icon{width:22px;height:22px;border-radius:6px;object-fit:cover}
+.mgb-badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;background:var(--blue-glow);border:1px solid var(--border-light);color:var(--blue-light);padding:3px 8px;border-radius:100px}
+[data-theme="light"] .mgb-badge{color:var(--blue-dark)}
+.modal{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.modal.open{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.modal-content{position:relative;z-index:1;background:var(--bg-2);border:1px solid var(--border);border-radius:24px;overflow:hidden;max-width:860px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.5);transform:scale(.95) translateY(20px);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.modal.open .modal-content{transform:scale(1) translateY(0)}
+.modal-close{position:absolute;top:14px;right:14px;z-index:10;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--bg-glass);border:1px solid var(--border);border-radius:50%;cursor:pointer;color:var(--ink)}
+.modal-close:hover{background:rgba(239,68,68,.15)}
+.modal-close svg{width:16px;height:16px}
+.video-head{display:flex;align-items:center;gap:12px;padding:20px 22px 0}
+.video-head img{width:44px;height:44px;border-radius:12px;object-fit:cover}
+.video-head b{display:block;font-family:var(--serif);font-size:17px}
+.video-head small{color:var(--muted);font-size:12.5px}
+.video-wrap{padding:18px 22px 24px}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:#000}
+.searchbox{display:flex;align-items:center;gap:8px;background:#0f172a;border:1px solid var(--line2);border-radius:999px;padding:7px 12px;min-width:190px}
+.searchbox input{background:transparent;border:0;outline:0;color:var(--ink);font:inherit;font-size:13px;width:100%}
+.reg-search{min-width:0;width:100%;max-width:520px;padding:11px 18px;margin:0 0 14px;border-radius:14px}
+.reg-search input{font-size:14px}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line2);color:var(--ink);border-radius:10px;padding:8px 11px;font-size:17px;cursor:pointer}
+.hero{padding:clamp(30px,5vw,60px) 0 10px}
+.ascii{background:#05080f;border:1px solid var(--line2);border-radius:14px;padding:16px;overflow-x:auto;margin:0 0 16px}
+.ascii pre{margin:0;font-family:var(--mono);font-size:11px;line-height:1.35;color:var(--gold);white-space:pre}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:.85rem;font-weight:500;letter-spacing:.08em;color:var(--muted);background:var(--bg-glass);border:1px solid var(--border);padding:8px 18px 8px 12px;border-radius:100px;backdrop-filter:blur(8px)}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--blue);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+h1.hero-title{font-family:var(--serif);font-weight:900;font-size:clamp(36px,6vw,68px);line-height:.96;letter-spacing:-.02em;margin:16px 0 10px}
+h1.hero-title em{font-style:italic;background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:780px;color:var(--muted);font-size:clamp(15px,2vw,18px);margin:0}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.meta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:rgba(255,255,255,.03);border-radius:999px;padding:7px 13px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.meta strong{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 20px}
+.stat{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line2);border-radius:var(--radius);padding:15px 17px;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--gold))}
+.stat b{font-family:var(--serif);font-size:31px;line-height:1;display:block}
+.stat span{font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--muted);text-transform:uppercase}
+.stat p{margin:5px 0 0;font-size:13px;color:var(--muted)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.jump a{text-decoration:none;font-size:13px;font-weight:600;border:1px solid var(--line2);border-radius:999px;padding:8px 13px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);color:inherit}
+.jump a:hover{border-color:var(--gold);transform:translateY(-1px)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
+section.block{background:linear-gradient(180deg,#101828 0%,#0d1424 100%);border:1px solid var(--line2);border-radius:22px;padding:clamp(20px,3.5vw,34px);margin:16px 0;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.kicker::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;border-radius:2px}
+h2{font-family:var(--serif);font-size:clamp(25px,3.4vw,35px);line-height:1.05;margin:0 0 8px}
+.sub{color:var(--muted);max-width:75ch;margin:0 0 16px}
+.sub em,.sub strong{color:var(--ink)}
+.note{border:1px dashed rgba(59,130,246,.4);background:rgba(59,130,246,.07);border-radius:12px;padding:11px 14px;font-size:13.5px;color:var(--ink);margin:0 0 16px}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--gold)}
+/* Architecture visual */
+.arch{background:#0a111f;border:1px solid var(--line2);border-radius:16px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:0}
+.arch-top{width:100%;text-align:center;border:1px solid rgba(59,130,246,.4);background:linear-gradient(180deg,rgba(59,130,246,.14),rgba(59,130,246,.04));border-radius:12px;padding:14px}
+.arch-top b{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--gold)}
+.arch-top p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.arrow{font-family:var(--mono);color:var(--gold);font-size:18px;line-height:1;padding:8px 0}
+.arch-mid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%}
+.arch-card{border:1px solid var(--line2);border-radius:12px;padding:13px;text-align:center;background:rgba(255,255,255,.025)}
+.arch-card b{font-family:var(--mono);font-size:11px;letter-spacing:.16em;display:block;margin-bottom:4px}
+.arch-card p{margin:0;font-size:12.5px;color:var(--muted)}
+details.raw{margin-top:12px;width:100%}
+details.raw summary{cursor:pointer;font-family:var(--mono);font-size:12.5px;color:var(--gold);padding:8px 0}
+details.raw pre{background:#05080f;border:1px solid var(--line2);border-radius:12px;padding:16px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.6;color:#d6dcea;margin:0}
+/* Directory tree */
+.tree-tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tree-tools button{background:rgba(255,255,255,.06);border:1px solid var(--line2);color:var(--ink);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.tree-tools button:hover{border-color:var(--gold)}
+.tree{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.folder{border:1px solid var(--line2);border-radius:14px;background:#0a111f;overflow:hidden}
+.folder>summary{list-style:none;cursor:pointer;padding:13px 15px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.folder>summary::-webkit-details-marker{display:none}
+.folder>summary:hover{background:rgba(59,130,246,.06)}
+.folder>summary .fi{font-size:18px}
+.folder>summary code{font-family:var(--mono);font-size:12.5px;color:var(--gold);font-weight:500}
+.folder>summary .n{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);background:rgba(255,255,255,.06);padding:3px 9px;border-radius:999px}
+.folder ul{margin:0;padding:4px 8px 12px 18px;list-style:none}
+.folder li{font-family:var(--mono);font-size:12.6px;color:#cdd5e6;padding:5px 10px 5px 22px;position:relative;border-radius:8px}
+.folder li::before{content:"├─";position:absolute;left:2px;color:var(--dim)}
+.folder li:last-child::before{content:"└─"}
+.folder li:hover{background:rgba(59,130,246,.08)}
+.folder li span.c{color:var(--dim);font-size:11.5px}
+/* Registry */
+.layer-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:30px 0 12px;scroll-margin-top:90px}
+.layer-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:rgba(255,255,255,.06);border:1px solid var(--line2)}
+.layer-head h3{font-family:var(--serif);font-size:21px;margin:0}
+.layer-head p{margin:2px 0 0;color:var(--muted);font-size:13.5px;flex-basis:100%}
+.count{margin-left:auto;font-family:var(--mono);font-size:12px;border:1px solid var(--line2);padding:6px 12px;border-radius:999px;background:rgba(0,0,0,.25);white-space:nowrap}
+.count strong{color:var(--layer,var(--gold))}
+.table-shell{border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:#0a111f}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+thead th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.04);padding:12px 16px;border-bottom:1px solid var(--line2);white-space:nowrap}
+tbody td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(59,130,246,.05)}
+code.agent{font-family:var(--mono);font-size:12.6px;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:5px 9px;border-radius:8px;color:var(--blue-light);cursor:pointer;border-left:3px solid var(--layer,var(--gold));white-space:nowrap}
+code.agent:hover{background:rgba(59,130,246,.18)}
+td.role-cell{color:#dbe1ee}
+td.dep{font-family:var(--mono);font-size:12.3px;color:var(--muted)}
+tr.hidden{display:none!important}
+.empty{display:none;text-align:center;padding:22px;color:var(--muted);font-family:var(--mono);font-size:13px}
+/* Pipeline + flow */
+.stages{display:grid;gap:10px;margin:14px 0}
+.stage{display:grid;grid-template-columns:52px 1fr;gap:13px;border:1px solid var(--line2);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.025)}
+.stage:hover{border-color:rgba(59,130,246,.4)}
+.num{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:19px;background:linear-gradient(135deg,var(--blue-dark),var(--blue-light));color:#fff}
+.stage h4{margin:0 0 4px;font-size:15px}
+.stage h4 span{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--gold);letter-spacing:.12em;margin-left:8px}
+.flow{font-family:var(--mono);font-size:12.6px;color:#d6dcea;line-height:1.75;word-break:break-word}
+.flow b{color:var(--gold);font-weight:600}
+.codeblock{background:#05080f;border:1px solid var(--line2);border-radius:14px;padding:16px 18px;overflow-x:auto;position:relative;margin-top:12px}
+.codeblock pre{margin:0;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.codeblock .copy{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.08);border:1px solid var(--line2);color:var(--ink);border-radius:8px;padding:6px 10px;font-family:var(--mono);font-size:12px;cursor:pointer}
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.res{border:1px solid var(--line2);border-radius:16px;padding:17px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
+.res:hover{transform:translateY(-2px);border-color:rgba(59,130,246,.45)}
+.res code{display:block;font-family:var(--mono);font-size:12.3px;color:var(--gold);margin:10px 0 6px;word-break:break-all}
+.res p{margin:0;font-size:13.5px;color:var(--muted)}
+/* Data flow */
+.dflow{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:8px}
+.dnode{width:100%;max-width:560px;border:1px solid var(--line2);border-radius:14px;background:rgba(255,255,255,.03);padding:13px 16px;text-align:center}
+.dnode b{display:block;font-size:14.5px}
+.dnode small{font-family:var(--mono);font-size:11.5px;color:var(--gold);letter-spacing:.06em}
+.dnode p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.dnode.gate{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.07)}
+footer{padding:26px 0 44px;color:var(--dim);font-size:13px}
+.foot-card{border:1px dashed rgba(59,130,246,.35);border-radius:16px;padding:16px 19px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:rgba(59,130,246,.06)}
+.foot-card b{font-family:var(--serif);font-size:15px;color:var(--ink)}
+@media (max-width:960px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .res-grid{grid-template-columns:repeat(2,1fr)}
+  .tree{grid-template-columns:1fr}
+  .topbar-inner{row-gap:6px}
+  nav.main{display:none;width:100%;order:6;flex-direction:column;align-items:stretch;gap:2px;margin:2px 0 10px;padding:8px;background:var(--bg-glass);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--shadow-md)}
+  nav.main.open{display:flex;animation:menuIn .22s ease}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  nav.main a{padding:12px 14px;border-radius:10px;font-size:14px}
+  nav.main a::after{display:none}
+  nav.main a:hover,nav.main a.active{background:var(--blue-glow)}
+  .burger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;font-size:19px}
+  .searchbox{flex:1;min-width:150px}
+}
+@media (max-width:640px){
+  .topbar-inner{gap:8px}
+  .brand small{font-size:9px}
+  .backlink{font-size:12px;padding:7px 10px}
+  .theme-toggle{width:38px;height:38px}
+  .burger{width:38px;height:38px}
+  .cta-row .btn-primary,.cta-row .btn-ghost{flex:1 1 100%;justify-content:center}
+  section.block{border-radius:16px}
+  .arch-mid{grid-template-columns:1fr}
+  thead{display:none}table{min-width:0}
+  table,tbody,tr,td{display:block;width:100%}
+  tbody tr{border-bottom:1px solid var(--line2);padding:6px 0}
+  tbody td{border:0;padding:5px 16px}
+  td.agent-cell{padding-top:13px}
+  td.dep::before{content:"Depends on · ";font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .stage{grid-template-columns:40px 1fr}
+  .res-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat b{font-size:25px}
+  .ascii pre{font-size:8.5px}
+}
+[data-theme="light"] section.block{background:linear-gradient(180deg,#FFFFFF 0%,#F3F4F6 100%);box-shadow:var(--shadow-sm)}
+[data-theme="light"] .table-shell,[data-theme="light"] .folder,[data-theme="light"] .arch,[data-theme="light"] .arch-card,[data-theme="light"] .dnode,[data-theme="light"] .stage{background:#fff}
+[data-theme="light"] .ascii,[data-theme="light"] .codeblock,[data-theme="light"] details.raw pre{background:#0F172A}
+[data-theme="light"] .ascii pre{background:none}
+[data-theme="light"] .searchbox{background:#fff}
+[data-theme="light"] thead th{background:rgba(0,0,0,.03)}
+[data-theme="light"] tbody td{border-bottom-color:rgba(0,0,0,.07)}
+[data-theme="light"] tbody tr:hover{background:rgba(59,130,246,.06)}
+[data-theme="light"] code.agent{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.25);color:var(--blue-dark)}
+[data-theme="light"] td.role-cell,[data-theme="light"] .flow{color:#334155}
+[data-theme="light"] .stat,[data-theme="light"] .res{background:#fff}
+[data-theme="light"] .codeblock pre,[data-theme="light"] details.raw pre{color:#F8FAFC}
+[data-theme="light"] .folder li{color:#334155}
+[data-theme="light"] .folder li span.c,[data-theme="light"] .folder>summary .n,[data-theme="light"] .stat span,[data-theme="light"] footer,[data-theme="light"] td.dep::before{color:#64748B}
+[data-theme="light"] .folder>summary .n{background:rgba(0,0,0,.05)}
+[data-theme="light"] .kicker,[data-theme="light"] .flow b,[data-theme="light"] .dnode small,[data-theme="light"] details.raw summary,[data-theme="light"] .res code,[data-theme="light"] .folder>summary code,[data-theme="light"] .stage h4 span,[data-theme="light"] .arch-top b,[data-theme="light"] .note code{color:var(--blue-dark)}
+[data-theme="light"] .count strong{color:var(--ink)}
+[data-theme="light"] .arch-card b{filter:brightness(.68)}
+[data-theme="light"] .codeblock .copy{color:#F8FAFC;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.1)}
+[data-theme="light"] thead th{color:#475569}
+@media print{body{background:#fff;color:#111}.topbar,.jump,.searchbox,.burger,.tree-tools,.codeblock .copy,.modal{display:none!important}section.block,.stat,.res,.folder,.dnode,.arch-top,.arch-card{background:#fff!important;color:#111;border-color:#ccc;box-shadow:none}h1.hero-title,.lede,.sub{color:#111}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap topbar-inner">
+  <a class="brand" href="#top"><span class="mark"><img src="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png" alt="GARUDA icon" width="42" height="42" fetchpriority="high"></span><span><b>GARUDA</b><small>MASTER ORCHESTRATOR • v1.0</small></span></a>
+  <nav class="main" id="mainNav"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#directory">Files</a><a href="#registry">Agents</a><a href="#pipeline">Pipeline</a><a href="#dataflow">Data Flow</a></nav>
+  <a class="backlink" href="https://venkateshcreations.github.io/portfolio/" target="_blank" rel="noopener">← Portfolio</a>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg id="iconSun" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</div></header>
+
+<main class="wrap" id="top">
+<div class="hero">
+  <div class="hero-emblem"><img src="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png" alt="GARUDA emblem" width="64" height="64"><small>GARUDA<br>INTELLIGENCE</small></div>
+  <div class="ascii" aria-hidden="true"><pre>██████╗  █████╗ ██████╗ ██╗   ██╗██████╗   █████╗
+██╔════╝ ██╔══██╗██╔══██╗██║   ██║██╔══██╗ ██╔══██╗
+██║  ███╗███████║██████╔╝██║   ██║██║  ██║ ███████║
+██║   ██║██╔══██║██╔══██╗██║   ██║██║  ██║ ██╔══██║
+╚██████╔╝██║  ██║██║  ██║╚██████╔╝██████╔╝ ██║  ██║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═╝  ╚═╝</pre></div>
+  <span class="eyebrow"><i></i> GARUDA • MASTER ORCHESTRATOR • v1.0</span>
+  <h1 class="hero-title">UI/UX Intelligence <em>System</em></h1>
+  <p class="lede">A multi-agent orchestrating platform that transforms product requirements into polished, user-centered interface designs through a layered pipeline of cognitive reasoning, execution, simulation, evaluation, and memory.</p>
+  <div class="meta-row"><span class="meta">✦ Author / Creator: <strong>Venkatesh Ammireddy</strong></span><span class="meta">◉ Status: <strong>Production</strong></span><span class="meta">⎇ Source: <strong>UI-UX-Intelligence-System.md</strong></span></div>
+  <div class="cta-row">
+    <a class="btn-primary" href="https://github.com/venkateshcreations/GARUDA-Intelligence" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span>View on GitHub</span></a>
+    <a class="btn-ghost" href="#architecture"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>View Architecture</span></a>
+    <button class="btn-ghost" id="meetGarudaBtn"><img class="mgb-icon" src="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png" alt="" width="22" height="22"><span>Meet Garuda</span><span class="mgb-badge">WATCH</span></button>
+  </div>
+  <div class="stats">
+    <div class="stat" style="--accent:#f5b544"><b>53</b><span>Agents listed</span><p>6 layers · config declares 42</p></div>
+    <div class="stat" style="--accent:#34d399"><b>6</b><span>Layers</span><p>Cognition → Orchestration</p></div>
+    <div class="stat" style="--accent:#38bdf8"><b>5</b><span>Pipeline stages</span><p>+ critique loop (max 3×)</p></div>
+    <div class="stat" style="--accent:#fb7185"><b>26</b><span>Repo paths</span><p>Directories + key files</p></div>
+  </div>
+  <div class="jump"><a href="#architecture">◈ Architecture</a><a href="#directory">🗂 Directory</a><a href="#cognition"><span class="dot" style="background:#f5b544"></span>Cognition · 10</a><a href="#execution"><span class="dot" style="background:#34d399"></span>Execution · 15</a><a href="#evaluation"><span class="dot" style="background:#38bdf8"></span>Evaluation · 10</a><a href="#simulation"><span class="dot" style="background:#a78bfa"></span>Simulation · 8</a><a href="#memory"><span class="dot" style="background:#fb7185"></span>Memory · 5</a><a href="#orchestration"><span class="dot" style="background:#fb923c"></span>Orchestration · 5</a></div>
+</div>
+
+<section class="block" id="overview"><p class="kicker">01 — Overview</p><h2>What GARUDA does</h2>
+<p class="sub">The UI/UX Intelligence System is a multi-agent orchestrating platform that transforms product requirements into polished, user-centered interface designs through a layered pipeline of <strong>cognitive reasoning, execution, simulation, evaluation, and memory</strong>.</p></section>
+
+<section class="block" id="architecture"><p class="kicker">02 — Architecture</p><h2>System Architecture</h2>
+<p class="sub">Orchestration sits on top; Cognition → Execution → Memory form the backbone, with Simulation Lab and Evaluation as downstream gates. Faithful to the <em>Architecture</em> diagram in the markdown.</p>
+<div class="arch">
+  <div class="arch-top"><b>ORCHESTRATION LAYER</b><p>Master Orchestrator · Pipeline Manager · Quality Gate · Task Distributor · Critique Loop Manager</p></div>
+  <div class="arrow">▼</div>
+  <div class="arch-mid">
+    <div class="arch-card" style="border-top:3px solid #f5b544"><b style="color:#f5b544">COGNITION</b><p>Strategy &amp; psychology — what &amp; why</p></div>
+    <div class="arch-card" style="border-top:3px solid #34d399"><b style="color:#34d399">EXECUTION ─▶</b><p>Design &amp; code generation</p></div>
+    <div class="arch-card" style="border-top:3px solid #fb7185"><b style="color:#fb7185">MEMORY</b><p>Learning &amp; retention</p></div>
+  </div>
+  <div class="arrow">▼</div>
+  <div class="arch-card" style="width:100%;border-top:3px solid #a78bfa"><b style="color:#a78bfa">SIMULATION LAB</b><p>User behavior modeling</p></div>
+  <div class="arrow">▼</div>
+  <div class="arch-card" style="width:100%;border-top:3px solid #38bdf8"><b style="color:#38bdf8">EVALUATION LAYER</b><p>Quality assessment &amp; critique</p></div>
+  <details class="raw"><summary>View original ASCII diagram from .md</summary><pre>┌─────────────────────────────────────────────────────────┐
+│                    ORCHESTRATION LAYER                   │
+│  Master Orchestrator · Pipeline Manager · Quality Gate   │
+│  Task Distributor · Critique Loop Manager                │
+└─────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+┌───────────────┐    ┌───────────────┐    ┌───────────────┐
+│  COGNITION    │    │  EXECUTION    │    │   MEMORY      │
+│    LAYER      │───▶│    LAYER      │───▶│    LAYER      │
+└───────────────┘    └───────────────┘    └───────────────┘
+                              │
+                              ▼
+                     ┌───────────────┐
+                     │  SIMULATION   │
+                     │     LAB       │
+                     └───────────────┘
+                              │
+                              ▼
+                     ┌───────────────┐
+                     │  EVALUATION   │
+                     │    LAYER      │
+                     └───────────────┘</pre></details>
+</div></section>
+
+<section class="block" id="directory"><p class="kicker">03 — Directory Structure</p><h2>GARUDA-Intelligence /</h2>
+<p class="sub">Full repository layout from the markdown — <em>tap a folder to expand / collapse</em>. Key engine files: <em>config.json, pipeline.json, runner.js, loopengine.js, input.json, final.json</em>.</p>
+<div class="tree-tools"><button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button></div>
+<div class="tree" id="tree">
+<details class="folder" open><summary><span class="fi">📁</span><code>pipeline/</code><span class="n">3 files</span></summary><ul><li>pipeline.json <span class="c"># sequential stages + loops</span></li><li>runner.js <span class="c"># execution engine</span></li><li>loopengine.js <span class="c"># iteration logic</span></li></ul></details>
+<details class="folder" open><summary><span class="fi">📁</span><code>orchestration/</code><span class="n">5 agents</span></summary><ul><li>master-orchestrator/ <span class="c"># top-level coordinator</span></li><li>pipeline-manager/ <span class="c"># stage sequencing</span></li><li>task-distributor/ <span class="c"># workload assignment</span></li><li>quality-gatekeeper/ <span class="c"># output approval</span></li><li>critique-loop-manager/ <span class="c"># eval→revision loop</span></li></ul></details>
+<details class="folder" open><summary><span class="fi">📁</span><code>cognition-layer/</code><span class="n">10 agents</span></summary><ul><li>product-strategist/</li><li>ux-psychologist/</li><li>interaction-architect/</li><li>information-architect/</li><li>design-theorist/</li><li>cognitive-load-analyst/</li><li>user-intent-modeler/</li><li>behavioral-economist/</li><li>trust-designer/</li><li>onboarding-strategist/</li></ul></details>
+<details class="folder" open><summary><span class="fi">📁</span><code>execution-layer/</code><span class="n">15 agents</span></summary><ul><li>experience-designer/</li><li>ui-systems-engineer/</li><li>component-architect/</li><li>layout-engineer/</li><li>visual-designer/</li><li>microinteraction-designer/</li><li>frontend-architect/</li><li>design-token-engine/</li><li>responsive-engineer/</li><li>dark-mode-specialist/</li><li>branding-integrator/</li><li>copywriter-agent/</li><li>form-designer/</li><li>navigation-designer/</li><li>dashboard-specialist/</li></ul></details>
+<details class="folder"><summary><span class="fi">📁</span><code>evaluation-layer/</code><span class="n">10 agents</span></summary><ul><li>usability-auditor/</li><li>accessibility-ai/</li><li>heuristic-evaluator/</li><li>aesthetic-critic/</li><li>performance-analyst/</li><li>consistency-checker/</li><li>error-state-reviewer/</li><li>edge-case-auditor/</li><li>cognitive-friction-tester/</li><li>ui-polish-agent/</li></ul></details>
+<details class="folder"><summary><span class="fi">📁</span><code>simulation-lab/</code><span class="n">8 agents</span></summary><ul><li>persona-engine/</li><li>behavior-simulator/</li><li>frustration-simulator/</li><li>speed-runner/</li><li>novice-user/</li><li>power-user/</li><li>accessibility-simulator/</li><li>stress-tester/</li></ul></details>
+<details class="folder"><summary><span class="fi">📁</span><code>memory-layer/</code><span class="n">5 agents</span></summary><ul><li>pattern-learner/</li><li>decision-recorder/</li><li>feedback-integrator/</li><li>design-evolution/</li><li>success-metrics/</li></ul></details>
+<details class="folder"><summary><span class="fi">📁</span><code>shared/</code><span class="n">4 dirs</span></summary><ul><li>design-principles/ <span class="c"># core guidelines</span></li><li>ui-patterns/ <span class="c"># reusable patterns</span></li><li>accessibility-guidelines/ <span class="c"># WCAG standards</span></li><li>tech-stack/ <span class="c"># tech recommendations</span></li></ul></details>
+<details class="folder"><summary><span class="fi">📁</span><code>config · context · output</code><span class="n">3 files</span></summary><ul><li>config.json <span class="c"># central registry (42 agents)</span></li><li>context/input.json <span class="c"># user/project input</span></li><li>output/final.json <span class="c"># final deliverables</span></li></ul></details>
+</div>
+<details class="raw"><summary>View raw tree from .md</summary><pre>GARUDA-Intelligence/
+├── config.json                    # Central agent registry (42 agents)
+├── pipeline/pipeline.json, runner.js, loopengine.js
+├── orchestration/ (×5)  ├── cognition-layer/ (×10)
+├── execution-layer/ (×15)  ├── evaluation-layer/ (×10)
+├── simulation-lab/ (×8)  ├── memory-layer/ (×5)
+├── shared/ (design-principles, ui-patterns, accessibility-guidelines, tech-stack)
+├── context/input.json  └── output/final.json</pre></details>
+</section>
+
+<section class="block" id="registry"><p class="kicker">04 — Agent Registry</p>
+<h2>Agent Registry (42 Agents) <span style="font-family:var(--mono);font-size:13px;color:var(--gold)">· <span id="visibleCount">53</span> rows shown</span></h2>
+<p class="sub">Strategic reasoning to final polish. Click any <em>agent name</em> to copy it.</p>
+<label class="searchbox reg-search" title="Filter agents"><span style="color:var(--muted);font-family:var(--mono)">⌕</span><input id="q" type="search" placeholder="Filter 53 agents…  e.g. visual, audit, designer" autocomplete="off"></label>
+<div class="note">⚠️ Source fidelity note: the .md titles this section <code>42 Agents</code> (matching <code>config.json</code>), but the six tables below list <code>10 + 15 + 10 + 8 + 5 + 5 = 53</code> rows. All 53 rows are rendered below exactly as written.</div>
+<div class="empty" id="empty">No agents match “<span id="qEcho"></span>”.</div>
+
+<div class="layer-head" id="cognition" style="--layer:#f5b544"><div class="layer-icon">🧠</div><div><h3>Cognition Layer (10 agents)</h3><p>Strategic and psychological reasoning — <em>what</em> to build and <em>why</em>.</p></div><span class="count"><strong>10</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#f5b544"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">product-strategist</code></td><td class="role-cell">Defines product vision, priorities, and roadmap</td><td class="dep">—</td></tr>
+<tr><td class="agent-cell"><code class="agent">ux-psychologist</code></td><td class="role-cell">Analyzes user behavior and mental models</td><td class="dep">product-strategist</td></tr>
+<tr><td class="agent-cell"><code class="agent">interaction-architect</code></td><td class="role-cell">Designs interaction flows and touchpoints</td><td class="dep">product-strategist</td></tr>
+<tr><td class="agent-cell"><code class="agent">information-architect</code></td><td class="role-cell">Structures content and navigation hierarchy</td><td class="dep">product-strategist</td></tr>
+<tr><td class="agent-cell"><code class="agent">design-theorist</code></td><td class="role-cell">Validates designs against core principles</td><td class="dep">visual-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">cognitive-load-analyst</code></td><td class="role-cell">Measures and reduces mental effort</td><td class="dep">ux-psychologist</td></tr>
+<tr><td class="agent-cell"><code class="agent">user-intent-modeler</code></td><td class="role-cell">Maps user goals to design solutions</td><td class="dep">ux-psychologist</td></tr>
+<tr><td class="agent-cell"><code class="agent">behavioral-economist</code></td><td class="role-cell">Applies nudge theory and incentives</td><td class="dep">ux-psychologist, cognitive-load-analyst</td></tr>
+<tr><td class="agent-cell"><code class="agent">trust-designer</code></td><td class="role-cell">Embeds credibility and safety signals</td><td class="dep">behavioral-economist</td></tr>
+<tr><td class="agent-cell"><code class="agent">onboarding-strategist</code></td><td class="role-cell">Crafts first-time user journeys</td><td class="dep">user-intent-modeler</td></tr>
+</tbody></table></div></div>
+
+<div class="layer-head" id="execution" style="--layer:#34d399"><div class="layer-icon">⚙️</div><div><h3>Execution Layer (15 agents)</h3><p>Transforms cognitive insights into concrete UI designs and code.</p></div><span class="count"><strong>15</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#34d399"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">experience-designer</code></td><td class="role-cell">Maps end-to-end user journeys</td><td class="dep">product-strategist</td></tr>
+<tr><td class="agent-cell"><code class="agent">ui-systems-engineer</code></td><td class="role-cell">Builds the design system foundation</td><td class="dep">experience-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">component-architect</code></td><td class="role-cell">Architects reusable UI components</td><td class="dep">ui-systems-engineer</td></tr>
+<tr><td class="agent-cell"><code class="agent">layout-engineer</code></td><td class="role-cell">Creates responsive grid and structure</td><td class="dep">experience-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">visual-designer</code></td><td class="role-cell">Defines aesthetic style and branding</td><td class="dep">layout-engineer</td></tr>
+<tr><td class="agent-cell"><code class="agent">microinteraction-designer</code></td><td class="role-cell">Specifies animations and transitions</td><td class="dep">interaction-architect</td></tr>
+<tr><td class="agent-cell"><code class="agent">frontend-architect</code></td><td class="role-cell">Defines code architecture and patterns</td><td class="dep">component-architect</td></tr>
+<tr><td class="agent-cell"><code class="agent">design-token-engine</code></td><td class="role-cell">Generates design tokens (colors, spacing)</td><td class="dep">ui-systems-engineer</td></tr>
+<tr><td class="agent-cell"><code class="agent">responsive-engineer</code></td><td class="role-cell">Ensures cross-device compatibility</td><td class="dep">layout-engineer</td></tr>
+<tr><td class="agent-cell"><code class="agent">dark-mode-specialist</code></td><td class="role-cell">Implements dark theme variants</td><td class="dep">design-token-engine</td></tr>
+<tr><td class="agent-cell"><code class="agent">branding-integrator</code></td><td class="role-cell">Applies brand guidelines to UI</td><td class="dep">visual-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">copywriter-agent</code></td><td class="role-cell">Writes microcopy and UI text</td><td class="dep">behavioral-economist</td></tr>
+<tr><td class="agent-cell"><code class="agent">form-designer</code></td><td class="role-cell">Optimizes form UX and validation</td><td class="dep">cognitive-load-analyst</td></tr>
+<tr><td class="agent-cell"><code class="agent">navigation-designer</code></td><td class="role-cell">Designs navigation patterns</td><td class="dep">information-architect</td></tr>
+<tr><td class="agent-cell"><code class="agent">dashboard-specialist</code></td><td class="role-cell">Creates data visualization layouts</td><td class="dep">visual-designer</td></tr>
+</tbody></table></div></div>
+
+<div class="layer-head" id="evaluation" style="--layer:#38bdf8"><div class="layer-icon">🔍</div><div><h3>Evaluation Layer (10 agents)</h3><p>Critiques and scores designs to ensure quality before final output.</p></div><span class="count"><strong>10</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#38bdf8"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">usability-auditor</code></td><td class="role-cell">Validates task efficiency and learnability</td><td class="dep">experience-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">accessibility-ai</code></td><td class="role-cell">Checks WCAG compliance and inclusive design</td><td class="dep">visual-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">heuristic-evaluator</code></td><td class="role-cell">Evaluates against Nielsen's heuristics</td><td class="dep">usability-auditor</td></tr>
+<tr><td class="agent-cell"><code class="agent">aesthetic-critic</code></td><td class="role-cell">Provides visual design feedback</td><td class="dep">visual-designer</td></tr>
+<tr><td class="agent-cell"><code class="agent">performance-analyst</code></td><td class="role-cell">Analyzes load and runtime performance</td><td class="dep">frontend-architect</td></tr>
+<tr><td class="agent-cell"><code class="agent">consistency-checker</code></td><td class="role-cell">Ensures design system uniformity</td><td class="dep">ui-systems-engineer</td></tr>
+<tr><td class="agent-cell"><code class="agent">error-state-reviewer</code></td><td class="role-cell">Reviews error messages and handling</td><td class="dep">copywriter-agent</td></tr>
+<tr><td class="agent-cell"><code class="agent">edge-case-auditor</code></td><td class="role-cell">Tests boundary and failure conditions</td><td class="dep">stress-tester</td></tr>
+<tr><td class="agent-cell"><code class="agent">cognitive-friction-tester</code></td><td class="role-cell">Identifies mental effort bottlenecks</td><td class="dep">cognitive-load-analyst</td></tr>
+<tr><td class="agent-cell"><code class="agent">ui-polish-agent</code></td><td class="role-cell">Applies final visual refinements</td><td class="dep">aesthetic-critic, consistency-checker</td></tr>
+</tbody></table></div></div>
+
+<div class="layer-head" id="simulation" style="--layer:#a78bfa"><div class="layer-icon">🧪</div><div><h3>Simulation Lab (8 agents)</h3><p>Simulates diverse user behaviors to stress-test designs before rollout.</p></div><span class="count"><strong>8</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#a78bfa"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">persona-engine</code></td><td class="role-cell">Generates user persona profiles</td><td class="dep">—</td></tr>
+<tr><td class="agent-cell"><code class="agent">behavior-simulator</code></td><td class="role-cell">Models user navigation and decisions</td><td class="dep">persona-engine</td></tr>
+<tr><td class="agent-cell"><code class="agent">frustration-simulator</code></td><td class="role-cell">Identifies user pain points</td><td class="dep">behavior-simulator</td></tr>
+<tr><td class="agent-cell"><code class="agent">speed-runner</code></td><td class="role-cell">Tests power-user fast paths</td><td class="dep">behavior-simulator</td></tr>
+<tr><td class="agent-cell"><code class="agent">novice-user</code></td><td class="role-cell">Simulates first-time user confusion</td><td class="dep">persona-engine</td></tr>
+<tr><td class="agent-cell"><code class="agent">power-user</code></td><td class="role-cell">Models expert usage patterns</td><td class="dep">persona-engine</td></tr>
+<tr><td class="agent-cell"><code class="agent">accessibility-simulator</code></td><td class="role-cell">Tests with assistive technology personas</td><td class="dep">accessibility-ai</td></tr>
+<tr><td class="agent-cell"><code class="agent">stress-tester</code></td><td class="role-cell">Floods system with edge-case inputs</td><td class="dep">performance-analyst</td></tr>
+</tbody></table></div></div>
+
+<div class="layer-head" id="memory" style="--layer:#fb7185"><div class="layer-icon">💾</div><div><h3>Memory Layer (5 agents)</h3><p>Captures decisions, learns patterns, and tracks success metrics over time.</p></div><span class="count"><strong>5</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#fb7185"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">pattern-learner</code></td><td class="role-cell">Extracts reusable design patterns</td><td class="dep">decision-recorder</td></tr>
+<tr><td class="agent-cell"><code class="agent">decision-recorder</code></td><td class="role-cell">Logs all design decisions</td><td class="dep">—</td></tr>
+<tr><td class="agent-cell"><code class="agent">feedback-integrator</code></td><td class="role-cell">Incorporates external feedback</td><td class="dep">design-evolution</td></tr>
+<tr><td class="agent-cell"><code class="agent">design-evolution</code></td><td class="role-cell">Tracks design version history</td><td class="dep">decision-recorder</td></tr>
+<tr><td class="agent-cell"><code class="agent">success-metrics</code></td><td class="role-cell">Reports KPIs and outcome data</td><td class="dep">product-strategist</td></tr>
+</tbody></table></div></div>
+
+<div class="layer-head" id="orchestration" style="--layer:#fb923c"><div class="layer-icon">👑</div><div><h3>Orchestration Layer (5 agents)</h3><p>Coordinates the entire pipeline and manages agent communication.</p></div><span class="count"><strong>5</strong> AGENTS</span></div>
+<div class="table-shell" style="--layer:#fb923c"><div class="table-scroll"><table><thead><tr><th>Agent</th><th>Role</th><th>Dependencies</th></tr></thead><tbody>
+<tr><td class="agent-cell"><code class="agent">master-orchestrator</code></td><td class="role-cell">Top-level coordinator; produces final output</td><td class="dep">pipeline-manager, quality-gatekeeper</td></tr>
+<tr><td class="agent-cell"><code class="agent">pipeline-manager</code></td><td class="role-cell">Defines and sequences execution stages</td><td class="dep">task-distributor</td></tr>
+<tr><td class="agent-cell"><code class="agent">task-distributor</code></td><td class="role-cell">Assigns tasks to appropriate agents</td><td class="dep">—</td></tr>
+<tr><td class="agent-cell"><code class="agent">quality-gatekeeper</code></td><td class="role-cell">Final approval before output</td><td class="dep">ui-polish-agent</td></tr>
+<tr><td class="agent-cell"><code class="agent">critique-loop-manager</code></td><td class="role-cell">Routes evaluation results back to execution</td><td class="dep">usability-auditor, heuristic-evaluator</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section class="block" id="pipeline"><p class="kicker">05 — Pipeline Stages</p><h2>Five stages, one loop</h2>
+<p class="sub">The pipeline executes in five sequential stages, exactly as defined in the markdown.</p>
+<div class="stages">
+<div class="stage"><div class="num">1</div><div><h4>Cognition <span>REASON</span></h4><div class="flow"><b>product-strategist</b> → <b>ux-psychologist</b> → <b>behavioral-economist</b> → <b>cognitive-load-analyst</b></div></div></div>
+<div class="stage"><div class="num">2</div><div><h4>Execution <span>BUILD</span></h4><div class="flow"><b>experience-designer</b> → <b>interaction-architect</b> → <b>component-architect</b> → <b>ui-systems-engineer</b> → <b>visual-designer</b> → <b>copywriter-agent</b></div></div></div>
+<div class="stage"><div class="num">3</div><div><h4>Simulation <span>STRESS</span></h4><div class="flow"><b>persona-engine</b> → <b>behavior-simulator</b> → <b>frustration-simulator</b> → <b>novice-user</b></div></div></div>
+<div class="stage"><div class="num">4</div><div><h4>Evaluation <span>SCORE</span></h4><div class="flow"><b>usability-auditor</b> → <b>heuristic-evaluator</b> → <b>cognitive-friction-tester</b> → <b>ui-polish-agent</b></div></div></div>
+<div class="stage"><div class="num">5</div><div><h4>Memory <span>LEARN</span></h4><div class="flow"><b>decision-recorder</b> → <b>pattern-learner</b> → <b>success-metrics</b></div></div></div>
+</div>
+<h3 style="font-family:var(--serif);margin:16px 0 4px;font-size:19px">Critique Loop</h3>
+<div class="codeblock"><button class="copy" id="copyLoop">Copy</button><pre id="loopCode">if evaluation_score &lt; 8:
+    repeat execution_stage (max 3 iterations)</pre></div>
+</section>
+
+<section class="block" id="resources"><p class="kicker">06 — Shared Resources</p><h2>Shared Resources</h2>
+<p class="sub">Common knowledge every agent reads from — maps to <em>shared/</em> in the directory tree.</p>
+<div class="res-grid">
+<div class="res"><div style="font-size:22px">📐</div><code>shared/design-principles/</code><p>Core design theory and guidelines</p></div>
+<div class="res"><div style="font-size:22px">🧩</div><code>shared/ui-patterns/</code><p>Reusable component patterns</p></div>
+<div class="res"><div style="font-size:22px">♿</div><code>shared/accessibility-guidelines/</code><p>WCAG standards and checklists</p></div>
+<div class="res"><div style="font-size:22px">🛠️</div><code>shared/tech-stack/</code><p>Recommended technologies per layer</p></div>
+</div></section>
+
+<section class="block" id="dataflow"><p class="kicker">07 — Data Flow</p><h2>Input → Output</h2>
+<p class="sub">User input flows through the Master Orchestrator, each layer, and the Quality Gate — <em>PASS → output/final.json, FAIL → loop back to Execution</em>.</p>
+<div class="dflow">
+<div class="dnode"><b>📥 User Input</b><small>context/input.json</small></div><div class="arrow">▼</div>
+<div class="dnode"><b>👑 Master Orchestrator</b><p>Routes work into the pipeline</p></div><div class="arrow">▼</div>
+<div class="dnode"><b>🧠 Cognition</b><p>Design rationale &amp; strategy</p></div><div class="arrow">▼</div>
+<div class="dnode"><b>⚙️ Execution</b><p>UI designs, components, code</p></div><div class="arrow">▼</div>
+<div class="dnode"><b>🧪 Simulation</b><p>Persona-based behavior testing</p></div><div class="arrow">▼</div>
+<div class="dnode"><b>🔍 Evaluation</b><p>Quality scores &amp; critique</p></div><div class="arrow">▼</div>
+<div class="dnode"><b>💾 Memory</b><p>Pattern library &amp; metrics</p></div><div class="arrow">▼</div>
+<div class="dnode gate"><b>🛂 Quality Gate</b><p>PASS → <small>output/final.json</small> &nbsp;·&nbsp; FAIL → loop back to Execution</p></div>
+</div>
+<details class="raw"><summary>View original ASCII data-flow from .md</summary><pre>User Input (context/input.json)
+    │ ▼ ┌──────────────────┐ │ Master Orchestrator │ └────────┬─────────┘
+          │ ▼ ┌─────────────┐ │  Cognition  │ ──▶ Design rationale &amp; strategy
+          └──────┬──────┘ │ ▼ ┌─────────────┐ │  Execution  │ ──▶ UI designs, components, code
+          └──────┬──────┘ │ ▼ ┌─────────────┐ │  Simulation │ ──▶ Persona-based behavior testing
+          └──────┬──────┘ │ ▼ ┌─────────────┐ │ Evaluation  │ ──▶ Quality scores &amp; critique
+          └──────┬──────┘ │ ▼ ┌─────────────┐ │   Memory    │ ──▶ Pattern library &amp; metrics
+          └──────┬──────┘ │ ▼ ┌──────────────────┐ │  Quality Gate    │ ──▶ PASS → output/final.json
+└──────────────────┘    FAIL → Loop back to Execution</pre></details>
+</section>
+
+<footer><div class="foot-card"><div class="foot-brand"><img src="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png" alt="GARUDA icon" width="44" height="44" loading="lazy"><div><b>GARUDA • Master Orchestrator • v1.0</b><br>Author / Creator: Venkatesh Ammireddy — rebuilt from UI-UX-Intelligence-System.md</div></div><div style="font-family:var(--mono);font-size:12px">53 rows · 6 layers · 5 stages · responsive + print-ready<br><span style="color:var(--dim)">Theme: <a href="https://venkateshcreations.github.io/portfolio/" target="_blank" rel="noopener" style="color:var(--blue-light)">venkateshcreations.github.io/portfolio</a></span></div></div></footer>
+</main>
+
+<div class="modal" id="garudaModal" role="dialog" aria-modal="true" aria-labelledby="garudaModalTitle">
+  <div class="modal-backdrop" id="garudaBackdrop"></div>
+  <div class="modal-content">
+    <button class="modal-close" id="garudaClose" aria-label="Close video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="video-head"><img src="https://venkateshcreations.github.io/portfolio/images/garuda-icon.png" alt="Garuda"><div><b id="garudaModalTitle">Garuda Intelligence</b><small>Master Orchestrator — Multi-Agent AI System</small></div></div>
+    <div class="video-wrap"><iframe id="garudaVideo" src="" data-src="https://drive.google.com/file/d/1K3jj81oWlRUKUr1S8NN34CuWQj0Ev2i2/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Garuda Intelligence Master Orchestrator"></iframe></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const q=document.getElementById('q'),rows=Array.from(document.querySelectorAll('#registry tbody tr')),
+    count=document.getElementById('visibleCount'),empty=document.getElementById('empty'),qEcho=document.getElementById('qEcho');
+  function filter(){const v=(q.value||'').trim().toLowerCase();let n=0;rows.forEach(r=>{const hit=!v||r.textContent.toLowerCase().includes(v);r.classList.toggle('hidden',!hit);if(hit)n++});count.textContent=n;empty.style.display=n===0?'block':'none';qEcho.textContent=q.value}
+  q.addEventListener('input',filter);
+  document.querySelectorAll('code.agent').forEach(c=>{c.title='Click to copy';c.addEventListener('click',async()=>{const t=c.textContent.trim();try{await navigator.clipboard.writeText(t)}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}const o=c.textContent;c.textContent='copied ✓';setTimeout(()=>c.textContent=o,900)})});
+  const cb=document.getElementById('copyLoop');if(cb)cb.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('loopCode').innerText);cb.textContent='Copied'}catch(e){cb.textContent='Select + Ctrl+C'}setTimeout(()=>cb.textContent='Copy',1200)});
+  const burger=document.getElementById('burger'),nav=document.getElementById('mainNav');
+  burger.setAttribute('aria-expanded','false');
+  burger.addEventListener('click',()=>{const open=nav.classList.toggle('open');burger.textContent=open?'✕':'☰';burger.setAttribute('aria-expanded',open?'true':'false')});
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.textContent='☰';burger.setAttribute('aria-expanded','false')}));
+  // Portfolio-style header blur on scroll + theme toggle (persisted)
+  const topbar=document.querySelector('.topbar');
+  const onScroll=()=>topbar.classList.toggle('scrolled',window.scrollY>10);
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const root=document.documentElement,tt=document.getElementById('themeToggle'),
+    iM=document.getElementById('iconMoon'),iS=document.getElementById('iconSun');
+  function paintIcon(){const light=root.getAttribute('data-theme')==='light';iM.style.display=light?'none':'';iS.style.display=light?'':'none'}
+  try{const saved=localStorage.getItem('garuda-theme');if(saved)root.setAttribute('data-theme',saved)}catch(e){}
+  paintIcon();
+  tt.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='light'?'dark':'light';root.setAttribute('data-theme',next);try{localStorage.setItem('garuda-theme',next)}catch(e){}paintIcon()});
+  // Meet Garuda video modal (same video as portfolio)
+  const gM=document.getElementById('garudaModal'),gV=document.getElementById('garudaVideo');
+  function openGaruda(){gV.src=gV.dataset.src;gM.classList.add('open');document.body.style.overflow='hidden'}
+  function closeGaruda(){gM.classList.remove('open');gV.src='';document.body.style.overflow=''}
+  document.getElementById('meetGarudaBtn').addEventListener('click',openGaruda);
+  document.getElementById('garudaClose').addEventListener('click',closeGaruda);
+  document.getElementById('garudaBackdrop').addEventListener('click',closeGaruda);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGaruda()});
+  const folders=Array.from(document.querySelectorAll('#tree .folder'));
+  document.getElementById('expandAll').addEventListener('click',()=>folders.forEach(f=>f.open=true));
+  document.getElementById('collapseAll').addEventListener('click',()=>folders.forEach(f=>f.open=false));
+  const links=Array.from(nav.querySelectorAll('a'));
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(s=>io.observe(s));
+})();
+</script>
+</body>
+</html>

@@ -246,9 +246,11 @@ window.addEventListener('scroll', () => {
   // Active nav link based on scroll position
   let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
+    if (section.offsetHeight > 0) {
+      const sectionTop = section.offsetTop - 120;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
     }
   });
 
@@ -261,7 +263,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ══════════════════════════════════
-   HAMBURGER MENU
+   HAMBURGER MENU & NAV REDIRECTS
 ══════════════════════════════════ */
 const menuToggle = document.getElementById('menuToggle');
 const mobileNav = document.getElementById('navLinks');
@@ -275,6 +277,16 @@ mobileNav.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     menuToggle.classList.remove('open');
     mobileNav.classList.remove('open');
+  });
+});
+
+// Mobile responsive redirect for Garuda Intelligence menu item
+document.querySelectorAll('a[href="#intelligence"], a[data-section="intelligence"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      window.location.href = 'Garuda_Intelligence.html';
+    }
   });
 });
 

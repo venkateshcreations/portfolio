@@ -268,27 +268,41 @@ window.addEventListener('scroll', () => {
 const menuToggle = document.getElementById('menuToggle');
 const mobileNav = document.getElementById('navLinks');
 
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('open');
-  mobileNav.classList.toggle('open');
-});
-
-mobileNav.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    menuToggle.classList.remove('open');
-    mobileNav.classList.remove('open');
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
   });
-});
 
-// Mobile responsive redirect for Garuda Intelligence menu item
-document.querySelectorAll('a[href="#intelligence"], a[data-section="intelligence"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      window.location.href = 'Garuda_Intelligence.html';
+  mobileNav.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-item').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+      const opensourceDropdown = document.getElementById('opensourceDropdown');
+      if (opensourceDropdown) opensourceDropdown.classList.remove('open');
+    });
+  });
+}
+
+const opensourceDropdown = document.getElementById('opensourceDropdown');
+const opensourceToggle = document.getElementById('opensourceToggle');
+
+if (opensourceDropdown && opensourceToggle) {
+  opensourceToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    opensourceDropdown.classList.toggle('open');
+    const isExpanded = opensourceDropdown.classList.contains('open');
+    opensourceToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!opensourceDropdown.contains(e.target)) {
+      opensourceDropdown.classList.remove('open');
+      opensourceToggle.setAttribute('aria-expanded', 'false');
     }
   });
-});
+}
 
 /* ══════════════════════════════════
    INTERACTIVE RIPPLE WAVES BACKGROUND
@@ -1113,6 +1127,7 @@ const projectData = {
     docUrl: 'educore_sms.html'
   },
   5: {
+    isConcept: true,
     title: 'Army Commando Intel System',
     role: 'Principal UX Lead',
     image: 'images/project-5/1.png',
@@ -1165,6 +1180,7 @@ const projectData = {
     docUrl: 'https://venkateshcreations.github.io/AXIOM/AXIOM_README.html'
   },
   10: {
+    isConcept: true,
     title: 'ORBITA - Next-Gen Space Communications',
     role: 'UX Lead – Frontend Designer',
     image: 'images/project-10/1.png',
@@ -1608,6 +1624,14 @@ function openModal(projectId) {
   modalImage.alt = data.title;
   modalTitle.textContent = data.title;
   modalRole.textContent = data.role;
+
+  const modalBodyConceptBadge = document.getElementById('modalBodyConceptBadge');
+  const isConcept = Boolean(data.isConcept || (data.title && (data.title.includes('Army Commando') || data.title.includes('ORBITA'))));
+
+  if (modalBodyConceptBadge) {
+    modalBodyConceptBadge.style.display = isConcept ? 'inline-block' : 'none';
+  }
+
   modalDesc.textContent = data.desc;
   modalTagsEl.innerHTML = data.tags
     .map((t, i) => `<span class="modal-tag-item tag-pastel-${(i % 5) + 1}">${t}</span>`)

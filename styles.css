@@ -2294,6 +2294,13 @@ textarea {
     display: none !important;
   }
 
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 0 40px;
+    min-height: auto;
+  }
+
   .hero-name {
     font-size: clamp(3rem, 14vw, 6rem);
   }
@@ -2318,6 +2325,16 @@ textarea {
     width: 100%;
     justify-content: center;
     padding: 14px 20px;
+  }
+
+  /* Mobile responsive scroll indicator positioning */
+  .hero-scroll-indicator {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 36px;
+    z-index: 2;
   }
 
   .about-specialities {

@@ -2068,5 +2068,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/* ══════════════════════════════════
+   3D CARD TILT & SPECULAR GLARE
+   ══════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const tiltCards = document.querySelectorAll('.speciality-item, .spec-item, .tools-feature');
+  
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      
+      const maxTilt = 8; // degrees
+      const tiltX = -y * maxTilt;
+      const tiltY = x * maxTilt;
+      
+      card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px) scale(1.015)`;
+      card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0deg) scale(1)';
+    });
+  });
+});
+
 
 

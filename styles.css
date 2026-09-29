@@ -4116,4 +4116,136 @@ textarea {
   border: 2px solid rgba(56, 189, 248, 0.5);
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
   flex-shrink: 0;
+}
+
+/* ─── 3D Perspective Card Tilt & Specular Sheen ─── */
+.speciality-item,
+.spec-item,
+.tools-feature {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
+}
+
+.speciality-item::after,
+.spec-item::after,
+.tools-feature::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.speciality-item:hover::after,
+.spec-item:hover::after,
+.tools-feature:hover::after {
+  opacity: 1;
+}
+
+/* ─── Workstation Telemetry Cyber Scanline & Live Pulse Badge ─── */
+.workstation-visual .visual-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(59, 130, 246, 0.04) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  pointer-events: none;
+  z-index: 4;
+}
+
+.workstation-mock::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(59, 130, 246, 0.1) 50%,
+    rgba(6, 182, 212, 0.22) 98%,
+    #06b6d4 100%
+  );
+  box-shadow: 0 2px 10px rgba(6, 182, 212, 0.35);
+  pointer-events: none;
+  z-index: 3;
+  animation: telemetryScanline 6s infinite linear;
+}
+
+@keyframes telemetryScanline {
+  0% {
+    top: -35%;
+  }
+  100% {
+    top: 135%;
+  }
+}
+
+.tel-live-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  letter-spacing: 0.06em;
+}
+
+.tel-live-badge .pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: liveDotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+    box-shadow: 0 0 4px #10b981;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 10px #10b981, 0 0 16px rgba(16, 185, 129, 0.6);
+  }
+}
+
+.chart-bar {
+  animation: chartBarPulse 3.5s infinite alternate ease-in-out;
+}
+
+.chart-bar:nth-child(1) { animation-delay: 0s; }
+.chart-bar:nth-child(2) { animation-delay: 0.5s; }
+.chart-bar:nth-child(3) { animation-delay: 1.0s; }
+.chart-bar:nth-child(4) { animation-delay: 1.5s; }
+.chart-bar:nth-child(5) { animation-delay: 2.0s; }
+
+@keyframes chartBarPulse {
+  0% { transform: scaleY(0.92); opacity: 0.8; }
+  100% { transform: scaleY(1.08); opacity: 1; filter: brightness(1.25); }
 }

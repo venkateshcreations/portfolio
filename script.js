@@ -959,7 +959,7 @@ if (canvas) {
 gsap.registerPlugin(ScrollTrigger);
 
 // Hero — initial entrance
-gsap.utils.toArray('.hero-content .reveal-fade').forEach(el => {
+gsap.utils.toArray('#home .reveal-fade').forEach(el => {
   const delay = parseFloat(el.dataset.delay || 0);
   gsap.fromTo(el,
     { opacity: 0 },
@@ -972,7 +972,7 @@ gsap.utils.toArray('.hero-content .reveal-fade').forEach(el => {
   );
 });
 
-gsap.utils.toArray('.hero-content .reveal-up').forEach(el => {
+gsap.utils.toArray('#home .reveal-up').forEach(el => {
   const delay = parseFloat(el.dataset.delay || 0);
   gsap.fromTo(el,
     { opacity: 0, y: 40 },
@@ -2072,7 +2072,7 @@ document.addEventListener('DOMContentLoaded', () => {
    3D CARD TILT & SPECULAR GLARE
    ══════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-  const tiltCards = document.querySelectorAll('.speciality-item, .spec-item, .tools-feature');
+  const tiltCards = document.querySelectorAll('.speciality-item, .spec-item, .tools-feature, .hero-portrait-card');
   
   tiltCards.forEach(card => {
     card.addEventListener('mousemove', (e) => {

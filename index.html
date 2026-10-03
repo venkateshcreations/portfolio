@@ -56,7 +56,7 @@
   <link rel="shortcut icon" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <link rel="stylesheet" href="styles.css?v=45" />
+  <link rel="stylesheet" href="styles.css?v=57" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -191,43 +191,65 @@
 
   <!-- ─── HERO ─── -->
   <section id="home" class="hero">
-    <div class="container hero-content">
-      <div class="hero-eyebrow reveal-fade">
-        <span class="eyebrow-dot"></span>
-        <span>Independent UX Design Leader</span>
-      </div>
+    <div class="container hero-grid">
+      <!-- Left Column: Text Content -->
+      <div class="hero-text-col">
+        <div class="hero-eyebrow reveal-fade">
+          <span class="eyebrow-dot"></span>
+          <span>Independent UX Design Leader</span>
+        </div>
 
-      <h1 class="hero-name">
-        <span class="name-line reveal-up" data-delay="0">Venkatesh</span>
-        <span class="name-line reveal-up" data-delay="0.15">Ammireddy</span>
-      </h1>
+        <!-- Mobile Profile Portrait Image (Shown only on Mobile/Tablet between Eyebrow & Name) -->
+        <div class="hero-image-mobile hide-desktop reveal-fade" data-delay="0.2">
+          <div class="hero-portrait-card">
+            <div class="portrait-glow"></div>
+            <div class="portrait-frame">
+              <img src="images/DP_New.png" alt="Venkatesh Ammireddy - UX Creative Director & AI UX Architect" class="portrait-img" loading="eager" />
+            </div>
+          </div>
+        </div>
 
-      <div class="hero-titles reveal-up" data-delay="0.35">
-        <div class="title-rotating">
-          <span class="title-item active">UX Creative Director</span>
-          <span class="title-item">Product UX Architect</span>
-          <span class="title-item">AI-first Design Thinker</span>
+        <h1 class="hero-name">
+          <span class="name-line reveal-up" data-delay="0">Venkatesh</span>
+          <span class="name-line reveal-up" data-delay="0.15">Ammireddy</span>
+        </h1>
+
+        <div class="hero-titles reveal-up" data-delay="0.35">
+          <div class="title-rotating">
+            <span class="title-item active">UX Creative Director</span>
+            <span class="title-item">Product UX Architect</span>
+            <span class="title-item">AI-first Design Thinker</span>
+          </div>
+        </div>
+
+        <div class="hero-badges reveal-up" data-delay="0.5">
+          <div class="badge"><span class="badge-num">13+</span><span class="badge-label">Years of Experience</span></div>
+          <div class="badge-divider"></div>
+          <div class="badge"><span class="badge-icon">⬡</span><span class="badge-label">AI UX Design Approach</span></div>
+          <div class="badge-divider"></div>
+          <div class="badge"><span class="badge-icon">◈</span><span class="badge-label">Agentic UX Systems Thinking</span></div>
+        </div>
+
+        <div class="hero-cta reveal-fade" data-delay="0.7">
+          <a href="#portfolio" class="btn-primary">
+            <span>View Portfolio</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="#contact" class="btn-ghost">Get In Touch</a>
         </div>
       </div>
 
-      <div class="hero-badges reveal-up" data-delay="0.5">
-        <div class="badge"><span class="badge-num">13+</span><span class="badge-label">Years of Experience</span></div>
-        <div class="badge-divider"></div>
-        <div class="badge"><span class="badge-icon">⬡</span><span class="badge-label">AI UX Design Approach</span></div>
-        <div class="badge-divider"></div>
-        <div class="badge"><span class="badge-icon">◈</span><span class="badge-label">Agentic UX Systems Thinking</span>
+      <!-- Right Column: Desktop Profile Portrait Showcase -->
+      <div class="hero-image-col hide-mobile reveal-fade" data-delay="0.4">
+        <div class="hero-portrait-card">
+          <div class="portrait-glow"></div>
+          <div class="portrait-frame">
+            <img src="images/DP_New.png" alt="Venkatesh Ammireddy - UX Creative Director & AI UX Architect" class="portrait-img" loading="eager" />
+          </div>
         </div>
-      </div>
-
-      <div class="hero-cta reveal-fade" data-delay="0.7">
-        <a href="#portfolio" class="btn-primary">
-          <span>View Portfolio</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </a>
-        <a href="#contact" class="btn-ghost">Get In Touch</a>
       </div>
     </div>
 
@@ -1766,7 +1788,7 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=29"></script>
+  <script src="script.js?v=31"></script>
 </body>
 
 </html>

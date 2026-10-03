@@ -100,6 +100,9 @@ html {
   font-size: 16px;
   background-color: var(--bg);
   transition: background-color 0.5s ease;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -108,6 +111,8 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   transition: color 0.5s ease;
   cursor: none;
 }
@@ -1551,8 +1556,8 @@ textarea {
 .tools-marquee-wrapper {
   position: relative;
   padding: 16px 0 40px;
-  overflow-x: clip;
-  overflow-y: visible;
+  overflow: hidden;
+  max-width: 100%;
   margin-bottom: 64px;
   display: flex;
   flex-direction: column;
@@ -2069,6 +2074,8 @@ textarea {
   font-size: 0.85rem;
   color: var(--text-primary);
   font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .link-arrow {
@@ -2602,7 +2609,10 @@ textarea {
   }
 
   .container {
-    padding: 0 24px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .nav-links {
@@ -2695,7 +2705,7 @@ textarea {
   }
 
   .hero-name {
-    font-size: clamp(3rem, 14vw, 6rem);
+    font-size: clamp(2.8rem, 12vw, 5.5rem);
   }
 
   .hero-badges {
@@ -2736,8 +2746,73 @@ textarea {
 
   .about-stats {
     gap: 24px;
-    padding: 20px;
+    padding: 20px 12px;
+    width: 100%;
+    box-sizing: border-box;
     overflow-x: auto;
+  }
+
+  /* Workstation / Infrastructure Section Mobile Fixes */
+  .workstation-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .workstation-visual {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .workstation-visual .visual-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Reposition floating badges inside container boundaries on mobile */
+  .w-badge-1 {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
+
+  .w-badge-2 {
+    bottom: 12px;
+    left: 12px;
+    right: auto;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
+
+  /* Contact Section Mobile Fixes */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .contact-left, .contact-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .contact-form {
+    padding: 24px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-link {
+    padding: 14px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .portfolio-grid {
@@ -2747,6 +2822,8 @@ textarea {
   /* Swipeable scrollable tab bar on mobile */
   .portfolio-tabs {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;

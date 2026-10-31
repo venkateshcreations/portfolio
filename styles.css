@@ -440,6 +440,59 @@ textarea {
   gap: 16px;
 }
 
+/* Header Digital Resume Button */
+.header-resume-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 100px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all var(--transition-fast);
+}
+
+.header-resume-btn svg {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+  transition: transform 0.2s ease;
+}
+
+.header-resume-btn:hover {
+  border-color: var(--blue);
+  background: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 16px var(--blue-glow);
+  transform: translateY(-2px);
+  color: var(--blue-light);
+}
+
+.header-resume-btn:hover svg {
+  transform: translateY(-1px) scale(1.1);
+}
+
+@media (max-width: 640px) {
+  .header-resume-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .header-resume-text {
+    display: none;
+  }
+}
+
 /* Theme toggle */
 .theme-toggle {
   position: relative;
@@ -2829,17 +2882,6 @@ textarea {
     display: inline-flex !important;
   }
 
-  .header-resume-mobile {
-    padding: 8px 14px;
-    background: var(--blue);
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
-    margin-right: 8px;
-  }
 
   /* Disable cursor on mobile */
   .cursor,
@@ -3016,68 +3058,7 @@ textarea {
 .md-link-text { color: var(--md-link-text); }
 .md-link-url { color: var(--md-link-url); }
 
-/* ══════════════════════════════════════════════
-   FLOATING RESUME CTA
-   ══════════════════════════════════════════════ */
-.floating-resume-cta {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #c026d3 40%, #f472b6 50%, #c026d3 60%, #8b5cf6 100%);
-  background-size: 200% auto;
-  color: white;
-  padding: 15px 28px;
-  border-radius: 50px;
-  display: flex !important;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 1.05rem;
-  text-decoration: none;
-  box-shadow: 0 10px 30px rgba(192, 38, 211, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-  z-index: 1000;
-  animation: pulse-shadow-purple 2s infinite, shimmer 3s infinite linear;
-  transition: all 0.3s ease;
-  border: none !important;
-}
 
-.floating-resume-cta:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(192, 38, 211, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.6);
-  color: white;
-  background-position: right center;
-}
-
-.floating-resume-cta svg {
-  width: 20px;
-  height: 20px;
-  animation: bounce 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
-@keyframes pulse-shadow-purple {
-  0% { box-shadow: 0 0 0 0 rgba(192, 38, 211, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5); }
-  70% { box-shadow: 0 0 0 20px rgba(192, 38, 211, 0), inset 0 2px 4px rgba(255, 255, 255, 0.5); }
-  100% { box-shadow: 0 0 0 0 rgba(192, 38, 211, 0), inset 0 2px 4px rgba(255, 255, 255, 0.5); }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-5px); }
-  60% { transform: translateY(-3px); }
-}
-
-@media screen and (max-width: 768px) {
-  .floating-resume-cta {
-    display: none !important;
-  }
-}
 
 /* ─── ARCHITECTURE DIAGRAM POPOVER ─── */
 .popover-modal {
@@ -3957,6 +3938,8 @@ textarea {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
   border: 2px solid rgba(80, 70, 220, 0.5);
   box-shadow: 0 4px 16px rgba(80, 70, 220, 0.3);
   flex-shrink: 0;

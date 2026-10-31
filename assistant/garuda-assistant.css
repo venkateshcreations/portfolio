@@ -1,0 +1,712 @@
+/* ══════════════════════════════════════════════════════════════
+   GARUDA AI VOICE & CHAT COMPANION
+   Theme-aware, Glassmorphic, Agentic Portfolio Assistant
+   ══════════════════════════════════════════════════════════════ */
+
+/* Scoped Default Tokens (Ensures consistency across index.html, portfolio.html, and resume.html) */
+#garuda-ai {
+  --blue: #3B82F6;
+  --blue-light: #60A5FA;
+  --blue-dark: #1D4ED8;
+  --blue-glow: rgba(59, 130, 246, 0.25);
+  --bg: #050508;
+  --bg-2: #0A0A12;
+  --bg-card: rgba(18, 24, 38, 0.88);
+  --bg-glass: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.16);
+  --text-primary: #F8FAFC;
+  --text-secondary: #A1A5B3;
+  --text-muted: #6B7280;
+  --grey-subtle: rgba(107, 114, 128, 0.15);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="light"] #garuda-ai {
+  --bg: #FAFAFA;
+  --bg-2: #F3F4F6;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.12);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --grey-subtle: rgba(0, 0, 0, 0.05);
+}
+
+/* ─── FLOATING TOGGLE BUTTON ─── */
+#garuda-ai-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1001;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 1.5px solid rgba(59, 130, 246, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px var(--blue-glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+  outline: none;
+}
+
+#garuda-ai-toggle:hover {
+  transform: scale(1.08) translateY(-2px);
+  border-color: var(--blue-light);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+.garuda-toggle-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+  display: block;
+}
+
+#garuda-ai-toggle:hover .garuda-toggle-icon {
+  transform: scale(1.06);
+}
+
+/* Ambient Pulse Aura */
+.garuda-toggle-aura {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--blue);
+  opacity: 0.5;
+  animation: garudaAuraPulse 3s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes garudaAuraPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+/* Active Listening State for Toggle */
+#garuda-ai-toggle.is-listening {
+  border-color: #10b981;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+}
+
+#garuda-ai-toggle.is-listening .garuda-toggle-aura {
+  border-color: #10b981;
+  animation: garudaListeningWave 1.2s infinite ease-out;
+}
+
+@keyframes garudaListeningWave {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Active Speaking State for Toggle */
+#garuda-ai-toggle.is-speaking {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}
+
+/* Tooltip on Desktop */
+.garuda-toggle-tooltip {
+  position: absolute;
+  right: 72px;
+  white-space: nowrap;
+  background: var(--bg-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#garuda-ai-toggle:hover .garuda-toggle-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── MAIN ASSISTANT PANEL ─── */
+#garuda-ai-panel {
+  position: fixed;
+  bottom: 105px;
+  right: 30px;
+  z-index: 1002;
+  width: min(400px, calc(100vw - 32px));
+  height: min(600px, calc(100dvh - 130px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--bg-card);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.15);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] #garuda-ai-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+#garuda-ai-panel[hidden] {
+  display: none;
+}
+
+/* ─── HEADER ─── */
+.garuda-header {
+  padding: 14px 18px;
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.garuda-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.garuda-avatar-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1.5px solid rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 12px var(--blue-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.garuda-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  display: block;
+}
+
+.garuda-online-dot {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid var(--bg);
+}
+
+.garuda-title-wrap h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.garuda-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--blue-light);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  letter-spacing: 0.04em;
+}
+
+.garuda-title-wrap p {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin: 2px 0 0 0;
+}
+
+.garuda-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.garuda-icon-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.garuda-icon-btn:hover {
+  background: var(--grey-subtle);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.garuda-icon-btn.active {
+  color: var(--blue-light);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.garuda-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─── STATUS BAR ─── */
+.garuda-status-bar {
+  padding: 6px 18px;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .garuda-status-bar {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.garuda-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.garuda-status-dot {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  animation: garudaOnlineBlink 1.8s infinite ease-in-out;
+}
+
+@keyframes garudaOnlineBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 4px #10b981, 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+    box-shadow: 0 0 8px #10b981, 0 0 0 2.5px rgba(16, 185, 129, 0);
+  }
+}
+
+.garuda-status-dot.listening {
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+  animation: garudaPulseDot 0.8s infinite;
+}
+
+.garuda-status-dot.speaking {
+  background: #8b5cf6;
+  box-shadow: 0 0 8px #8b5cf6;
+  animation: garudaPulseDot 0.8s infinite;
+}
+
+@keyframes garudaPulseDot {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* ─── QUICK CHIPS WITH NAVIGATION ARROWS ─── */
+.garuda-chips-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6px;
+  gap: 4px;
+}
+
+.garuda-chips-bar {
+  flex: 1;
+  padding: 8px 4px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.35) transparent;
+}
+
+.garuda-chips-bar::-webkit-scrollbar {
+  height: 3px;
+}
+
+.garuda-chips-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.garuda-chips-bar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+}
+
+.garuda-chips-bar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.6);
+}
+
+.garuda-chips-arrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: var(--bg-2);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  opacity: 0.2;
+}
+
+.garuda-chips-arrow svg {
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+}
+
+.garuda-chips-arrow:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  box-shadow: 0 0 10px var(--blue-glow);
+  transform: scale(1.1);
+}
+
+.garuda-chip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.garuda-chip:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: var(--blue);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+/* ─── MESSAGES STREAM ─── */
+#garuda-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+#garuda-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+#garuda-messages::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 10px;
+}
+
+.garuda-msg {
+  max-width: 86%;
+  padding: 11px 14px;
+  border-radius: 16px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  word-break: break-word;
+  animation: garudaMsgFade 0.25s ease-out;
+}
+
+@keyframes garudaMsgFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.garuda-msg.bot {
+  align-self: flex-start;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+}
+
+[data-theme="light"] .garuda-msg.bot {
+  background: #f1f5f9;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.garuda-msg.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* Interactive Action Buttons inside Bot Messages */
+.garuda-action-btn {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 100px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid var(--blue);
+  color: var(--blue-light);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .garuda-action-btn {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--blue-dark);
+}
+
+.garuda-action-btn:hover {
+  background: var(--blue);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--blue-glow);
+}
+
+/* ─── VOICE & CONTROL DOCK ─── */
+.garuda-voice-controls {
+  padding: 8px 14px;
+  background: var(--bg-glass);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.garuda-mic-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid var(--blue);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.garuda-mic-btn:hover:not(:disabled) {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 4px 16px var(--blue-glow);
+}
+
+.garuda-mic-btn.listening {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ef4444;
+  animation: garudaListeningPulse 1s infinite alternate;
+}
+
+@keyframes garudaListeningPulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+  100% { box-shadow: 0 0 16px 4px rgba(239, 68, 68, 0.3); }
+}
+
+.garuda-stop-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.garuda-stop-btn:hover {
+  background: var(--grey-subtle);
+  color: var(--text-primary);
+}
+
+/* ─── VOICE PREFERENCES (COMPACT DRAWER) ─── */
+.garuda-voice-prefs {
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+[data-theme="light"] .garuda-voice-prefs {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.garuda-pref-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.garuda-pref-select {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* ─── COMPOSE INPUT FORM ─── */
+.garuda-compose {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border-top: 1px solid var(--border);
+}
+
+.garuda-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.garuda-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 10px var(--blue-glow);
+}
+
+.garuda-send-btn {
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.garuda-send-btn:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+}
+
+.garuda-send-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─── MOBILE RESPONSIVENESS ─── */
+@media (max-width: 480px) {
+  #garuda-ai-toggle {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .garuda-toggle-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  #garuda-ai-panel {
+    bottom: 84px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    height: calc(100dvh - 100px);
+    border-radius: 20px;
+  }
+}

@@ -187,10 +187,11 @@
         <div class="garuda-pref-item">
           <label for="garuda-voice-sel">Voice:</label>
           <select id="garuda-voice-sel" class="garuda-pref-select">
-            <option value="jarvis" selected>Executive British (Neural)</option>
-            <option value="us-male">Natural Male (US)</option>
-            <option value="female">Natural Female</option>
-            <option value="auto">System Natural</option>
+            <option value="brian" selected>JARVIS Neural (British)</option>
+            <option value="russell">JARVIS Deep (Oceanic)</option>
+            <option value="amy">FRIDAY Neural (British)</option>
+            <option value="joey">Quantum Male (US)</option>
+            <option value="system">Local System (Offline)</option>
           </select>
         </div>
         <div class="garuda-pref-item">
@@ -509,71 +510,68 @@
   }
 
   // -------------------------------------------------------------
-  // 9. JARVIS VOICE & SPEECH SYNTHESIS ENGINE
+  // 9. HIGH-DEFINITION NEURAL JARVIS VOICE & TTS ENGINE
   // -------------------------------------------------------------
+  let activeAudio = null;
+
+  function stopAllSpeech() {
+    clearInterval(ttsHeartbeat);
+    if (activeAudio) {
+      try {
+        activeAudio.pause();
+        activeAudio.src = "";
+      } catch (e) {}
+      activeAudio = null;
+    }
+    if ("speechSynthesis" in window) {
+      try {
+        speechSynthesis.cancel();
+      } catch (e) {}
+    }
+    resetStatusToReady();
+  }
+
+  function cleanTextForSpeech(rawText) {
+    if (!rawText) return "";
+    return rawText
+      .replace(/https?:\/\/[^\s]+/gi, "")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[*_#`~>↗●•■]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function getSelectedVoice() {
     if (!("speechSynthesis" in window)) return null;
     const voices = speechSynthesis.getVoices();
     if (!voices.length) return null;
 
-    const pref = voiceSelect ? voiceSelect.value : "jarvis";
+    const ukMalePattern = /george|ryan|oliver|brian|daniel|arthur|uk english male|great britain|united kingdom/i;
+    const ukMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && ukMalePattern.test(v.name));
+    if (ukMale) return ukMale;
 
-    // ─── 1. JARVIS (British Tech / Refined Male Accent) ───
-    if (pref === "jarvis") {
-      const ukMalePattern = /george|ryan|oliver|brian|daniel|arthur|uk english male|great britain|united kingdom/i;
-      const ukMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && ukMalePattern.test(v.name));
-      if (ukMale) return ukMale;
+    const anyUkMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && !/female|zira|samantha|hazel|susan/i.test(v.name));
+    if (anyUkMale) return anyUkMale;
 
-      const anyUkMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && !/female|zira|samantha|hazel|susan/i.test(v.name));
-      if (anyUkMale) return anyUkMale;
+    const classicBritish = voices.find(v => /daniel|oliver|arthur|george/i.test(v.name));
+    if (classicBritish) return classicBritish;
 
-      const classicBritish = voices.find(v => /daniel|oliver|arthur|george/i.test(v.name));
-      if (classicBritish) return classicBritish;
+    const deepMale = voices.find(v => /^en(-|_)/i.test(v.lang) && /david|mark|guy|richard|james|male/i.test(v.name));
+    if (deepMale) return deepMale;
 
-      const deepMale = voices.find(v => /^en(-|_)/i.test(v.lang) && /david|mark|guy|richard|james|male/i.test(v.name));
-      if (deepMale) return deepMale;
-
-      const anyUk = voices.find(v => /^en(-|_)GB/i.test(v.lang));
-      if (anyUk) return anyUk;
-    }
-
-    // ─── 2. US MALE ───
-    if (pref === "us-male") {
-      const usMale = voices.find(v => /^en(-|_)US/i.test(v.lang) && /david|mark|guy|richard|james|male/i.test(v.name));
-      if (usMale) return usMale;
-    }
-
-    // ─── 3. NATURAL FEMALE ───
-    if (pref === "female") {
-      const femalePattern = /female|zira|samantha|susan|karen|moira|tessa|veena|heera|priya|jenny/i;
-      const femaleVoice = voices.find(v => /^en(-|_)/i.test(v.lang) && femalePattern.test(v.name));
-      if (femaleVoice) return femaleVoice;
-    }
-
-    // ─── 4. NATURAL / SYSTEM DEFAULT ───
     const englishVoices = voices.filter(v => /^en(-|_)/i.test(v.lang));
-    const pool = englishVoices.length ? englishVoices : voices;
-    const natural = pool.find(v => /neural|natural|google|enhanced/i.test(v.name));
-    return natural || pool[0];
+    return englishVoices[0] || voices[0];
   }
 
-  function speakText(text) {
-    if (!isTtsEnabled || !("speechSynthesis" in window)) return;
+  function speakWithSystemTTS(text, speedMult) {
+    if (!("speechSynthesis" in window)) return;
 
     speechSynthesis.cancel();
     clearInterval(ttsHeartbeat);
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const pref = voiceSelect ? voiceSelect.value : "jarvis";
-    const speedMult = Number(speedSelect ? speedSelect.value : 1);
-
-    if (pref === "jarvis") {
-      utterance.pitch = 0.92;
-      utterance.rate = 0.96 * speedMult;
-    } else {
-      utterance.pitch = 1.0;
-      utterance.rate = 1.0 * speedMult;
-    }
+    utterance.pitch = 0.94;
+    utterance.rate = 1.0 * speedMult;
 
     const voice = getSelectedVoice();
     if (voice) {
@@ -609,12 +607,67 @@
     speechSynthesis.speak(utterance);
   }
 
-  function stopAllSpeech() {
-    clearInterval(ttsHeartbeat);
-    if ("speechSynthesis" in window) {
-      speechSynthesis.cancel();
+  function speakText(rawText) {
+    if (!isTtsEnabled) return;
+
+    stopAllSpeech();
+
+    const text = cleanTextForSpeech(rawText);
+    if (!text) return;
+
+    const pref = voiceSelect ? voiceSelect.value : "brian";
+    const speedMult = Number(speedSelect ? speedSelect.value : 1);
+
+    // If user explicitly chose local system voice
+    if (pref === "system") {
+      speakWithSystemTTS(text, speedMult);
+      return;
     }
-    resetStatusToReady();
+
+    // High-Definition Neural Stream (Amazon Polly Neural voices: Brian, Russell, Amy, Joey)
+    const neuralVoices = {
+      brian: "Brian",     // Refined British Butler (The iconic cinematic JARVIS)
+      russell: "Russell", // Deep Oceanic British
+      amy: "Amy",         // Refined British Female (FRIDAY)
+      joey: "Joey"        // Silicon Valley Tech Male
+    };
+
+    const pollyVoice = neuralVoices[pref] || "Brian";
+    const speechChunk = text.length > 400 ? text.substring(0, 395) + "..." : text;
+    const url = `https://api.streamelements.com/kappa/v2/speech?voice=${pollyVoice}&text=${encodeURIComponent(speechChunk)}`;
+
+    try {
+      const audio = new Audio();
+      audio.preload = "auto";
+      audio.src = url;
+      audio.playbackRate = speedMult;
+      activeAudio = audio;
+
+      audio.onplay = () => {
+        statusDot.className = "garuda-status-dot speaking";
+        statusText.textContent = "Vocalizing Response...";
+        toggleBtn.classList.add("is-speaking");
+      };
+
+      audio.onended = () => {
+        activeAudio = null;
+        resetStatusToReady();
+      };
+
+      audio.onerror = () => {
+        activeAudio = null;
+        speakWithSystemTTS(text, speedMult);
+      };
+
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          speakWithSystemTTS(text, speedMult);
+        });
+      }
+    } catch (e) {
+      speakWithSystemTTS(text, speedMult);
+    }
   }
 
   function resetStatusToReady() {

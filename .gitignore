@@ -1,0 +1,7 @@
+# Local voice audition lab and server (keep local, do not push to github)
+garuda-voice-demo.html
+server.js
+scratch_logo_test.html
+.DS_Store
+Thumbs.db
+

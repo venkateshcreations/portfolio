@@ -182,28 +182,6 @@
         </button>
       </div>
 
-      <!-- Voice Preferences Drawer -->
-      <div class="garuda-voice-prefs">
-        <div class="garuda-pref-item">
-          <label for="garuda-voice-sel">Voice:</label>
-          <select id="garuda-voice-sel" class="garuda-pref-select">
-            <option value="brian" selected>JARVIS Neural (British)</option>
-            <option value="russell">JARVIS Deep (Oceanic)</option>
-            <option value="amy">FRIDAY Neural (British)</option>
-            <option value="joey">Quantum Male (US)</option>
-            <option value="system">Local System (Offline)</option>
-          </select>
-        </div>
-        <div class="garuda-pref-item">
-          <label for="garuda-speed-sel">Cadence:</label>
-          <select id="garuda-speed-sel" class="garuda-pref-select">
-            <option value="0.9">Deliberate</option>
-            <option value="1" selected>Optimal (1.0x)</option>
-            <option value="1.15">Accelerated</option>
-          </select>
-        </div>
-      </div>
-
       <!-- Compose Form -->
       <form class="garuda-compose" id="garuda-form">
         <input
@@ -250,15 +228,20 @@
 
   const form = document.getElementById("garuda-form");
   const input = document.getElementById("garuda-input");
-  const voiceSelect = document.getElementById("garuda-voice-sel");
-  const speedSelect = document.getElementById("garuda-speed-sel");
-
   const toggleImg = document.getElementById("garudaToggleImg");
   const headerImg = document.getElementById("garudaHeaderImg");
 
   let isTtsEnabled = true;
   let isListening = false;
   let ttsHeartbeat = null;
+
+  // -------------------------------------------------------------
+  // APPROVED VOICE CONFIGURATION: Microsoft Christopher Online (Natural)
+  // Deep Cinematic Command Voice (Resonant Baritone US Male)
+  // -------------------------------------------------------------
+  const APPROVED_VOICE_PATTERN = /christopher.*natural|christopher/i;
+  const APPROVED_CADENCE = 1.0;
+  const APPROVED_PITCH = 0.95;
 
   // -------------------------------------------------------------
   // 5. THEME OBSERVER (Dynamic Icon Swap)
@@ -546,101 +529,85 @@
     const voices = speechSynthesis.getVoices();
     if (!voices.length) return null;
 
-    const ukMalePattern = /george|ryan|oliver|brian|daniel|arthur|uk english male|great britain|united kingdom/i;
-    const ukMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && ukMalePattern.test(v.name));
-    if (ukMale) return ukMale;
+    // 1. Primary: Approved Voice - Microsoft Christopher Online (Natural)
+    const christopher = voices.find(v => APPROVED_VOICE_PATTERN.test(v.name));
+    if (christopher) return christopher;
 
-    const anyUkMale = voices.find(v => /^en(-|_)GB/i.test(v.lang) && !/female|zira|samantha|hazel|susan/i.test(v.name));
-    if (anyUkMale) return anyUkMale;
+    // 2. Any other Christopher variant
+    const anyChristopher = voices.find(v => /christopher/i.test(v.name));
+    if (anyChristopher) return anyChristopher;
 
-    const classicBritish = voices.find(v => /daniel|oliver|arthur|george/i.test(v.name));
-    if (classicBritish) return classicBritish;
+    // 3. Fallback: Edge Natural male voices (Guy / Ryan / Steffan)
+    const naturalMale = voices.find(v => /^en(-|_)/i.test(v.lang) && /natural/i.test(v.name) && !/female|libby|sonia|jenny/i.test(v.name));
+    if (naturalMale) return naturalMale;
 
-    const deepMale = voices.find(v => /^en(-|_)/i.test(v.lang) && /david|mark|guy|richard|james|male/i.test(v.name));
-    if (deepMale) return deepMale;
+    // 4. Fallback: Google UK or US male
+    const googleMale = voices.find(v => /google.*male/i.test(v.name) || (/google/i.test(v.name) && /male/i.test(v.name)));
+    if (googleMale) return googleMale;
+
+    // 5. Fallback: Any clear male voice
+    const anyMale = voices.find(v => /^en(-|_)/i.test(v.lang) && !/female|zira|susan|hazel|david|desktop/i.test(v.name));
+    if (anyMale) return anyMale;
 
     const englishVoices = voices.filter(v => /^en(-|_)/i.test(v.lang));
     return englishVoices[0] || voices[0];
   }
 
-  function speakWithSystemTTS(text, speedMult) {
+  function speakWithSystemTTS(text, explicitVoice) {
     if (!("speechSynthesis" in window)) return;
 
-    speechSynthesis.cancel();
+    window.speechSynthesis.cancel();
+    if (window.speechSynthesis.resume) window.speechSynthesis.resume();
     clearInterval(ttsHeartbeat);
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.pitch = 0.94;
-    utterance.rate = 1.0 * speedMult;
+    setTimeout(() => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.pitch = APPROVED_PITCH;
+      utterance.rate = APPROVED_CADENCE;
 
-    const voice = getSelectedVoice();
-    if (voice) {
-      utterance.voice = voice;
-      utterance.lang = voice.lang;
-    }
+      const voice = explicitVoice || getSelectedVoice();
+      if (voice) {
+        utterance.voice = voice;
+        utterance.lang = voice.lang;
+      }
 
-    utterance.onstart = () => {
-      statusDot.className = "garuda-status-dot speaking";
-      statusText.textContent = "Vocalizing Response...";
-      toggleBtn.classList.add("is-speaking");
+      utterance.onstart = () => {
+        statusDot.className = "garuda-status-dot speaking";
+        statusText.textContent = "Vocalizing Response...";
+        toggleBtn.classList.add("is-speaking");
 
-      ttsHeartbeat = setInterval(() => {
-        if (!speechSynthesis.speaking) {
-          clearInterval(ttsHeartbeat);
-        } else {
-          speechSynthesis.pause();
-          speechSynthesis.resume();
-        }
-      }, 9000);
-    };
+        ttsHeartbeat = setInterval(() => {
+          if (!window.speechSynthesis.speaking) {
+            clearInterval(ttsHeartbeat);
+          } else {
+            window.speechSynthesis.pause();
+            window.speechSynthesis.resume();
+          }
+        }, 9000);
+      };
 
-    utterance.onend = () => {
-      clearInterval(ttsHeartbeat);
-      resetStatusToReady();
-    };
+      utterance.onend = () => {
+        clearInterval(ttsHeartbeat);
+        resetStatusToReady();
+      };
 
-    utterance.onerror = () => {
-      clearInterval(ttsHeartbeat);
-      resetStatusToReady();
-    };
+      utterance.onerror = () => {
+        clearInterval(ttsHeartbeat);
+        resetStatusToReady();
+      };
 
-    speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(utterance);
+    }, 30);
   }
 
-  function speakText(rawText) {
-    if (!isTtsEnabled) return;
-
-    stopAllSpeech();
-
-    const text = cleanTextForSpeech(rawText);
-    if (!text) return;
-
-    const pref = voiceSelect ? voiceSelect.value : "brian";
-    const speedMult = Number(speedSelect ? speedSelect.value : 1);
-
-    // If user explicitly chose local system voice
-    if (pref === "system") {
-      speakWithSystemTTS(text, speedMult);
-      return;
-    }
-
-    // High-Definition Neural Stream (Amazon Polly Neural voices: Brian, Russell, Amy, Joey)
-    const neuralVoices = {
-      brian: "Brian",     // Refined British Butler (The iconic cinematic JARVIS)
-      russell: "Russell", // Deep Oceanic British
-      amy: "Amy",         // Refined British Female (FRIDAY)
-      joey: "Joey"        // Silicon Valley Tech Male
-    };
-
-    const pollyVoice = neuralVoices[pref] || "Brian";
-    const speechChunk = text.length > 400 ? text.substring(0, 395) + "..." : text;
+  function playPollyTTS(text, pollyVoice) {
+    const speechChunk = text.length > 390 ? text.substring(0, 385) + "..." : text;
     const url = `https://api.streamelements.com/kappa/v2/speech?voice=${pollyVoice}&text=${encodeURIComponent(speechChunk)}`;
 
     try {
       const audio = new Audio();
-      audio.preload = "auto";
       audio.src = url;
-      audio.playbackRate = speedMult;
+      audio.playbackRate = APPROVED_CADENCE;
       activeAudio = audio;
 
       audio.onplay = () => {
@@ -656,18 +623,43 @@
 
       audio.onerror = () => {
         activeAudio = null;
-        speakWithSystemTTS(text, speedMult);
+        speakWithSystemTTS(text);
       };
 
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          speakWithSystemTTS(text, speedMult);
+          speakWithSystemTTS(text);
         });
       }
     } catch (e) {
-      speakWithSystemTTS(text, speedMult);
+      speakWithSystemTTS(text);
     }
+  }
+
+  function speakText(rawText) {
+    if (!isTtsEnabled) return;
+
+    stopAllSpeech();
+
+    const text = cleanTextForSpeech(rawText);
+    if (!text) return;
+
+    // 1. Direct hardware synthesis with approved Microsoft Christopher Online (Natural)
+    const voice = getSelectedVoice();
+    if (voice && APPROVED_VOICE_PATTERN.test(voice.name)) {
+      speakWithSystemTTS(text, voice);
+      return;
+    }
+
+    // 2. If available locally under any natural voice in the browser
+    if (voice) {
+      speakWithSystemTTS(text, voice);
+      return;
+    }
+
+    // 3. Cloud Fallback: Russell Deep Baritone
+    playPollyTTS(text, "Russell");
   }
 
   function resetStatusToReady() {

@@ -604,38 +604,6 @@
   color: var(--text-primary);
 }
 
-/* ─── VOICE PREFERENCES (COMPACT DRAWER) ─── */
-.garuda-voice-prefs {
-  padding: 6px 14px;
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border);
-}
-
-[data-theme="light"] .garuda-voice-prefs {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.garuda-pref-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.garuda-pref-select {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  font-size: 0.7rem;
-  padding: 3px 6px;
-  border-radius: 6px;
-  outline: none;
-}
-
 /* ─── COMPOSE INPUT FORM ─── */
 .garuda-compose {
   display: flex;

@@ -236,12 +236,13 @@
   let ttsHeartbeat = null;
 
   // -------------------------------------------------------------
-  // APPROVED VOICE CONFIGURATION: Microsoft Christopher Online (Natural)
-  // Deep Cinematic Command Voice (Resonant Baritone US Male)
+  // APPROVED VOICE CONFIGURATION: Microsoft Ryan Online (Natural)
+  // Cinematic JARVIS Butler (World-Class Neural British Male)
   // -------------------------------------------------------------
-  const APPROVED_VOICE_PATTERN = /christopher.*natural|christopher/i;
+  const APPROVED_VOICE_PATTERN = /ryan.*natural|ryan/i;
   const APPROVED_CADENCE = 1.0;
-  const APPROVED_PITCH = 0.95;
+  const APPROVED_PITCH = 1.0;
+  const CLOUD_JARVIS_VOICE = "Brian";
 
   // -------------------------------------------------------------
   // 5. THEME OBSERVER (Dynamic Icon Swap)
@@ -529,28 +530,17 @@
     const voices = speechSynthesis.getVoices();
     if (!voices.length) return null;
 
-    // 1. Primary: Approved Voice - Microsoft Christopher Online (Natural)
-    const christopher = voices.find(v => APPROVED_VOICE_PATTERN.test(v.name));
-    if (christopher) return christopher;
+    // 1. Primary: Approved Voice - Microsoft Ryan Online (Natural)
+    const ryan = voices.find(v => APPROVED_VOICE_PATTERN.test(v.name));
+    if (ryan) return ryan;
 
-    // 2. Any other Christopher variant
-    const anyChristopher = voices.find(v => /christopher/i.test(v.name));
-    if (anyChristopher) return anyChristopher;
+    // 2. High-quality British English natural voice if named slightly differently
+    const ukNatural = voices.find(v => /^en(-|_)GB/i.test(v.lang) && /natural/i.test(v.name) && !/female|libby|sonia|hazel/i.test(v.name));
+    if (ukNatural) return ukNatural;
 
-    // 3. Fallback: Edge Natural male voices (Guy / Ryan / Steffan)
-    const naturalMale = voices.find(v => /^en(-|_)/i.test(v.lang) && /natural/i.test(v.name) && !/female|libby|sonia|jenny/i.test(v.name));
-    if (naturalMale) return naturalMale;
-
-    // 4. Fallback: Google UK or US male
-    const googleMale = voices.find(v => /google.*male/i.test(v.name) || (/google/i.test(v.name) && /male/i.test(v.name)));
-    if (googleMale) return googleMale;
-
-    // 5. Fallback: Any clear male voice
-    const anyMale = voices.find(v => /^en(-|_)/i.test(v.lang) && !/female|zira|susan|hazel|david|desktop/i.test(v.name));
-    if (anyMale) return anyMale;
-
-    const englishVoices = voices.filter(v => /^en(-|_)/i.test(v.lang));
-    return englishVoices[0] || voices[0];
+    // Strict: No robotic/unapproved system voices (e.g. David Desktop, Zira, Google US).
+    // Returning null routes speech directly to the neural cloud JARVIS engine (Brian).
+    return null;
   }
 
   function speakWithSystemTTS(text, explicitVoice) {
@@ -601,8 +591,9 @@
   }
 
   function playPollyTTS(text, pollyVoice) {
+    const voiceToUse = pollyVoice || CLOUD_JARVIS_VOICE;
     const speechChunk = text.length > 390 ? text.substring(0, 385) + "..." : text;
-    const url = `https://api.streamelements.com/kappa/v2/speech?voice=${pollyVoice}&text=${encodeURIComponent(speechChunk)}`;
+    const url = `https://api.streamelements.com/kappa/v2/speech?voice=${voiceToUse}&text=${encodeURIComponent(speechChunk)}`;
 
     try {
       const audio = new Audio();
@@ -623,17 +614,20 @@
 
       audio.onerror = () => {
         activeAudio = null;
-        speakWithSystemTTS(text);
+        const fallback = (window.speechSynthesis?.getVoices() || []).find(v => /^en(-|_)GB/i.test(v.lang)) || null;
+        if (fallback) speakWithSystemTTS(text, fallback);
       };
 
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          speakWithSystemTTS(text);
+          const fallback = (window.speechSynthesis?.getVoices() || []).find(v => /^en(-|_)GB/i.test(v.lang)) || null;
+          if (fallback) speakWithSystemTTS(text, fallback);
         });
       }
     } catch (e) {
-      speakWithSystemTTS(text);
+      const fallback = (window.speechSynthesis?.getVoices() || []).find(v => /^en(-|_)GB/i.test(v.lang)) || null;
+      if (fallback) speakWithSystemTTS(text, fallback);
     }
   }
 
@@ -645,21 +639,15 @@
     const text = cleanTextForSpeech(rawText);
     if (!text) return;
 
-    // 1. Direct hardware synthesis with approved Microsoft Christopher Online (Natural)
+    // 1. Direct hardware synthesis with approved Microsoft Ryan Online (Natural)
     const voice = getSelectedVoice();
-    if (voice && APPROVED_VOICE_PATTERN.test(voice.name)) {
-      speakWithSystemTTS(text, voice);
-      return;
-    }
-
-    // 2. If available locally under any natural voice in the browser
     if (voice) {
       speakWithSystemTTS(text, voice);
       return;
     }
 
-    // 3. Cloud Fallback: Russell Deep Baritone
-    playPollyTTS(text, "Russell");
+    // 2. Dedicated Neural Cloud JARVIS Engine: Brian (British Butler)
+    playPollyTTS(text, CLOUD_JARVIS_VOICE);
   }
 
   function resetStatusToReady() {

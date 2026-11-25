@@ -373,6 +373,15 @@ window.GARUDA_KNOWLEDGE = [
     chips: ["Garuda Intelligence", "All 30+ Projects", "Access Resume"]
   },
 
+  // ─── OPEN SOURCE CREATIVE & AI SUITES ───
+  {
+    keywords: ["open source", "opensource", "vc-record", "vc-draw", "canvasforge", "canvasforge studio", "screen recorder", "diagramming", "whiteboard", "vector suite"],
+    answer: "Venkatesh creates and open-sources high-performance creative engines: 1) VC-Record — Modern Windows screen recorder & desktop capture studio; 2) VC-Draw — Offline-first diagramming and infinite whiteboard suite; and 3) CanvasForge Studio — Modern offline-first vector design suite & prototyping engine. He also built Garuda AI Orchestrator and Disc-AI.",
+    action: { type: "OPEN_EXTERNAL_URL", url: "https://venkateshcreations.github.io/portfolio/portfolio.html#sec-opensource" },
+    actionLabel: "Explore Open Source Suite ↗",
+    chips: ["VC-Record", "VC-Draw", "CanvasForge Studio", "Garuda AI Orchestrator", "Disc-AI"]
+  },
+
   // ─── THANKS & COURTESY ───
   {
     keywords: ["thank you", "thanks", "awesome", "great", "cool", "bye", "goodbye"],

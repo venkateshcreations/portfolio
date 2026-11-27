@@ -2658,12 +2658,6 @@ textarea {
   color: var(--text-muted);
 }
 
-.footer-engineering-note {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono, monospace);
-  opacity: 0.85;
-}
 
 .footer-back-to-top {
   display: inline-flex;
